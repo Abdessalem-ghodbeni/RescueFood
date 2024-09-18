@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+
+require __DIR__ . '/auth.php';
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
+    // Ajoute d'autres routes d'administration ici
+});
+
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
