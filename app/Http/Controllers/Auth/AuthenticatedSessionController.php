@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
             case 'association':
                 return redirect('dashboard/association');
             case 'restaurant':
-                return redirect('dashboard/restaurant');
+                return redirect('restorant/dahboard');
             default:
                 return redirect()->intended('/');
         }

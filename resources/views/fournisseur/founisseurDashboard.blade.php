@@ -68,6 +68,18 @@ Menu item START -->
 									<li> <a class="dropdown-item" href="#">Item 2</a></li>
 								</ul>
 							</li>	
+							<form method="POST" action="{{ route('logout') }}">
+								@csrf
+							<!-- Sidebar footer START -->
+							<div class="d-flex align-items-center justify-content-between text-primary-hover mt-auto p-3">
+							<button type="submit" class="h6 fw-light mb-0 text-body btn btn-link p-0"> 
+								
+								<a class="h6 fw-light mb-0 text-body"  data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Sign out">
+									<i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+								</a>
+								 
+							</button>	
+							</div></form>
 						</ul>
 					</div>
 				</div>
