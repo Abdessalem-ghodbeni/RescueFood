@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,5 @@ Route::middleware(['admin'])->group(function () {
     // Ajoute d'autres routes d'administration ici
 });
 
-
+Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
