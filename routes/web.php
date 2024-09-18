@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\ProfileController;
@@ -44,4 +45,6 @@ Route::middleware(['admin'])->group(function () {
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
+
+Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

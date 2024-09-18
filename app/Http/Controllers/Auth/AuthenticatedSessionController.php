@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             case 'livreur':
                 return redirect('livreur/dahboard');
             case 'association':
-                return redirect('dashboard/association');
+                return redirect('association/dahboard');
             case 'restaurant':
                 return redirect('restorant/dahboard');
             default:
