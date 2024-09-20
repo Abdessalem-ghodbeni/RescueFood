@@ -24,4 +24,10 @@ class Restaurant extends Model
     {
         return $this->hasMany(Don::class);
     }
+
+    // Relation : un restaurant a un stock
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
 }
