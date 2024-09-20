@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('date_don');
             $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
-            $table->foreignId('association_id')->constrained()->onDelete('cascade');
+            $table->foreignId('association_id')->constrained('associations')->onDelete('cascade');  // Ensure this references the correct table
             $table->timestamps();
         });
     }
