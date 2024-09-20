@@ -26,6 +26,7 @@ class User extends Authenticatable
         'region',
         'adresse',
         'numero_telephone'
+
     ];
 
     /**
@@ -69,5 +70,18 @@ class User extends Authenticatable
     public function hasRole(Role $role): bool
     {
         return $this->role === $role->value;
+    }
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+    public function livraisons()
+    {
+        return $this->hasMany(Livraison::class);
+    }
+    public function associations()
+    {
+        return $this->hasMany(Association::class);
     }
 }
