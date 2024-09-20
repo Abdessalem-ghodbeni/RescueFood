@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Categorie extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'commentaire',
-        'association_id'
+        'type_categorie',
 
     ];
-    public function association()
+    public function associations()
     {
-        return $this->belongsTo(Association::class);
+        return $this->hasMany(Association::class);
     }
 }

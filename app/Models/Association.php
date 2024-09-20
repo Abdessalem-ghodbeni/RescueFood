@@ -13,16 +13,14 @@ class Association extends Model
         'email',
         'numero_telphone',
         'user_id', // Clé étrangère ajoutée
+        'categorie_id',
 
     ];
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function feedbacks()
-    {
-        return $this->hasMany(Feedback::class);
-    }
+
     public function dons()
     {
         return $this->hasMany(Don::class);
@@ -30,5 +28,10 @@ class Association extends Model
     public function blog()
     {
         return $this->hasOne(Blog::class);
+    }
+    // Relation : une association appartient à une seule catégorie
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
     }
 }
