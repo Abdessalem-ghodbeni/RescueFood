@@ -30,4 +30,8 @@ class Restaurant extends Model
     {
         return $this->hasOne(Stock::class);
     }
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
 }
