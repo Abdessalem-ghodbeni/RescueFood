@@ -41,10 +41,18 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
     // Ajoute d'autres routes d'administration ici
 });
+// liste des routes resto by ghodbeny abdessalem 
+Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
+
+Route::post('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
+Route::get('restorant/liste', [RestorantController::class, 'getAllRestorant'])->name('restorant.getAllRestorant')->middleware('auth');
+// Soumettre le formulaire pour ajouter un restaurant
+Route::post('restorant/store', [RestorantController::class, 'store'])->name('restorant.store')->middleware('auth');
+
+
+// fin route resto liste by ghodbeny abdessalem
 
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
-
-Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
 Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
