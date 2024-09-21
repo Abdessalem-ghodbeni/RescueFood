@@ -318,208 +318,164 @@
 			</div>
 		</div>
 	</nav>
-	<div class="page-content-wrapper border">
-
-		<!-- Title -->
-		<div class="row mb-3">
-			<div class="col-12 d-sm-flex justify-content-between align-items-center">
-				<h1 class="h3 mt-3 mb-5 mb-sm-0">Liste Des restaurants crées par Mr/Mme {{ Auth::user()->name }}</h1>
-				<a href="/restorant/create" class="btn btn-sm btn-primary mb-0">créer un restaurant</a>
-			</div>
-		</div>
-
-		<!-- Course boxes START -->
-		<div class="row g-4 mb-4">
-			<!-- Course item -->
-			<div class="col-12 ">
-				<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-					<h6>Le nombre totale de vos restaurants :</h6>
-					<h2 class="mb-0 fs-1 text-primary">{{ $totalRestaurants }}</h2>
-				</div>
-			</div>
-
-		 
-
-			 
-		</div>
-		<!-- Course boxes END -->
-
-		<!-- Card START -->
-		<div class="card bg-transparent border">
-
-			<!-- Card header START -->
-			<div class="card-header bg-light border-bottom">
-				<!-- Search and select START -->
-				<div class="row g-3 align-items-center justify-content-between">
-						<!-- Select option -->
-						 
-					<div class="col-md-12 text-center">
-						<form action="{{ route('restorant.search') }}" method="GET" class="rounded position-relative">
-							<input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
-							<button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-								<i class="fas fa-search fs-6"></i>
-							</button>
-						</form>
-						
+    <div class="page-content-wrapper border ">
+       <div class="container mt-5">
+        <p class="text-center"><strong>L'objectif de cette section est de fournir une vue d'ensemble complète des informations liées au restaurant, incluant ses caractéristiques principales, son emplacement, et ses services proposés</strong></p>
+       </div>
+        <div class="row g-4 g-sm-5">
+		<div class="col-lg-2 mb-4 mb-sm-0"></div>
+			<div class="col-lg-8 mb-4 mb-sm-0">
+				<div class="card card-body p-4 shadow">
+					<!-- Alert -->
+					<div class="alert alert-success alert-dismissible d-flex justify-content-between align-items-center fade show py-3 pe-2" role="alert">
+						<div>
+							<span class="fs-5 me-1">🔥</span>
+							Voici les détails du restaurant numéro {{ $restaurant->id }}. Vous trouverez toutes les informations pertinentes ici.
+						</div>
+						<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
 					</div>
 
-				
+
+
+					<div class="table-responsive border-0 rounded-3">
+						<!-- Table START -->
+						<table class="table align-middle p-4 mb-0">
+							<!-- Table head -->
+							<!-- Table body START -->
+							<tbody class="border-top-0">
+								<!-- Table item -->
+								<tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Nom du restaurant :</strong> {{ $restaurant->Restorant }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+                       
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Spécialité:</strong> {{ $restaurant->specialite }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+
+
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>le restorant est situé à:</strong> {{ $restaurant->localisation }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Numéro téléphone fix est :</strong>  {{ $restaurant->numero_fix }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Date de Création:</strong> {{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+ 
 				</div>
-				<!-- Search and select END -->
 			</div>
-			<!-- Card header END -->
+		 
 
-			<!-- Card body START -->
-			<div class="card-body">
-				
+		</div>
 
-
-
-				<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-					<!-- Table head -->
-					<thead>
-						<tr>
-							<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
-							<th scope="col" class="border-0">Spécialité du restaurant</th>
-							<th scope="col" class="border-0">Localisation </th>
-							<th scope="col" class="border-0">Numéro fix </th>
-							<th scope="col" class="border-0">Date de création </th>
-							 
-							<th scope="col" class="border-0 rounded-end">Action</th>
-						</tr>
-					</thead>
-					
-					<!-- Table body START -->
-					<tbody>
-						
-						@foreach($restaurants as $restaurant)
-						<tr>
-							<!-- Table data -->
-							<td>
-								<div class="d-flex align-items-center position-relative">
-								 
-									<h6 class="table-responsive-title mb-0 ms-2">	
-										<a class="stretched-link">{{ $restaurant->Restorant }}</a>
-									</h6>
-								</div>
-							</td>
-
-							<!-- Table data -->
-							<td>
-								<div class="d-flex align-items-center mb-3">
-								 
-									<div class="ms-2">
-										<h6 class="mb-0 fw-light">{{ $restaurant->specialite }}</h6>
-									</div>
-								</div>
-							</td>
-
-						 
-							<td> <span class="badge text-bg-primary">{{ $restaurant->localisation }}</span> </td>
-
-							<!-- Table data -->
-							 
-						 
-							<td> <span class="badge bg-warning bg-opacity-15 text-warning">{{ $restaurant->numero_fix }}</span> </td>
-<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
-							 
-							<td class="d-flex  ">
-								<a href="{{url('Myrestorantt',$restaurant->id)}}">
-								<button class="btn btn-info-soft"><i class="bi bi-info-circle"></i></button>
-								</a>
-								{{-- <a href="{{ url('rrestorant/edit', $restaurant->id) }}">
-									<button class="btn btn-warning-soft  mx-2">Modifier</button>
-								</a>
-							     --}}
-								 <a href="{{ route('restorant.edit', $restaurant->id) }}">
-									<button class="btn btn-warning-soft mx-2"> <i class="bi bi-pen"></i></button>
-								</a>
-								
-								<form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
-								@csrf
-								@method('DELETE')
-									{{-- <input type="submit" class="btn btn-danger-soft"  value="Supprimer" /> --}}
-									<button class="btn btn-danger-soft" type="submit"><i class="bi bi-trash"></i></button>
-							</form>
-							</td>
-						</tr>
 
  
-				 
-
-						@endforeach
-					</tbody>
-				 
-				</table>
-
-
-
-
-
-
-
-
-
-
-
-				{{-- <table class="table">
-					<thead>
-					  <tr>
-						<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
-								<th scope="col" class="border-0">Spécialité du restaurant</th>
-								<th scope="col" class="border-0">Localisation </th>
-								<th scope="col" class="border-0">Numéro fix </th>
-								<th scope="col" class="border-0">Date de création </th>
-								<th scope="col" class="border-0 rounded-end">Action</th>
-							</tr>
-					  </tr>
-					</thead>
-					<tbody>
-						@foreach($restaurants as $restaurant)
-					  <tr>
-						<th scope="row">{{ $restaurant->Restorant }}</th>
-						<td>{{ $restaurant->specialite }}</td>
-						<td>{{ $restaurant->localisation }}</td>
-						<td>{{ $restaurant->numero_fix }}</td>
-						<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
-						<td><form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
-							@csrf
-							@method('DELETE')
-							<input type="submit" class="btn btn-danger-soft" value="Supprimer" />
-						</form>
-						</td>
-					  </tr>
-					 
-					   @endforeach
-					</tbody>
-				  </table>
-				 
-			</div> --}}
-			 
-
-			 
-			<div class="card-footer bg-transparent pt-0">
-				<!-- Pagination START -->
-				<div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-					<!-- Content -->
-					<p class="mb-0 text-center text-sm-start">plus...</p>
-					<!-- Pagination -->
-					<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-						<ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-							<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-							<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-						</ul>
-					</nav>
-				</div>
-				<!-- Pagination END -->
-			</div>
-			<!-- Card footer END -->
-		</div>
-		<!-- Card END -->
-	</div>
+    </div>
 
 </div>
 <!-- Page content END -->

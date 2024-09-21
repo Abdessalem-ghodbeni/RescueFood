@@ -49,6 +49,17 @@ Route::get('restorant/liste', [RestorantController::class, 'getAllRestorant'])->
 // Soumettre le formulaire pour ajouter un restaurant
 Route::post('restorant/store', [RestorantController::class, 'store'])->name('restorant.store')->middleware('auth');
 Route::delete('restorant/{id}', [RestorantController::class, 'destroy'])->name('restorant.destroy')->middleware('auth');
+Route::get('Myrestorantt/{id}', [RestorantController::class, 'show'])->name('restorant.show');
+
+
+
+// Route pour afficher le formulaire d'édition
+Route::get('rrestorant/{id}/edit', [RestorantController::class, 'edit'])->name('restorant.edit')->middleware('auth');
+
+// Route pour mettre à jour le restaurant
+Route::put('erestorant/{id}', [RestorantController::class, 'update'])->name('restorant.update')->middleware('auth');
+
+Route::get('restorant/search', [RestorantController::class, 'search'])->name('restorant.search')->middleware('auth');
 
 // fin route resto liste by ghodbeny abdessalem
 

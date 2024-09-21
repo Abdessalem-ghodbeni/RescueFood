@@ -428,7 +428,7 @@
                  </div>
                     <div class="align-items-center mt-0">
                         <div class="d-grid">
-                            <button class="btn btn-primary mb-0" type="submit">Crrer</button>
+                            <button class="btn btn-primary-soft mb-0" type="submit">créer un restaurant</button>
                         </div>
                     </div>
                 </form>
