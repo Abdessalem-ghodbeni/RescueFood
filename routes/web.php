@@ -44,11 +44,11 @@ Route::middleware(['admin'])->group(function () {
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
-Route::post('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
+Route::get('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
 Route::get('restorant/liste', [RestorantController::class, 'getAllRestorant'])->name('restorant.getAllRestorant')->middleware('auth');
 // Soumettre le formulaire pour ajouter un restaurant
 Route::post('restorant/store', [RestorantController::class, 'store'])->name('restorant.store')->middleware('auth');
-
+Route::delete('restorant/{id}', [RestorantController::class, 'destroy'])->name('restorant.destroy')->middleware('auth');
 
 // fin route resto liste by ghodbeny abdessalem
 

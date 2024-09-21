@@ -12,11 +12,17 @@ class RestorantController extends Controller
     {
         return view('restorant.restorantDashboard');
     }
+    public function getTotalRestaurants()
+    {
+        return Restaurant::count();
+    }
 
     public function getAllRestorant()
     {
         $restaurants = Auth::user()->restaurants;
-        return view('restorant.listeRestaurant', compact('restaurants'));
+
+        $totalRestaurants = $this->getTotalRestaurants();
+        return view('restorant.listeRestaurant', compact('restaurants', 'totalRestaurants'));
     }
 
 
@@ -48,5 +54,18 @@ class RestorantController extends Controller
         toastr()->success('votre resaurant est ajouté avec succées.');
 
         return redirect()->route('restorant.index')->with('success', 'Restaurant créé avec succès.');
+    }
+
+    public function destroy($id)
+    {
+        $restaurant = Restaurant::findOrFail($id);
+
+        if ($restaurant->user_id !== Auth::id()) {
+            return redirect()->route('restorant.index')->with('error', 'Vous ne pouvez pas supprimer ce restaurant.');
+        }
+
+        $restaurant->delete();
+
+        return redirect()->route('restorant.index')->with('success', 'Restaurant supprimé avec succès.');
     }
 }

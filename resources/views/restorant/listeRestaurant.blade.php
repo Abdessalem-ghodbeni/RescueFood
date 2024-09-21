@@ -324,35 +324,23 @@
 		<div class="row mb-3">
 			<div class="col-12 d-sm-flex justify-content-between align-items-center">
 				<h1 class="h3 mb-2 mb-sm-0">Courses</h1>
-				<a href="instructor-create-course.html" class="btn btn-sm btn-primary mb-0">Create a Course</a>
+				<a href="/restorant/create" class="btn btn-sm btn-primary mb-0">Create a Course</a>
 			</div>
 		</div>
 
 		<!-- Course boxes START -->
 		<div class="row g-4 mb-4">
 			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
+			<div class="col-12 ">
 				<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-					<h6>Total Courses</h6>
-					<h2 class="mb-0 fs-1 text-primary">1200</h2>
+					<h6>Le nombre totale de vos restaurants :</h6>
+					<h2 class="mb-0 fs-1 text-primary">{{ $totalRestaurants }}</h2>
 				</div>
 			</div>
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
-					<h6>Activated Courses</h6>
-					<h2 class="mb-0 fs-1 text-success">996</h2>
-				</div>
-			</div>
+		 
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4  bg-warning bg-opacity-15 border border-warning rounded-3">
-					<h6>Pending Courses</h6>
-					<h2 class="mb-0 fs-1 text-warning">200</h2>
-				</div>
-			</div>
+			 
 		</div>
 		<!-- Course boxes END -->
 
@@ -393,90 +381,120 @@
 
 			<!-- Card body START -->
 			<div class="card-body">
-				<!-- Course table START -->
-				<div class="table-responsive border-0 rounded-3">
-					<!-- Table START -->
-					<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-						<!-- Table head -->
-						<thead>
-							<tr>
-								<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
+				
+
+
+
+				<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+					<!-- Table head -->
+					<thead>
+						<tr>
+							<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
+							<th scope="col" class="border-0">Spécialité du restaurant</th>
+							<th scope="col" class="border-0">Localisation </th>
+							<th scope="col" class="border-0">Numéro fix </th>
+							<th scope="col" class="border-0">Date de création </th>
+							 
+							<th scope="col" class="border-0 rounded-end">Action</th>
+						</tr>
+					</thead>
+					
+					<!-- Table body START -->
+					<tbody>
+						
+						@foreach($restaurants as $restaurant)
+						<tr>
+							<!-- Table data -->
+							<td>
+								<div class="d-flex align-items-center position-relative">
+								 
+									<h6 class="table-responsive-title mb-0 ms-2">	
+										<a class="stretched-link">{{ $restaurant->Restorant }}</a>
+									</h6>
+								</div>
+							</td>
+
+							<!-- Table data -->
+							<td>
+								<div class="d-flex align-items-center mb-3">
+								 
+									<div class="ms-2">
+										<h6 class="mb-0 fw-light">{{ $restaurant->specialite }}</h6>
+									</div>
+								</div>
+							</td>
+
+						 
+							<td> <span class="badge text-bg-primary">{{ $restaurant->localisation }}</span> </td>
+
+							<!-- Table data -->
+							 
+						 
+							<td> <span class="badge bg-warning bg-opacity-15 text-warning">{{ $restaurant->numero_fix }}</span> </td>
+<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
+							 
+							<td><form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
+								@csrf
+								@method('DELETE')
+								<input type="submit" class="btn btn-danger-soft" value="Supprimer" />
+							</form>
+							</td>
+						</tr>
+
+ 
+				 
+
+						@endforeach
+					</tbody>
+				 
+				</table>
+
+
+
+
+
+
+
+
+
+
+
+				{{-- <table class="table">
+					<thead>
+					  <tr>
+						<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
 								<th scope="col" class="border-0">Spécialité du restaurant</th>
 								<th scope="col" class="border-0">Localisation </th>
 								<th scope="col" class="border-0">Numéro fix </th>
 								<th scope="col" class="border-0">Date de création </th>
 								<th scope="col" class="border-0 rounded-end">Action</th>
 							</tr>
-						</thead>
-						
-						<!-- Table body START -->
-						<tbody>
-							@foreach($restaurants as $restaurant)
-						 
+					  </tr>
+					</thead>
+					<tbody>
+						@foreach($restaurants as $restaurant)
+					  <tr>
+						<th scope="row">{{ $restaurant->Restorant }}</th>
+						<td>{{ $restaurant->specialite }}</td>
+						<td>{{ $restaurant->localisation }}</td>
+						<td>{{ $restaurant->numero_fix }}</td>
+						<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
+						<td><form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
+							@csrf
+							@method('DELETE')
+							<input type="submit" class="btn btn-danger-soft" value="Supprimer" />
+						</form>
+						</td>
+					  </tr>
+					 
+					   @endforeach
+					</tbody>
+				  </table>
+				 
+			</div> --}}
+			 
 
-							<!-- Table row -->
-							<tr>
-								<!-- Table data -->
-								<td>
-								 
-									 
-										<!-- Title -->
-										<h6 class="table-responsive-title mb-0 ms-2">	
-											<a href="#" class="stretched-link">{{ $restaurant->Restorant }}</a>
-										</h6>
-								
-								</td>
-
-								<!-- Table data -->
-								<td>
-								 
-										<div class="ms-2">
-											<h6 class="mb-0 fw-light">{{ $restaurant->specialite }}</h6>
-										</div>
-								 
-								</td>
-
-								 
-								<!-- Table data -->
-								<td> <span class="badge text-bg-purple">{{ $restaurant->localisation }}</span> </td>
-
-							 
-
-								<!-- Table data -->
-								<td>
-									<span class="badge bg-warning bg-opacity-15 text-warning">{{ $restaurant->numero_fix }}</span>
-								</td>
-								<td>
-								 
-									 
-									<!-- Title -->
-									<h6 class="table-responsive-title mb-0 ms-2">	
-										<a href="#" class="stretched-link">{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</a>
-									</h6>
-							
-							</td>
-								<!-- Table data -->
-								<td>
-									<button href="#" class="btn btn-sm btn-success-soft me-1 mb-1 mb-2 mb-md-0"><i class=" mb-md-0 bi bi-pen me-2"></i>Modifier</button>
-									<a class="btn btn-sm btn-danger-soft mb-0" ><i class="bi bi-trash me-2 " ></i>Supprimer</a>
-								</td>
-							</tr>
-
-							<!-- Table row -->
-						 
- 
-						 
-							@endforeach
-						</tbody>
-						<!-- Table body END -->
-					</table>
-					<!-- Table END -->
-				</div>
-				<!-- Course table END -->
-			</div>
-			<!-- Card body END -->
-
-			<!-- Card footer START -->
+			 
 			<div class="card-footer bg-transparent pt-0">
 				<!-- Pagination START -->
 				<div class="d-sm-flex justify-content-sm-between align-items-sm-center">
