@@ -88,18 +88,15 @@
                             <div class="bg-dark border rounded-3 p-3 w-100">
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                    <a class="list-group-item active" href="student-subscription.html"><i
-                                            class="bi bi-card-checklist fa-fw me-2"></i>My Association</a>
-                                    <a class="list-group-item" href="student-course-list.html"><i
-                                            class="bi bi-pen fa-fw me-2"></i>Update</a>
-                                    <a class="list-group-item" href="instructor-edit-profile.html"><i
-                                            class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-                                    <a class="list-group-item" href="{{ route('association.create') }}"><i
-                                            class="bi bi-plus-circle fa-fw me-2"></i>Create</a>
-                                    <a class="list-group-item text-danger bg-danger-soft-hover"
-                                       href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete
-                                        association</a>
-
+                                    <a class="list-group-item {{ request()->is('association/afficher') ? 'active' : '' }}"
+                                       href="{{ route('association.afficher', ['user_id' => Auth::user()->id]) }}">
+                                        <i class="bi bi-card-checklist fa-fw me-2"></i>My Associations
+                                    </a>
+                                    <!-- Link to Create New Association -->
+                                    <a class="list-group-item {{ request()->is('association/create') ? 'active' : '' }}"
+                                       href="{{ route('association.create') }}">
+                                        <i class="bi bi-plus-circle fa-fw me-2"></i>Create New Association
+                                    </a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="btn">
@@ -124,15 +121,7 @@
                         <!-- Counter item -->
                         <!-- Counter item -->
                     </div>
-                    @foreach($associations as $association)
-                        <div>
-                            <h3>{{ $association->name }}</h3>
-                            <p>Email: {{ $association->email }}</p>
-                            <p>Phone: {{ $association->numero_telphone }}</p>
-                            <p>Address: {{ $association->adresse }}</p>
-                            <p>Category: {{ $association->categorie->type_categorie }}</p>
-                        </div>
-                    @endforeach
+
                     @yield('content')
                     <!-- Counter boxes END -->
 
