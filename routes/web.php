@@ -46,5 +46,8 @@ Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livre
 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
-Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
+route::get('/association/{user_id}/dashboard', [AssociationController::class, 'index'])->name('association.dashboard');
+route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
+Route::post('/association', [AssociationController::class, 'store'])->name('association.store');
+
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

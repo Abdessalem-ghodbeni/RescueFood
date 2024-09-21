@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             case 'livreur':
                 return redirect('livreur/dahboard');
             case 'association':
-                return redirect('association/dahboard');
+                return redirect()->route('association.dashboard', ['user_id' => $request->user()->id]);
             case 'restaurant':
                 return redirect('restorant/dahboard');
             default:
