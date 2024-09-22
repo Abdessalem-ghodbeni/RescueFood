@@ -34,7 +34,7 @@
 				<li class="nav-item"><a href="{{url('/restorant/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Restaurant</a></li>
 				 
 
-			 
+			  
 
 				<!-- Menu item 3 -->
 				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>

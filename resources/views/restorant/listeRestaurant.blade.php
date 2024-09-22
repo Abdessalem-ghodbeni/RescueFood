@@ -57,7 +57,7 @@
 			</div>
             </div></form>
 			
-			<!-- Sidebar footer END -->
+		 
 			
 		</div>
 	</div>

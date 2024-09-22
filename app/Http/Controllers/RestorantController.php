@@ -14,6 +14,7 @@ class RestorantController extends Controller
     }
     public function getTotalRestaurants()
     {
+
         return Restaurant::count();
     }
     public function show($id)

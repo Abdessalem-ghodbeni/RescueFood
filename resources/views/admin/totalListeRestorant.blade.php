@@ -37,7 +37,7 @@
 
 				 
 					<!-- Menu item -->
-					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+					<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
 	
 					<!-- Menu item -->
 				 
@@ -242,7 +242,148 @@
 		<!-- Top bar END -->
 	
 		<!-- Page main content START -->
-		 <div class="page-content-wrapper p-xxl-4"></div>
+		 <div class="page-content-wrapper p-xxl-4">
+
+            <div class="card shadow mt-5">
+                 
+                <div class="card-header border-bottom">
+                  <h5 class="card-title mb-0">Liste Totale des restaurants : </h5>
+                  <div class="col-md-12 mt-3 text-center">
+                    {{-- <form action="{{ route('admin/search') }}" method="GET" class="rounded position-relative">
+                        <input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
+                        <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
+                            <i class="fas fa-search fs-6"></i>
+                        </button>
+                    </form> --}}
+                    <form action="{{ route('admin.search') }}" method="GET" class="rounded position-relative">
+
+                        <input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
+                        <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
+                            <i class="fas fa-search fs-6"></i>
+                        </button>
+                    </form>
+                    
+                    
+                </div>
+                </div>
+                @if($restaurants->isEmpty())
+                <p class="text-center">Aucun restaurant trouvé.</p>
+            @else
+            <div class="card-body">
+
+                <!-- Table head -->
+                <div class="bg-light rounded p-3 d-none d-sm-block">
+                    <div class="row row-cols-7 g-4">
+                        <div class="col"><h6 class="mb-0">Numéro Restaurant</h6></div>
+                        <div class="col"><h6 class="mb-0">Nom du restaurant</h6></div>
+                        <div class="col"><h6 class="mb-0">Localisation</h6></div>
+                        <div class="col"><h6 class="mb-0">Numéro fix</h6></div>
+                        <div class="col"><h6 class="mb-0">Date de création</h6></div>
+                        <div class="col"><h6 class="mb-0">Action</h6></div>
+                    </div>
+                </div>
+    
+                <!-- Table data -->
+                @foreach($restaurants as $restaurant)
+                <div class="row row-cols-xl-7 g-4 align-items-sm-center border-bottom px-2 py-4">
+                    <!-- Data item: Numéro Restaurant -->
+                    <div class="col">
+                        <small class="d-block d-sm-none">Numéro Restaurant:</small>
+                        <h6 class="fw-light mb-0">#{{ $restaurant->id }}</h6>
+                    </div>
+    
+                    <!-- Data item: Nom du restaurant -->
+                    <div class="col">
+                        <small class="d-block d-sm-none">Nom du restaurant:</small>
+                        <h6 class="fw-normal mb-0">{{ $restaurant->Restorant }}</h6>
+                    </div>
+    
+                    <!-- Data item: Localisation -->
+                    <div class="col">
+                        <small class="d-block d-sm-none">Localisation:</small>
+                        <h6 class="fw-normal mb-0">{{ $restaurant->localisation }}</h6>
+                    </div>
+    
+                    <!-- Data item: Numéro fix -->
+                    <div class="col">
+                        <small class="d-block d-sm-none">Numéro fix:</small>
+                        <h6 class="fw-normal mb-0">{{ $restaurant->numero_fix }}</h6>
+                    </div>
+    
+                    <!-- Data item: Date de création -->
+                    <div class="col">
+                        <small class="d-block d-sm-none">Date de création:</small>
+                        <h6 class="fw-normal mb-0">{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</h6>
+                    </div>
+    
+                    <!-- Data item: Action -->
+                    <div class="col">
+                        <div class="d-flex">
+                            <!-- Bouton Voir -->
+                            <a href="{{ route('restorant.show', $restaurant->id) }}" class="btn btn-info me-2"><i class="bi bi-info-circle"></i></a>
+                          
+    
+                            <!-- Bouton Supprimer -->
+                            <form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+            
+                <!-- Card body START -->
+               
+                <!-- Card body END -->
+    
+                <!-- Card footer START -->
+                <div class="card-footer pt-0">
+                  <!-- Pagination and content -->
+                  <div
+                    class="d-sm-flex justify-content-sm-between align-items-sm-center"
+                  >
+                    <!-- Content -->
+                    <p class="mb-sm-0 text-center text-sm-start">
+                    voir plus
+                    </p>
+                    <!-- Pagination -->
+                    <nav
+                      class="mb-sm-0 d-flex justify-content-center"
+                      aria-label="navigation"
+                    >
+                      <ul
+                        class="pagination pagination-sm pagination-primary-soft mb-0"
+                      >
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#" tabindex="-1">Prev</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#">..</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">15</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">Next</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+                <!-- Card footer END -->
+              </div>
+
+         </div>
 		<!-- Page main content END -->
 	</div>
 	<!-- Page content END -->
