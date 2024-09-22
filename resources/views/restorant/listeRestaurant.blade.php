@@ -39,7 +39,9 @@
 				<!-- Menu item 3 -->
 				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
 				<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
-				 
+				 				 
+<li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
+<!-- Menu item 1 -->
 
 			</ul>
 
@@ -423,39 +425,7 @@
 
 
 
-				{{-- <table class="table">
-					<thead>
-					  <tr>
-						<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
-								<th scope="col" class="border-0">Spécialité du restaurant</th>
-								<th scope="col" class="border-0">Localisation </th>
-								<th scope="col" class="border-0">Numéro fix </th>
-								<th scope="col" class="border-0">Date de création </th>
-								<th scope="col" class="border-0 rounded-end">Action</th>
-							</tr>
-					  </tr>
-					</thead>
-					<tbody>
-						@foreach($restaurants as $restaurant)
-					  <tr>
-						<th scope="row">{{ $restaurant->Restorant }}</th>
-						<td>{{ $restaurant->specialite }}</td>
-						<td>{{ $restaurant->localisation }}</td>
-						<td>{{ $restaurant->numero_fix }}</td>
-						<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
-						<td><form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
-							@csrf
-							@method('DELETE')
-							<input type="submit" class="btn btn-danger-soft" value="Supprimer" />
-						</form>
-						</td>
-					  </tr>
-					 
-					   @endforeach
-					</tbody>
-				  </table>
-				 
-			</div> --}}
+		 
 			 
 
 			 

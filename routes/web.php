@@ -59,7 +59,8 @@ Route::get('menus/create', [MenuController::class, 'create'])->name('menus.creat
 
 // Route pour soumettre le formulaire d'ajout de menu
 Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store')->middleware('auth');
-
+/// liste des menu
+Route::get('menus/user', [MenuController::class, 'userMenus'])->name('menus.user')->middleware('auth');
 
 
 // Route pour afficher le formulaire d'édition
