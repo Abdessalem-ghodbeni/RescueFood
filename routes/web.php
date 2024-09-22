@@ -54,7 +54,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 //------------------------Blog-------------------------------------//
-route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.index');
+route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
 
 
 
@@ -66,6 +66,9 @@ Route::post('association/blogs', [BlogController::class, 'store'])->name('blogs.
 // Route pour supprimer un blog
 Route::delete('association/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 
+route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
+Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
 //------------------------Blog-------------------------------------//
 

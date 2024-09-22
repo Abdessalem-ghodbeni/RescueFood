@@ -87,8 +87,9 @@ Page content START -->
 						<div class="bg-dark border rounded-3 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless collapse-list">
-								<a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                <a class="list-group-item" href="{{ route('blogs.index') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+								<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+
                                 <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
 								<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
 								<a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>

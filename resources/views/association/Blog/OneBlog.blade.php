@@ -45,7 +45,7 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.create') }}" class="btn btn-info">Add Blog</a>
+                                    <a href="{{ route('blogs.affiche') }}" class="btn btn-primary">Retour aux blogs</a>
 
                                 </div>
                             </div>
@@ -123,34 +123,15 @@
                 <!-- Main content START -->
                 <div class="col-xl-9">
                     <div class="row g-4 mb-4">
-                        <h3 class="text-center">Liste des blogs</h3>
-                        @foreach ($blogs as $blog)
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card h-100">
-                                    <!-- Blog image (optionnel si disponible) -->
-                                    <img src="path_to_blog_image" class="card-img-top" alt="Image de blog">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $blog->nom_blog }}</h5>
-                                        <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->sujet, 100) }}</p>
-                                        <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-info">Voir plus</a>
-
-                                            <!-- Bouton de suppression -->
-                                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce blog ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning">Modifier</a>
-
-                                            </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <div class="container">
+                            <h1>{{ $blog->nom_blog }}</h1>
+                            <p>{{ $blog->sujet }}</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Main content END -->
-                </div><!-- Row END -->
-            </div>
+            </div><!-- Row END -->
+        </div>
         </div>
     </section>
     <!-- =======================

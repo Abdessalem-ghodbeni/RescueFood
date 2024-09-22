@@ -53,4 +53,50 @@ class BlogController extends Controller
 
         return redirect()->route('blogs.index')->with('success', 'Blog supprimé avec succès.');
     }
+
+
+
+    public function show($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        return view('association.Blog.OneBlog', compact('blog'));
+    }
+
+
+
+    public function edit($id)
+    {
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return redirect()->route('blogs.index')->with('error', 'Blog not found');
+        }
+
+        return view('association.Blog.UpdateBlog', compact('blog'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return redirect()->route('blogs.index')->with('error', 'Blog not found');
+        }
+
+        $validated = $request->validate([
+            'nom_blog' => 'required|max:255',
+            'objectif' => 'required',
+            'sujet'=>'required'
+        ]);
+
+        // Mettre à jour le blog
+        $blog->nom_blog = $validated['nom_blog'];
+        $blog->objectif = $validated['objectif'];
+        $blog->sujet= $validated['sujet'];
+        $blog->save();
+
+
+        // Rediriger avec un message de succès
+        return redirect()->route('blogs.affiche')->with('success', 'Blog modifié avec succès.');
+    }
 }

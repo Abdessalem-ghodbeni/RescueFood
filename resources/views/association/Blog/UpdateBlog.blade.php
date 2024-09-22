@@ -45,8 +45,6 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.create') }}" class="btn btn-info">Add Blog</a>
-
                                 </div>
                             </div>
                         </div>
@@ -89,8 +87,9 @@
                             <div class="bg-dark border rounded-3 p-3 w-100">
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                    <a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                    <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+                                    <a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                    <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+
                                     <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
                                     <a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                     <a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
@@ -121,36 +120,49 @@
                 <!-- Left sidebar END -->
 
                 <!-- Main content START -->
-                <div class="col-xl-9">
-                    <div class="row g-4 mb-4">
-                        <h3 class="text-center">Liste des blogs</h3>
-                        @foreach ($blogs as $blog)
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card h-100">
-                                    <!-- Blog image (optionnel si disponible) -->
-                                    <img src="path_to_blog_image" class="card-img-top" alt="Image de blog">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $blog->nom_blog }}</h5>
-                                        <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->sujet, 100) }}</p>
-                                        <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-info">Voir plus</a>
 
-                                            <!-- Bouton de suppression -->
-                                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce blog ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning">Modifier</a>
 
-                                            </form>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+
+
+
+
+                <div class="container">
+                    <h2>Modifier le Blog</h2>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <!-- Formulaire pour éditer le blog -->
+                    <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Titre</label>
+                            <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Contenu</label>
+                            <textarea name="objectif" id="content" class="form-control" required>{{ $blog->objectif }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Contenu</label>
+                            <textarea name="sujet" id="content" class="form-control" required>{{ $blog->sujet }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    </form>
                 </div>
                 <!-- Main content END -->
-                </div><!-- Row END -->
-            </div>
+            </div><!-- Row END -->
+        </div>
         </div>
     </section>
     <!-- =======================
