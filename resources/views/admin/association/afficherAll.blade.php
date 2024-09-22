@@ -1,12 +1,12 @@
-@extends('association.associationDashboard')
+@extends('admin.adminDashboard')
 
 @section('content')
     <div class="container">
-        <h3>My Associations</h3>
+        <h3>All Associations</h3>
 
         <!-- Check if there are any associations -->
         @if($associations->isEmpty())
-            <p>No associations found. <a href="{{ route('association.create') }}">Create one now!</a></p>
+            <p>No associations found.</p>
         @else
             <!-- Table for displaying associations -->
             <table class="table table-bordered">
@@ -32,13 +32,13 @@
                         <td>{{ $association->categorie ? $association->categorie->type_categorie : 'Non classée' }}</td>
                         <td>
                             <!-- Edit and Delete buttons -->
-                            <a href="{{ route('association.edit', $association->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('association.destroy', $association->id) }}" method="POST" style="display:inline-block;">
+                            <a href="{{ route('association.editAll', $association->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('association.destroyAll', $association->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="" class="btn btn-primary">Create Blog</a>
+                            <a href="" class="btn btn-primary">Blogs</a>
                         </td>
                     </tr>
                 @endforeach
