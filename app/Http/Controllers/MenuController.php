@@ -31,7 +31,7 @@ class MenuController extends Controller
             $menu->user_id = auth()->id(); // n'affecti menu lil user
             $menu->save();
 
-            return redirect()->route('restorant.show', $request->restaurant_id)
+            return redirect()->route('menus.user')
                 ->with('success', 'Menu ajouté avec succès !');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'Erreur lors de l\'ajout du menu.']);
@@ -98,5 +98,21 @@ class MenuController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('menus.user')->with('success', 'Menu mis à jour avec succès !');
         }
+    }
+    public function destroy($id)
+    {
+        // Récupérer le menu à supprimer
+        $menu = Menu::findOrFail($id);
+
+        // Vérifier que l'utilisateur connecté est bien le propriétaire du menu
+        if ($menu->user_id !== auth()->id()) {
+            return redirect()->route('menus.index')->withErrors('Vous n\'avez pas les droits pour supprimer ce menu.');
+        }
+
+        // Supprimer le menu
+        $menu->delete();
+
+        // Rediriger avec un message de succès
+        return redirect()->route('menus.user')->with('success', 'Menu supprimé avec succès.');
     }
 }

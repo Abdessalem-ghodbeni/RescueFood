@@ -74,6 +74,7 @@ Route::get('rrestorant/{id}/edit', [RestorantController::class, 'edit'])->name('
 Route::put('erestorant/{id}', [RestorantController::class, 'update'])->name('restorant.update')->middleware('auth');
 
 Route::get('restorant/search', [RestorantController::class, 'search'])->name('restorant.search')->middleware('auth');
+Route::delete('menus/{id}', [MenuController::class, 'destroy'])->name('menus.destroy')->middleware('auth');
 
 // fin route resto liste by ghodbeny abdessalem
 

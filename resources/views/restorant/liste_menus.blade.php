@@ -369,8 +369,12 @@
                                 <td>
                                     <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">Modifier</a>
 
-                                    {{-- <a href="#" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">Modifier</a> --}}
-                                    <button class="btn btn-sm btn-secondary-soft mb-0">Supprimer</button>
+                                    <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger-soft mb-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')">Supprimer</button>
+                                    </form>
+                                    
                                 </td>
                             </tr>
                             @endforeach
