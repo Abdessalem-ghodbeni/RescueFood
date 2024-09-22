@@ -41,6 +41,7 @@
 <!-- Menu item 1 -->
 <li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
 				 
+				 
 <li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 <!-- Menu item 1 -->
 			  

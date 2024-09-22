@@ -34,16 +34,15 @@
 				<li class="nav-item"><a href="{{url('/restorant/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Restaurant</a></li>
 				 
 
-			  
+			 
 
 				<!-- Menu item 3 -->
 				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
-<!-- Menu item 1 -->
-<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
-				 
+				<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
+				 				 
 <li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 <!-- Menu item 1 -->
-			  
+
 			</ul>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -283,26 +282,140 @@
 		</div>
 	</nav>
     <div class="page-content-wrapper border">
-        <h2>welcome restorant dashboard</h2>
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row align-items-center">
+    
+                        <!-- Image -->
+                        <div class="col-6 col-md-3 text-center order-1">
+                            <img src="{{asset('restorantCss/images/element/category-1.svg')}}" alt="">
+                        </div>
+    
+                        <!-- Content -->
+                        <div class="col-md-6 px-md-5 text-center position-relative order-md-2 mb-5 mb-md-0">
+    
+                            <!-- Svg decoration -->
+                            <figure class="position-absolute top-0 start-0">	
+                                <svg width="22px" height="22px" viewBox="0 0 22 22">
+                                    <polygon class="fill-orange" points="22,8.3 13.7,8.3 13.7,0 8.3,0 8.3,8.3 0,8.3 0,13.7 8.3,13.7 8.3,22 13.7,22 13.7,13.7 22,13.7 "></polygon>
+                                </svg>
+                            </figure>
+    
+                            <!-- Svg decoration -->
+                            <figure class="position-absolute top-0 start-50 translate-middle mt-n6 d-none d-md-block">
+                                <svg width="27px" height="27px">
+                                    <path class="fill-purple" d="M13.122,5.946 L17.679,-0.001 L17.404,7.528 L24.661,5.946 L19.683,11.533 L26.244,15.056 L18.891,16.089 L21.686,23.068 L15.400,19.062 L13.122,26.232 L10.843,19.062 L4.557,23.068 L7.352,16.089 L-0.000,15.056 L6.561,11.533 L1.582,5.946 L8.839,7.528 L8.565,-0.001 L13.122,5.946 Z"></path>
+                                </svg>
+                            </figure>
+    
+    
+                            <!-- Title -->
+                            <h1 class="mb-3">Ajoutez Votre Restaurant</h1>
+                            <p class="mb-3">Vous souhaitez faire découvrir votre restaurant ? Remplissez le formulaire ci-dessous pour partager votre établissement avec notre communauté. C'est simple et rapide !</p>
+    
+                      
+                        
+                        </div>
+    
+                        <!-- Image -->
+                        <div class="col-6 col-md-3 text-center order-3">
+                            <img src="{{asset('restorantCss/images/element/category-2.svg')}}" alt="">
+                        </div>
+                        
+                    </div> <!-- Row END -->
+                </div>
+            </div> <!-- Row END -->
+        </div>
+    
+
+<div class="container">
+    <div class="col-12   m-auto">
+        <div class="row my-5">
+            <div class="col-sm-10 col-xl-8 m-auto">
+                <!-- Title -->
+                <span class="mb-0 fs-1">👋</span>
+                <h1 class="fs-2">Ajouter votre  restaurant</h1>
+                <p class="lead mb-4">Vous etes les bienvenue</p>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        
+                <!-- Form START -->
+                <form action="{{ route('restorant.store') }}" method="POST">
+                    @csrf
+
+                 <div class="row">
+                    <div class="mb-4 col-12 col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Nom du  restaurant</label>
+                        <div class="input-group input-group-lg">
+                            
+                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Nom du  restaurant" required name="Restorant" id="exampleInputEmail1">
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-4 col-12 col-md-6">
+                        <label for="inputPassword5" class="form-label">Spécialité du  restaurant</label>
+                        <div class="input-group input-group-lg">
+                          
+                            <input type="text" name="specialite" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Spécialité" id="inputPassword5">
+                        </div>
+                        
+                    </div>
+                   
+                 </div>
+                 <div class="row">
+                    <div class="mb-4 col-12 col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Numéro Fix</label>
+                        <div class="input-group input-group-lg">
+                            
+                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1"  name="numero_fix" required  id="exampleInputEmail1">
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-4 col-12 col-md-6">
+                        <label for="inputPassword5" class="form-label"> Localisation</label>
+                        <div class="input-group input-group-lg">
+                          
+                            <input type="text" name="localisation" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Localisation" required id="inputPassword5">
+                        </div>
+                        
+                    </div>
+                   
+                 </div>
+                    <div class="align-items-center mt-0">
+                        <div class="d-grid">
+                            <button class="btn btn-primary-soft mb-0" type="submit">créer un restaurant</button>
+                        </div>
+                    </div>
+                </form>
+               
+                
+            </div>
+        </div> <!-- Row END -->
+    </div>
+</div>    
     </div>
 
 </div>
-<!-- Page content END -->
+ 
 
 </main>
-<!-- **************** MAIN CONTENT END **************** -->
-
-<!-- Back to top -->
+ 
+ 
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
-<!-- Bootstrap JS -->
+ 
 <script src="{{asset('restorantCss/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('restorantCss/vendor/overlay-scrollbar/js/overlayscrollbars.min.js')}}"></script>
-
-<!-- Template Functions -->
+ 
 <script src="{{asset('restorantCss/js/functions.js')}}"></script>
 
 </body>
-
-<!-- Mirrored from eduport.webestica.com/admin-instructor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:17:02 GMT -->
 </html>

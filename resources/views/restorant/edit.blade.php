@@ -28,23 +28,59 @@
 		<div class="offcanvas-body sidebar-content d-flex flex-column bg-dark">
 
 			<!-- Sidebar menu START -->
-			<ul class="navbar-nav flex-column mt-5" id="navbar-sidebar">
+			<ul class="navbar-nav flex-column" id="navbar-sidebar">
 				
 				<!-- Menu item 1 -->
-				<li class="nav-item"><a href="{{url('/restorant/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Restaurant</a></li>
+				<li class="nav-item"><a href="admin-dashboard.html" class="nav-link"><i class="bi bi-house fa-fw me-2"></i>Dashboard</a></li>
 				 
 
-			  
+			 
 
 				<!-- Menu item 3 -->
-				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
-<!-- Menu item 1 -->
-<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
+				<li class="nav-item"> <a class="nav-link" href="admin-student-list.html"><i class="fas fa-user-graduate fa-fw me-2"></i>Students</a></li>
+
+				<!-- Menu item 4 -->
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="collapse" href="#collapseinstructors" role="button" aria-expanded="true" aria-controls="collapseinstructors">
+						<i class="fas fa-user-tie fa-fw me-2"></i>Instructors
+					</a>
+					<!-- Submenu -->
 				 
-<li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
-<!-- Menu item 1 -->
-			  
+				</li>
+				
+				<!-- Menu item 5 -->
+				<li class="nav-item"> <a class="nav-link" href="admin-review.html"><i class="far fa-comment-dots fa-fw me-2"></i>Reviews</a></li>
+
+				<!-- Menu item 6 -->
+				<li class="nav-item"> <a class="nav-link" href="admin-earning.html"><i class="far fa-chart-bar fa-fw me-2"></i>Earnings</a></li>
+
+				<!-- Menu item 7 -->
+				<li class="nav-item"> <a class="nav-link" href="admin-setting.html"><i class="fas fa-user-cog fa-fw me-2"></i>Admin Settings</a></li>
+
+				<!-- Menu item 8 -->
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="collapse" href="#collapseauthentication" role="button" aria-expanded="false" aria-controls="collapseauthentication">
+						<i class="bi bi-lock fa-fw me-2"></i>Authentication
+					</a>
+					<!-- Submenu -->
+					<ul class="nav collapse flex-column" id="collapseauthentication" data-bs-parent="#navbar-sidebar">
+						<li class="nav-item"> <a class="nav-link" href="sign-up.html">Sign Up</a></li>
+						<li class="nav-item"> <a class="nav-link" href="sign-in.html">Sign In</a></li>
+						<li class="nav-item"> <a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
+						<li class="nav-item"> <a class="nav-link" href="admin-error-404.html">Error 404</a></li>
+					</ul>
+				</li>
+
+				<!-- Title -->
+				<li class="nav-item ms-2 my-2">Documentation</li>
+
+				<!-- Menu item 9 -->
+				<li class="nav-item"> <a class="nav-link" href="docs/index.html"><i class="far fa-clipboard fa-fw me-2"></i>Documentation</a></li>
+
+				<!-- Menu item 10 -->
+				<li class="nav-item"> <a class="nav-link" href="docs/changelog.html"><i class="fas fa-sitemap fa-fw me-2"></i>Changelog</a></li>
 			</ul>
+			<!-- Sidebar menu end -->
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -283,8 +319,82 @@
 		</div>
 	</nav>
     <div class="page-content-wrapper border">
-        <h2>welcome restorant dashboard</h2>
+      
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left -->
+            <div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
+                <div class="p-3 p-lg-5">
+                    <!-- Title -->
+                    <div class="text-center">
+                        <h2 class="fw-bold">Bienvenue dans nos plus importantes mises à jour</h2>
+                        <p class="mb-0 h6 fw-light">Dans cette section, vous trouverez les dernières et plus importantes mises à jour concernant nos services, fonctionnalités et améliorations. Restez informé des nouveautés conçues pour améliorer votre expérience et vous tenir connecté à notre communauté en pleine expansion.</p>
+                    </div>
+                    <!-- SVG Image -->
+                    <img src="{{asset('restorantCss/images/element/02.svg')}}" class="mt-5" alt="">
+                    <!-- Info -->
+                 
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="col-12 col-lg-6 m-auto">
+                <div class="row my-5">
+                    <div class="col-sm-10 col-xl-8 m-auto">
+                        <!-- Title -->
+                        <img src="{{asset('restorantCss/images/element/03.svg')}}" class="h-40px mb-2" alt="">
+                        <h2>Mettez à jour votre restaurant !</h2>
+                        <p class="lead mb-4">Ravi de vous revoir ! Veuillez mettre à jour votre compte pour profiter des dernières fonctionnalités.</p>
+                    
+                        <!-- Form START -->
+                        <form action="{{ route('restorant.update', $restaurant->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                    
+                            <div class="mb-3">
+                                <label for="Restorant" class="form-label">Nom du Restaurant</label>
+                                <input type="text" name="Restorant" id="Restorant" class="form-control" value="{{ $restaurant->Restorant }}" required>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="specialite" class="form-label">Spécialité</label>
+                                <input type="text" name="specialite" id="specialite" class="form-control" value="{{ $restaurant->specialite }}" required>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="localisation" class="form-label">Localisation</label>
+                                <input type="text" name="localisation" id="localisation" class="form-control" value="{{ $restaurant->localisation }}" required>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="numero_fix" class="form-label">Numéro Fix</label>
+                                <input type="text" name="numero_fix" id="numero_fix" class="form-control" value="{{ $restaurant->numero_fix }}" required>
+                            </div>
+                    
+                           <div class="text-center"> <button type="submit" class="btn btn-primary-soft w-75 text-center">Mettre à jour</button></div>
+                        </form>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 <!-- Page content END -->

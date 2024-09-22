@@ -34,16 +34,13 @@
 				<li class="nav-item"><a href="{{url('/restorant/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Restaurant</a></li>
 				 
 
-			  
+			 
 
 				<!-- Menu item 3 -->
 				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
-<!-- Menu item 1 -->
-<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
+				<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
 				 
-<li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
-<!-- Menu item 1 -->
-			  
+
 			</ul>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -282,8 +279,163 @@
 			</div>
 		</div>
 	</nav>
-    <div class="page-content-wrapper border">
-        <h2>welcome restorant dashboard</h2>
+    <div class="page-content-wrapper border ">
+       <div class="container mt-5">
+        <p class="text-center"><strong>L'objectif de cette section est de fournir une vue d'ensemble complète des informations liées au restaurant, incluant ses caractéristiques principales, son emplacement, et ses services proposés</strong></p>
+       </div>
+        <div class="row g-4 g-sm-5">
+		<div class="col-lg-2 mb-4 mb-sm-0"></div>
+			<div class="col-lg-8 mb-4 mb-sm-0">
+				<div class="card card-body p-4 shadow">
+					<!-- Alert -->
+					<div class="alert alert-success alert-dismissible d-flex justify-content-between align-items-center fade show py-3 pe-2" role="alert">
+						<div>
+							<span class="fs-5 me-1">🔥</span>
+							Voici les détails du restaurant numéro {{ $restaurant->id }}. Vous trouverez toutes les informations pertinentes ici.
+						</div>
+						<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+					</div>
+
+
+
+					<div class="table-responsive border-0 rounded-3">
+						<!-- Table START -->
+						<table class="table align-middle p-4 mb-0">
+							<!-- Table head -->
+							<!-- Table body START -->
+							<tbody class="border-top-0">
+								<!-- Table item -->
+								<tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Nom du restaurant :</strong> {{ $restaurant->Restorant }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+                       
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Spécialité:</strong> {{ $restaurant->specialite }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+
+
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>le restorant est situé à:</strong> {{ $restaurant->localisation }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Numéro téléphone fix est :</strong>  {{ $restaurant->numero_fix }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+
+                                <tr>
+									<!-- Course item -->
+									<td>
+										<div class="d-lg-flex  ">
+											<!-- Image -->
+											<div class="w-100px w-md-80px mb-2 mb-md-0">
+												<img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
+											</div>
+											<!-- Title -->
+											<h6 class="mb-0 ms-lg-3 mt-2 mt-lg-0">	
+												<a ><strong>Date de Création:</strong> {{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</a>
+											</h6>
+										</div>
+									</td>
+
+									 
+								 
+									<td>
+										 
+										<button class="btn btn-sm btn-danger-soft px-2 mb-0"><i class="fas fa-fw fa-times"></i></button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+ 
+				</div>
+			</div>
+		 
+
+		</div>
+
+
+ 
     </div>
 
 </div>

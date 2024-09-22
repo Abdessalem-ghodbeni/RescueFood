@@ -34,16 +34,15 @@
 				<li class="nav-item"><a href="{{url('/restorant/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Restaurant</a></li>
 				 
 
-			  
+			 
 
 				<!-- Menu item 3 -->
 				<li class="nav-item"> <a class="nav-link" href="{{url('/restorant/liste')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
-<!-- Menu item 1 -->
-<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
-				 
+				<li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
+				 				 
 <li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 <!-- Menu item 1 -->
-			  
+
 			</ul>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -62,7 +61,7 @@
 			</div>
             </div></form>
 			
-			<!-- Sidebar footer END -->
+		 
 			
 		</div>
 	</div>
@@ -282,9 +281,176 @@
 			</div>
 		</div>
 	</nav>
-    <div class="page-content-wrapper border">
-        <h2>welcome restorant dashboard</h2>
-    </div>
+	<div class="page-content-wrapper border">
+
+		<!-- Title -->
+		<div class="row mb-3">
+			<div class="col-12 d-sm-flex justify-content-between align-items-center">
+				<h1 class="h3 mt-3 mb-5 mb-sm-0">Liste Des restaurants crées par Mr/Mme {{ Auth::user()->name }}</h1>
+				<a href="/restorant/create" class="btn btn-sm btn-primary mb-0">créer un restaurant</a>
+			</div>
+		</div>
+
+		<!-- Course boxes START -->
+		<div class="row g-4 mb-4">
+			<!-- Course item -->
+			<div class="col-12 ">
+				<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
+					<h6>Le nombre totale de vos restaurants :</h6>
+					<h2 class="mb-0 fs-1 text-primary">{{ $totalRestaurants }}</h2>
+				</div>
+			</div>
+
+		 
+
+			 
+		</div>
+		<!-- Course boxes END -->
+
+		<!-- Card START -->
+		<div class="card bg-transparent border">
+
+			<!-- Card header START -->
+			<div class="card-header bg-light border-bottom">
+				<!-- Search and select START -->
+				<div class="row g-3 align-items-center justify-content-between">
+						<!-- Select option -->
+						 
+					<div class="col-md-12 text-center">
+						<form action="{{ route('restorant.search') }}" method="GET" class="rounded position-relative">
+							<input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
+							<button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
+								<i class="fas fa-search fs-6"></i>
+							</button>
+						</form>
+						
+					</div>
+
+				
+				</div>
+				<!-- Search and select END -->
+			</div>
+			<!-- Card header END -->
+
+			<!-- Card body START -->
+			<div class="card-body">
+				
+
+
+
+				<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+					<!-- Table head -->
+					<thead>
+						<tr>
+							<th scope="col" class="border-0 rounded-start">Nom du restaurant</th>
+							<th scope="col" class="border-0">Spécialité du restaurant</th>
+							<th scope="col" class="border-0">Localisation </th>
+							<th scope="col" class="border-0">Numéro fix </th>
+							<th scope="col" class="border-0">Date de création </th>
+							 
+							<th scope="col" class="border-0 rounded-end">Action</th>
+						</tr>
+					</thead>
+					
+					<!-- Table body START -->
+					<tbody>
+						
+						@foreach($restaurants as $restaurant)
+						<tr>
+							<!-- Table data -->
+							<td>
+								<div class="d-flex align-items-center position-relative">
+								 
+									<h6 class="table-responsive-title mb-0 ms-2">	
+										<a class="stretched-link">{{ $restaurant->Restorant }}</a>
+									</h6>
+								</div>
+							</td>
+
+							<!-- Table data -->
+							<td>
+								<div class="d-flex align-items-center mb-3">
+								 
+									<div class="ms-2">
+										<h6 class="mb-0 fw-light">{{ $restaurant->specialite }}</h6>
+									</div>
+								</div>
+							</td>
+
+						 
+							<td> <span class="badge text-bg-primary">{{ $restaurant->localisation }}</span> </td>
+
+							<!-- Table data -->
+							 
+						 
+							<td> <span class="badge bg-warning bg-opacity-15 text-warning">{{ $restaurant->numero_fix }}</span> </td>
+<td>{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</td>
+							 
+							<td class="d-flex  ">
+								<a href="{{url('Myrestorantt',$restaurant->id)}}">
+								<button class="btn btn-info-soft"><i class="bi bi-info-circle"></i></button>
+								</a>
+								{{-- <a href="{{ url('rrestorant/edit', $restaurant->id) }}">
+									<button class="btn btn-warning-soft  mx-2">Modifier</button>
+								</a>
+							     --}}
+								 <a href="{{ route('restorant.edit', $restaurant->id) }}">
+									<button class="btn btn-warning-soft mx-2"> <i class="bi bi-pen"></i></button>
+								</a>
+								
+								<form action="{{ route('restorant.destroy', $restaurant->id) }}" method="POST">
+								@csrf
+								@method('DELETE')
+									{{-- <input type="submit" class="btn btn-danger-soft"  value="Supprimer" /> --}}
+									<button class="btn btn-danger-soft" type="submit"><i class="bi bi-trash"></i></button>
+							</form>
+							</td>
+						</tr>
+
+ 
+				 
+
+						@endforeach
+					</tbody>
+				 
+				</table>
+
+
+
+
+
+
+
+
+
+
+
+		 
+			 
+
+			 
+			<div class="card-footer bg-transparent pt-0">
+				<!-- Pagination START -->
+				<div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+					<!-- Content -->
+					<p class="mb-0 text-center text-sm-start">plus...</p>
+					<!-- Pagination -->
+					<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+						<ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+							<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
+							<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
+							<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
+							<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
+							<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- Pagination END -->
+			</div>
+			<!-- Card footer END -->
+		</div>
+		<!-- Card END -->
+	</div>
 
 </div>
 <!-- Page content END -->

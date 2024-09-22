@@ -41,6 +41,7 @@
 <!-- Menu item 1 -->
 <li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
 				 
+				 
 <li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 <!-- Menu item 1 -->
 			  
@@ -283,7 +284,111 @@
 		</div>
 	</nav>
     <div class="page-content-wrapper border">
-        <h2>welcome restorant dashboard</h2>
+       
+        <section class="mt-5 position-relative">
+
+            <!-- SVG decoration -->
+        
+        
+            <div class="container position-relative mt-0 mt-sm-5 pt-5">
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                        <!-- Title -->
+                        <h1 class="mb-3">Bonjour Mr / Mme {{ Auth::user()->name }}</h1>
+                        <h6 class="mb-3">Voici une sélection de menus que nous avons soigneusement élaborés pour vous. Chaque menu a été conçu avec passion, en mettant en avant des ingrédients frais et des saveurs authentiques. Découvrez notre savoir-faire à travers une variété de plats qui reflètent notre engagement à offrir une expérience culinaire exceptionnelle.</h6>
+                        <!-- Button -->
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Image -->
+                        <img src="{{asset('restorantCss/images/element/05.svg')}}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container mt-3">
+            <h1>Liste des menus créés</h1>
+    
+            @if($menus->isEmpty())
+                <p>Aucun menu n'a été créé.</p>
+            @else
+            <div class="card-body">
+                <!-- Menu table START -->
+                <div class="table-responsive border-0 rounded-3">
+                    <!-- Table START -->
+                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+                        <!-- Table head -->
+                        <thead>
+                            <tr>
+                                <th scope="col" class="border-0 rounded-start">Nom du Plat</th>
+                                <th scope="col" class="border-0">Restaurant</th>
+                                <th scope="col" class="border-0">Date d'Ajout</th>
+                                <th scope="col" class="border-0">Prix</th>
+                                <th scope="col" class="border-0">Description</th>
+                                <th scope="col" class="border-0 rounded-end">Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <!-- Table body START -->
+                        <tbody>
+                            @foreach($menus as $menu)
+                            <!-- Table row -->
+                            <tr>
+                                <!-- Nom du Plat -->
+                                <td>
+                                    <div class="d-flex align-items-center position-relative">
+                                        <!-- Image -->
+                                        
+                                        <h6 class="table-responsive-title mb-0 ms-2">	
+                                            <a href="#" class="stretched-link">{{ $menu->nom_plat }}</a>
+                                        </h6>
+                                    </div>
+                                </td>
+            
+                                <!-- Restaurant -->
+                                <td>
+                                    <div class="d-flex align-items-center mb-3">
+                                        
+                                        <!-- Info -->
+                                        <div class="ms-2">
+                                            <h6 class="mb-0 fw-light">{{ $menu->restaurant->Restorant ?? 'Non affecté' }}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+            
+                                <!-- Date d'Ajout -->
+                                <td>{{ $menu->created_at->format('d M Y') }}</td>
+            
+                                <!-- Prix -->
+                                <td>{{ $menu->prix }} €</td>
+                                <td>{{ $menu->description }} </td>
+                                <!-- Statut -->
+                                
+            
+                                <!-- Actions -->
+                                <td>
+                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0"> <i class="bi bi-pen"></i></a>
+
+                                    <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger-soft mb-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                    <a href="{{ route('menus.show', $menu->id) }}" class="btn btn-sm btn-info"><i class="bi bi-info-circle"></i></a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <!-- Table body END -->
+                    </table>
+                    <!-- Table END -->
+                </div>
+                <!-- Menu table END -->
+            </div>
+            
+            @endif
+        </div>
     </div>
 
 </div>
