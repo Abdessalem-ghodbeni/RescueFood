@@ -8,9 +8,9 @@
 </head>
 
 <body>
- 
+
 <main>
-	
+
 <!-- =======================
 Page Banner START -->
 <section class="pt-0">
@@ -39,7 +39,7 @@ Page Banner START -->
 										<span class="h6">email : </span>
 										<span class="text-body fw-light">{{ Auth::user()->email }}</span>
 									</li>
-									 
+
 								</ul>
 							</div>
 							<!-- Button -->
@@ -87,8 +87,9 @@ Page content START -->
 						<div class="bg-dark border rounded-3 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless collapse-list">
-								<a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-								<a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
+								<a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                <a class="list-group-item" href="{{ route('blogs.index') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+                                <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
 								<a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
 								<a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
 								<a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a>
@@ -97,18 +98,18 @@ Page content START -->
 								<a class="list-group-item" href="instructor-edit-profile.html"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
 								<a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
 								<a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-								
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="btn">
                                         <a class="list-group-item text-danger bg-danger-soft-hover" ><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
                                     </button>
-                                
+
                                 </form>
-								<!-- Collapse menu --> 
- 
-                                
-								 
+								<!-- Collapse menu -->
+
+
+
 							</div>
 						</div>
 					</div>
@@ -160,10 +161,10 @@ Page content START -->
 					</div>
 				</div>
 				<!-- Counter boxes END -->
- 
+
 			</div><!-- Row END -->
 		</div>
-	</div>	
+	</div>
 </section>
 <!-- =======================
 Page content END -->
@@ -181,7 +182,7 @@ Footer START -->
 				<!-- Logo START -->
 				<a href="index.html"> <img class="h-20px"  src="{{asset('layoutsCss/images/asso.jpeg')}}" alt="logo"> </a>
 			</div>
-			
+
 			<!-- Widget -->
 			<div class="col-md-4 mb-3 mb-md-0">
 				<div class="text-center text-white text-primary-hover">

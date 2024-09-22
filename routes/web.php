@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
@@ -48,3 +49,19 @@ Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('r
 
 Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
+
+
+//------------------------Blog-------------------------------------//
+route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.index');
+
+
+
+
+Route::get('association/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+
+Route::post('association/blogs', [BlogController::class, 'store'])->name('blogs.store');
+
+//------------------------Blog-------------------------------------//
+
