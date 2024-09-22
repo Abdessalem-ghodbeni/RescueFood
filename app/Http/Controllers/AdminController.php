@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -34,5 +35,29 @@ class AdminController extends Controller
 
         $totalRestaurants = $this->getTotalRestaurants();
         return view('admin.totalListeRestorant', compact('restaurants', 'totalRestaurants'));
+    }
+
+    public function destroy($id)
+    {
+
+        $restaurant = Restaurant::findOrFail($id);
+
+
+        $restaurant->delete();
+
+
+        return redirect()->route('admin.getAllRestorant')->with('success', 'Restaurant supprimé avec succès.');
+    }
+
+
+    public function show($id)
+    {
+        $restaurant = Restaurant::find($id);
+
+        if (!$restaurant) {
+            return redirect()->back()->with('error', 'Restaurant non trouvé');
+        }
+
+        return view('admin.detailsResorantAdmin')->with('restaurant', $restaurant);
     }
 }

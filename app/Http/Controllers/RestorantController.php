@@ -19,13 +19,13 @@ class RestorantController extends Controller
     }
     public function show($id)
     {
-        $restaurant = Restaurant::find($id); // Assurez-vous d'utiliser $restaurant et non $retaurant
+        $restaurant = Restaurant::find($id);
 
         if (!$restaurant) {
             return redirect()->back()->with('error', 'Restaurant non trouvé');
         }
 
-        return view('restorant.restorantDetails')->with('restaurant', $restaurant); // Assurez-vous que c'est 'restaurant'
+        return view('restorant.restorantDetails')->with('restaurant', $restaurant);
     }
 
 

@@ -40,8 +40,9 @@ require __DIR__ . '/auth.php';
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('admin/restaurants', [AdminController::class, 'getAllRestorant'])->name('admin.getAllRestorant');
-    // Route::get('admin/searchh', [AdminController::class, 'search'])->name('admin.search');
     Route::get('admin/search', [AdminController::class, 'search'])->name('admin.search');
+    Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
 });
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
