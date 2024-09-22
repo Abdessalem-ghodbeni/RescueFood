@@ -62,7 +62,11 @@ Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store'
 /// liste des menu
 Route::get('menus/user', [MenuController::class, 'userMenus'])->name('menus.user')->middleware('auth');
 
+// Route pour afficher le formulaire de modification
+Route::get('menus/{id}/edit', [MenuController::class, 'edit'])->name('menus.edit')->middleware('auth');
 
+// Route pour soumettre la mise à jour du menu
+Route::put('menus/{id}', [MenuController::class, 'update'])->name('menus.update')->middleware('auth');
 // Route pour afficher le formulaire d'édition
 Route::get('rrestorant/{id}/edit', [RestorantController::class, 'edit'])->name('restorant.edit')->middleware('auth');
 

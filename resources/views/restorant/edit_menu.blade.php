@@ -41,7 +41,6 @@
 <!-- Menu item 1 -->
 <li class="nav-item"><a href="{{url('/menus/create')}}" class="nav-link"><i class="bi bi-plus mx-2"></i>Ajouter Menu</a></li>
 				 
-				 
 <li class="nav-item"> <a class="nav-link" href="{{url('/menus/user')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 <!-- Menu item 1 -->
 			  
@@ -284,106 +283,89 @@
 		</div>
 	</nav>
     <div class="page-content-wrapper border">
-       
-        <section class="mt-5 position-relative">
+     
 
-            <!-- SVG decoration -->
-        
-        
-            <div class="container position-relative mt-0 mt-sm-5 pt-5">
-                <div class="row align-items-center">
-                    <div class="col-md-5">
-                        <!-- Title -->
-                        <h1 class="mb-3">Bonjour Mr / Mme {{ Auth::user()->name }}</h1>
-                        <h6 class="mb-3">Voici une sélection de menus que nous avons soigneusement élaborés pour vous. Chaque menu a été conçu avec passion, en mettant en avant des ingrédients frais et des saveurs authentiques. Découvrez notre savoir-faire à travers une variété de plats qui reflètent notre engagement à offrir une expérience culinaire exceptionnelle.</h6>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-primary">Get Started</a>
-                    </div>
-                    <div class="col-md-7">
-                        <!-- Image -->
-                        <img src="{{asset('restorantCss/images/element/05.svg')}}" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="container mt-3">
-            <h1>Liste des menus créés</h1>
+
+        <div class="container">
+            <div class="row g-4 g-sm-5 align-items-center mt-5">
+                <div class="col-12 col-md-4">
+                    <h2>Mettre à jour votre menu</h2>
+                    <p>Cette section est dédiée à la mise à jour de nos menus. Vous pouvez ici modifier, ajouter ou ajuster les plats et boissons afin de refléter les dernières créations culinaires ou les nouvelles inspirations du chef. Assurez-vous que nos menus restent toujours actuels et adaptés aux préférences de nos clients.</p>
     
-            @if($menus->isEmpty())
-                <p>Aucun menu n'a été créé.</p>
-            @else
-            <div class="card-body">
-                <!-- Menu table START -->
-                <div class="table-responsive border-0 rounded-3">
-                    <!-- Table START -->
-                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-                        <!-- Table head -->
-                        <thead>
-                            <tr>
-                                <th scope="col" class="border-0 rounded-start">Nom du Plat</th>
-                                <th scope="col" class="border-0">Restaurant</th>
-                                <th scope="col" class="border-0">Date d'Ajout</th>
-                                <th scope="col" class="border-0">Prix</th>
-                                <th scope="col" class="border-0">Description</th>
-                                <th scope="col" class="border-0 rounded-end">Action</th>
-                            </tr>
-                        </thead>
-                        
-                        <!-- Table body START -->
-                        <tbody>
-                            @foreach($menus as $menu)
-                            <!-- Table row -->
-                            <tr>
-                                <!-- Nom du Plat -->
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <!-- Image -->
-                                        
-                                        <h6 class="table-responsive-title mb-0 ms-2">	
-                                            <a href="#" class="stretched-link">{{ $menu->nom_plat }}</a>
-                                        </h6>
-                                    </div>
-                                </td>
-            
-                                <!-- Restaurant -->
-                                <td>
-                                    <div class="d-flex align-items-center mb-3">
-                                        
-                                        <!-- Info -->
-                                        <div class="ms-2">
-                                            <h6 class="mb-0 fw-light">{{ $menu->restaurant->Restorant ?? 'Non affecté' }}</h6>
-                                        </div>
-                                    </div>
-                                </td>
-            
-                                <!-- Date d'Ajout -->
-                                <td>{{ $menu->created_at->format('d M Y') }}</td>
-            
-                                <!-- Prix -->
-                                <td>{{ $menu->prix }} €</td>
-                                <td>{{ $menu->description }} </td>
-                                <!-- Statut -->
-                                
-            
-                                <!-- Actions -->
-                                <td>
-                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">Modifier</a>
-
-                                    {{-- <a href="#" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">Modifier</a> --}}
-                                    <button class="btn btn-sm btn-secondary-soft mb-0">Supprimer</button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <!-- Table body END -->
-                    </table>
-                    <!-- Table END -->
+                   
                 </div>
-                <!-- Menu table END -->
+    
+                <!-- Contact form START -->
+                <div class="col-12 col-md-8">
+                    <div class="card card-body shadow p-4 p-sm-5 position-relative">
+                        <!-- SVG decoration -->
+                        <figure class="position-absolute top-0 start-100 mt-n5 ms-n7">
+                            <svg enable-background="new 0 0 167 107">
+                                <path class="fill-danger" d="m87.1 1c-0.4 0.5-0.8 1-1.3 1.5l-3 2.7c-2.6 2.3-5.1 4.7-7.8 6.8-13.4 10.5-26.8 21-40.1 31.5l-25.8 20.4c-0.4 0.3-0.8 0.6-1.1 0.9-0.7 0.6-1.5 1-2.4 0.2-0.8-0.7-0.6-1.7-0.1-2.4 0.6-1 1.4-2 2.2-2.8 0.5-0.4 1-0.9 1.5-1.3 2.8-2.6 5.7-5.2 8.6-7.5 21.6-16.6 43.3-33.1 65.8-48.5 1.2-0.9 2.5-1.7 3.8-2.5 0 0 0.1 0.1 0.4 0.2-0.2 0.3-0.5 0.6-0.7 0.8zm78.9 20.9c-0.4 0.2-0.7 0.4-1.1 0.6-0.3 0.2-0.7 0.5-1.1 0.7-14.6 8.6-29 17.5-43.1 27-21.6 14.4-43 29.2-63.4 45.2-3.8 3-7.5 6-11.2 9-0.6 0.5-1.1 0.9-1.7 1.3-0.8 0.6-1.6 0.9-2.4 0.2s-0.6-1.7-0.1-2.4c0.6-1 1.3-2 2.2-2.8l0.1-0.1c2.5-2.3 5-4.6 7.7-6.6 30.4-23 61.6-44.5 94.9-63 3.8-2.1 7.7-4.1 11.6-6 1.9-1 3.9-2 5.8-3 0.5-0.2 1-0.4 1.4-0.6 0.2 0.1 0.3 0.3 0.4 0.5zm-66.1-13.4c0.7-0.5 1.3-1.1 1.9-1.7-0.1-0.1-0.2-0.2-0.5-0.3-0.7 0.5-1.4 1-2.1 1.6-0.7 0.5-1.4 1.1-2.1 1.6-4 2.9-8.1 5.8-12.1 8.7-19.3 13.8-38.6 27.7-57.8 41.8-5.4 3.9-10.5 8.1-15.6 12.3-2.1 1.7-4.2 3.5-6.3 5.2-1.5 1.2-2.8 2.6-4.1 4-0.5 0.5-1 1.1-1.2 1.8-0.1 0.5 0.1 1.2 0.4 1.5s1.1 0.4 1.5 0.2c0.8-0.4 1.5-0.9 2.2-1.5l7.2-6c4.2-3.6 8.5-7.1 12.8-10.5 10.6-8.2 21.3-16.4 31.9-24.5l23.4-18c6.9-5.4 13.7-10.8 20.5-16.2zm0.5 13.5c-1.1 1-2.2 2-3.4 2.9-3.3 2.6-6.7 5.2-10 7.8-11 8.5-22 17-32.9 25.6-6.4 5.1-12.8 10.3-19.1 15.4-3.5 2.8-7 5.7-10.5 8.5-0.8 0.7-1.6 1.4-2.5 1.9-0.5 0.3-1.6 0.3-1.9 0-0.4-0.4-0.5-1.4-0.2-1.9 0.4-0.8 1-1.6 1.7-2.3 0.7-0.6 1.4-1.3 2.1-1.9 1.7-1.6 3.4-3.2 5.2-4.7 20-15.8 40.2-31.3 61.3-45.6 2.3-1.6 4.7-3.1 7.1-4.6 0.5-0.3 1-0.7 1.5-1 0.4-0.2 0.8-0.4 1.2-0.7 0.1 0.1 0.1 0.2 0.2 0.3s0.2 0.2 0.2 0.3zm7 13.4 0.6-0.6c-0.3-0.2-0.4-0.3-0.4-0.3-1.5 1.1-3 2.2-4.5 3.2-16.7 11.1-32.8 23-48.7 35.1-4.7 3.5-9.3 7.1-13.9 10.7-0.9 0.7-1.7 1.5-2.4 2.3-0.6 0.7-0.9 1.6-0.2 2.4 0.7 0.9 1.6 0.8 2.4 0.3 1.1-0.6 2.2-1.3 3.2-2.1 1.8-1.4 3.5-2.8 5.2-4.3 1.7-1.4 3.5-2.8 5.2-4.3 12.1-9.5 24.3-19 36.5-28.4l15-12c0.6-0.4 1.3-1.2 2-2z"/>
+                            </svg>
+                        </figure>
+    
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                
+                    <form class="row g-3 position-relative" action="{{ route('menus.update', $menu->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                            <div class="col-md-6 col-lg-12 col-xl-6">
+                                <label class="form-label">Nom du Plat *</label>
+                                <input type="text" name="nom_plat" id="nom_plat" class="form-control" value="{{ old('nom_plat', $menu->nom_plat) }}" required>
+                            </div>
+    
+                            <!-- Last name -->
+                            <div class="col-md-6 col-lg-12 col-xl-6">
+                                <label class="form-label" for="prix">Prix</label>
+                                <input type="number" name="prix" id="prix" class="form-control" value="{{ old('prix', $menu->prix) }}" required>
+                            </div>
+                            <!-- Email -->
+                            <div class="col-md-6 col-lg-12 col-xl-6">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" class="form-control">{{ old('description', $menu->description) }}</textarea>
+                            </div>
+                            <!-- Phone number -->
+                            <div class="col-md-6 col-lg-12 col-xl-6">
+                                <label class="form-label">Phone number *</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+
+
+                         
+                            <!-- Select subject -->
+                            <div class="col-12">
+                                <label class="form-label">Restaurant</label>
+                                <select class="form-select js-choice z-index-9" name="restaurant_id" id="restaurant_id" aria-label=".form-select-sm">
+                                    @foreach($restaurants as $restaurant)
+                                    <option value="{{ $restaurant->id }}" {{ $menu->restaurant_id == $restaurant->id ? 'selected' : '' }}>
+                                        {{ $restaurant->Restorant }}
+                                    </option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <!-- Comment -->
+                            
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary-soft mb-0">Mettre à jour</button>
+                            </div>
+                        </form>
+                        <!-- Form END -->
+                    </div>
+                </div>
+                <!-- Contact form END -->
             </div>
-            
-            @endif
         </div>
+
     </div>
 
 </div>
