@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,11 @@ Route::get('restorant/liste', [RestorantController::class, 'getAllRestorant'])->
 Route::post('restorant/store', [RestorantController::class, 'store'])->name('restorant.store')->middleware('auth');
 Route::delete('restorant/{id}', [RestorantController::class, 'destroy'])->name('restorant.destroy')->middleware('auth');
 Route::get('Myrestorantt/{id}', [RestorantController::class, 'show'])->name('restorant.show');
+// Route pour afficher le formulaire d'ajout de menu
+Route::get('menus/create', [MenuController::class, 'create'])->name('menus.create')->middleware('auth');
+
+// Route pour soumettre le formulaire d'ajout de menu
+Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store')->middleware('auth');
 
 
 
