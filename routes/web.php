@@ -63,5 +63,9 @@ Route::get('association/blogs/create', [BlogController::class, 'create'])->name(
 
 Route::post('association/blogs', [BlogController::class, 'store'])->name('blogs.store');
 
+// Route pour supprimer un blog
+Route::delete('association/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+
 //------------------------Blog-------------------------------------//
 

@@ -132,6 +132,13 @@
                                         <h5 class="card-title">{{ $blog->nom_blog }}</h5>
                                         <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->sujet, 100) }}</p>
                                         <a href="#" class="btn btn-primary">Lire la suite</a>
+
+                                            <!-- Bouton de suppression -->
+                                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce blog ?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            </form>
                                     </div>
                                 </div>
                             </div>

@@ -42,4 +42,15 @@ class BlogController extends Controller
         // Rediriger vers la liste des blogs avec un message de succès
         return redirect()->route('blogs.index')->with('success', 'Blog ajouté avec succès.');
     }
+
+
+
+
+    public function destroy($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        return redirect()->route('blogs.index')->with('success', 'Blog supprimé avec succès.');
+    }
 }
