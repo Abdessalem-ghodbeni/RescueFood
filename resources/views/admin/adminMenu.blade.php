@@ -244,148 +244,74 @@
 	
 		<!-- Page main content START -->
 		 <div class="page-content-wrapper p-xxl-4">
-
-            <div class="card shadow mt-5">
-                 
-                <div class="card-header border-bottom">
-                  <h5 class="card-title mb-0">Liste Totale des restaurants : </h5>
-                  <div class="col-md-12 mt-3 text-center">
-                    {{-- <form action="{{ route('admin/search') }}" method="GET" class="rounded position-relative">
-                        <input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
-                        <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-                            <i class="fas fa-search fs-6"></i>
-                        </button>
-                    </form> --}}
-                    <form action="{{ route('admin.search') }}" method="GET" class="rounded position-relative">
-
-                        <input class="form-control bg-body" type="search" name="query" placeholder="Rechercher" aria-label="Search" value="{{ request()->input('query') }}">
-                        <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-                            <i class="fas fa-search fs-6"></i>
-                        </button>
-                    </form>
-                    
-                    
-                </div>
-                </div>
-                @if($restaurants->isEmpty())
-                <p class="text-center">Aucun restaurant trouvé.</p>
-            @else
-            <div class="card-body">
-
-                <!-- Table head -->
-                <div class="bg-light rounded p-3 d-none d-sm-block">
-                    <div class="row row-cols-7 g-4">
-                        <div class="col"><h6 class="mb-0">Numéro Restaurant</h6></div>
-                        <div class="col"><h6 class="mb-0">Nom du restaurant</h6></div>
-                        <div class="col"><h6 class="mb-0">Localisation</h6></div>
-                        <div class="col"><h6 class="mb-0">Numéro fix</h6></div>
-                        <div class="col"><h6 class="mb-0">Date de création</h6></div>
-                        <div class="col"><h6 class="mb-0">Action</h6></div>
+            <section class="pt-0 pt-md-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bg-light p-4 p-sm-5 rounded-3">
+                                <!-- Title -->
+                                <h2 class="fs-3 text-center mb-4 mb-sm-5">Ceci plus d'information sur le menu numéro <strong>{{ $menu->id }}</strong> </h2>
+                <!-- Card START -->
+                <div class="col-12 text-center mb-3">
+                    <div class="card card-body p-4">
+                        <h5>Nom du plat : </h5>
+                        <p class="mb-0">Notre palt est avec  fièrement le nom de <strong>{{ $menu->nom_plat }},</strong> </p>
                     </div>
                 </div>
-    
-                <!-- Table data -->
-                @foreach($restaurants as $restaurant)
-                <div class="row row-cols-xl-7 g-4 align-items-sm-center border-bottom px-2 py-4">
-                    <!-- Data item: Numéro Restaurant -->
-                    <div class="col">
-                        <small class="d-block d-sm-none">Numéro Restaurant:</small>
-                        <h6 class="fw-light mb-0">#{{ $restaurant->id }}</h6>
-                    </div>
-    
-                    <!-- Data item: Nom du restaurant -->
-                    <div class="col">
-                        <small class="d-block d-sm-none">Nom du restaurant:</small>
-                        <h6 class="fw-normal mb-0">{{ $restaurant->Restorant }}</h6>
-                    </div>
-    
-                    <!-- Data item: Localisation -->
-                    <div class="col">
-                        <small class="d-block d-sm-none">Localisation:</small>
-                        <h6 class="fw-normal mb-0">{{ $restaurant->localisation }}</h6>
-                    </div>
-    
-                    <!-- Data item: Numéro fix -->
-                    <div class="col">
-                        <small class="d-block d-sm-none">Numéro fix:</small>
-                        <h6 class="fw-normal mb-0">{{ $restaurant->numero_fix }}</h6>
-                    </div>
-    
-                    <!-- Data item: Date de création -->
-                    <div class="col">
-                        <small class="d-block d-sm-none">Date de création:</small>
-                        <h6 class="fw-normal mb-0">{{ \Carbon\Carbon::parse($restaurant->created_at)->format('d/m/Y') }}</h6>
-                    </div>
-    
-                    <!-- Data item: Action -->
-                    <div class="col">
-                        <div class="d-flex">
-                            <!-- Bouton Voir -->
-                            <a href="{{ route('admin.show', $restaurant->id) }}" class="btn btn-info me-2"><i class="bi bi-info-circle"></i></a>
-                          
-    
-                            <!-- Bouton Supprimer -->
-                            <form action="{{ route('admin.destroy', $restaurant->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                            
+                                <div class="row g-4">
+                                    <!-- Card START -->
+                                    <div class="col-md-6">
+                                        <div class="card card-body p-4">
+                                         <div><img src="{{asset('layoutsCss/images/element/18.svg')}}" class="h-70px mb-3" alt=""></div> 
+                                            <h5>Prix : </h5>
+                                            <p class="mb-0">Le prix de notr plat est <strong>{{ $menu->prix }},</strong></p>
+                                        </div>
+                                    </div>
+                                    <!-- Card END -->
+            
+                                    <!-- Card START -->
+                                    <div class="col-md-6">
+                                        <div class="card card-body p-4">
+                                            <div><img src="{{asset('layoutsCss/images/element/21.svg')}}" class="h-70px mb-3" alt=""></div>
+                                            <h5>Date de création : </h5>
+                                            <p class="mb-0">Fondé le <strong>{{ \Carbon\Carbon::parse($menu->created_at)->format('d/m/Y') }},</strong> </p>
+                                        </div>
+                                    </div>
+                                    <!-- Card END -->
+            
+                                    <!-- Card START -->
+                                    <div class="col-md-6">
+                                        <div class="card card-body p-4">
+                                            <div><img src="{{asset('layoutsCss/images/element/19.svg')}}" class="h-70px mb-3" alt=""></div>
+                                            <h5>Descriptions de menu  : </h5>
+                                            <p class="mb-0">  <strong>{{ $menu->description }} </strong>
+
+
+
+
+
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Card END -->
+            
+                                    <!-- Card START -->
+                                    <div class="col-md-6">
+                                        <div class="card card-body p-4">
+                                            <div><img src="{{asset('layoutsCss/images/element/20.svg')}}" class="h-70px mb-3" alt=""></div>
+                                            <h5>Affectation</h5>
+                                            <p class="mb-0"> Pour toute information ce menu se trouve au restaurant <strong>{{ $menu->Restorant }}</strong></p>
+                                        </div>
+                                    </div>
+                                    <!-- Card END -->
+            
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
-            @endif
-            
-                <!-- Card body START -->
-               
-                <!-- Card body END -->
-    
-                <!-- Card footer START -->
-                <div class="card-footer pt-0">
-                  <!-- Pagination and content -->
-                  <div
-                    class="d-sm-flex justify-content-sm-between align-items-sm-center"
-                  >
-                    <!-- Content -->
-                    <p class="mb-sm-0 text-center text-sm-start">
-                    voir plus
-                    </p>
-                    <!-- Pagination -->
-                    <nav
-                      class="mb-sm-0 d-flex justify-content-center"
-                      aria-label="navigation"
-                    >
-                      <ul
-                        class="pagination pagination-sm pagination-primary-soft mb-0"
-                      >
-                        <li class="page-item disabled">
-                          <a class="page-link" href="#" tabindex="-1">Prev</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item active">
-                          <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item disabled">
-                          <a class="page-link" href="#">..</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">15</a>
-                        </li>
-                        <li class="page-item">
-                          <a class="page-link" href="#">Next</a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-                <!-- Card footer END -->
-              </div>
+            </section>
 
          </div>
 		<!-- Page main content END -->

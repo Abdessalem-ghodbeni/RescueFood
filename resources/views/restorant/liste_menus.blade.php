@@ -367,14 +367,14 @@
             
                                 <!-- Actions -->
                                 <td>
-                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">Modifier</a>
+                                    <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0"> <i class="bi bi-pen"></i></a>
 
                                     <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger-soft mb-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')">Supprimer</button>
+                                        <button type="submit" class="btn btn-sm btn-danger-soft mb-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')"><i class="bi bi-trash"></i></button>
                                     </form>
-                                    <a href="{{ route('menus.show', $menu->id) }}" class="btn btn-sm btn-info">Voir Détails</a>
+                                    <a href="{{ route('menus.show', $menu->id) }}" class="btn btn-sm btn-info"><i class="bi bi-info-circle"></i></a>
 
                                 </td>
                             </tr>

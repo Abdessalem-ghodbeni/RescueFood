@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,5 +60,32 @@ class AdminController extends Controller
         }
 
         return view('admin.detailsResorantAdmin')->with('restaurant', $restaurant);
+    }
+
+
+    public function allMenu()
+    {
+
+        $menus = Menu::with('restaurant')->get();
+        return view('admin.totaleMenuList', compact('menus'));
+    }
+
+    public function showMenu($id)
+    {
+
+        $menu = Menu::findOrFail($id);
+        return view('admin.adminMenu', compact('menu'));
+    }
+
+
+    public function destroyMenu($id)
+    {
+
+        $menu = Menu::findOrFail($id);
+
+        $menu->delete();
+
+
+        return redirect()->route('admin.allMenu')->with('success', 'Menu supprimé avec succès.');
     }
 }

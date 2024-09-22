@@ -43,7 +43,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/restaurants', [AdminController::class, 'getAllRestorant'])->name('admin.getAllRestorant');
     Route::get('admin/search', [AdminController::class, 'search'])->name('admin.search');
     Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::delete('admin/menu/{id}', [AdminController::class, 'destroyMenu'])->name('admin.destroyMenu');
+
     Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
+    Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
 });
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
