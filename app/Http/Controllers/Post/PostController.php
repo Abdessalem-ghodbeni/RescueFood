@@ -18,7 +18,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        // Validation des données
         $validatedData = $request->validate([
             'titre' => 'required|string|max:255',
             'contenu_poste' => 'required|string',
@@ -26,13 +25,11 @@ class PostController extends Controller
             'blog_id' => 'required|exists:blogs,id', // Validation pour s'assurer que le blog_id existe
         ]);
 
-        // Upload de l'image
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post', 'public');
         }
 
-        // Création du poste
         Poste::create([
             'titre' => $validatedData['titre'],
             'contenu_poste' => $validatedData['contenu_poste'],
@@ -41,8 +38,9 @@ class PostController extends Controller
         ]);
 
         // Redirection après l'ajout
-        return redirect()->route('association.Blog.OneBlog', $validatedData['blog_id'])
+        return redirect()->route('blogs.show', $validatedData['blog_id'])
             ->with('success', 'Poste ajouté avec succès!');
+
     }
 
 }
