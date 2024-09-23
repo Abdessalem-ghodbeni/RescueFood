@@ -55,13 +55,19 @@ class BlogController extends Controller
     }
 
 
-
     public function show($id)
     {
-        $blog = Blog::findOrFail($id);
+        // Récupérer le blog par son id
+        $blog = Blog::with('postes')->find($id);
 
+        if(!$blog) {
+            return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
+        }
+
+        // Passer les données à la vue
         return view('association.Blog.OneBlog', compact('blog'));
     }
+
 
 
 

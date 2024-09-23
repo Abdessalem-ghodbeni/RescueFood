@@ -45,11 +45,6 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.affiche') }}" class="btn btn-primary">Retour aux blogs</a>
-                                    <a href="{{ route('post.create', ['blog_id' => $blog->id]) }}" class="btn btn-outline-primary mb-0">Ajouter un Poste</a>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -92,8 +87,9 @@
                             <div class="bg-dark border rounded-3 p-3 w-100">
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                    <a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                    <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+                                    <a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                    <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+
                                     <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
                                     <a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                     <a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
@@ -124,30 +120,53 @@
                 <!-- Left sidebar END -->
 
                 <!-- Main content START -->
+
+
                 <div class="col-xl-9">
                     <div class="row g-4 mb-4">
-                        <div class="container">
-                            <h1>{{ $blog->nom_blog }}</h1>
-                            <p>{{ $blog->sujet }}</p>
-                            <h2>Posts</h2>
-                            <div class="row">
-                                @if($blog->postes->count() > 0)
-                                    @foreach($blog->postes as $poste)
-                                        <div class="col-md-4 mb-3">
-                                            <div class="card">
-                                                <img src="{{ asset($poste->image) }}" class="card-img-top" alt="{{ $poste->titre }}">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ $poste->titre }}</h5>
-                                                    <p class="card-text">{{ $poste->contenu_poste }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p>Aucun poste disponible pour ce blog.</p>
-                                @endif
-                            </div>
+                        <div class="container mt-5">
+                            <h1>Ajouter un nouveau Poste</h1>
+
+                            <!-- Afficher les erreurs de validation -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <!-- Formulaire d'ajout de poste -->
+                            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data"> <!-- Changez ici -->
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="titre" class="form-label">Titre du poste</label>
+                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ old('titre') }}" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="contenu_poste" class="form-label">Contenu du poste</label>
+                                    <textarea class="form-control" id="contenu_poste" name="contenu_poste" rows="5" required>{{ old('contenu_poste') }}</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Image du poste</label>
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="blog_id" class="form-label">ID du blog associé</label>
+                                    <input type="hidden" name="blog_id" value="{{ $blogId }}"> <!-- Assurez-vous de passer $blogId à la vue -->
+                                    <p>{{ $blogId }}</p> <!-- Optionnel, pour afficher l'ID du blog associé -->
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </form>
                         </div>
+
+
                     </div>
                 </div>
                 <!-- Main content END -->

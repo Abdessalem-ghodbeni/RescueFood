@@ -5,6 +5,7 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use Illuminate\Support\Facades\Route;
@@ -71,4 +72,11 @@ route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blo
 Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
 //------------------------Blog-------------------------------------//
+
+
+//------------------------Poste-------------------------------------//
+Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
+Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+//------------------------Poste-------------------------------------//
+
 
