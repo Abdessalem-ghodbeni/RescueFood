@@ -57,16 +57,20 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        // Récupérer le blog par son id
+        // Récupérer le blog par son id avec une pagination des postes
         $blog = Blog::with('postes')->find($id);
 
-        if(!$blog) {
+        if (!$blog) {
             return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
         }
 
+        $postes = $blog->postes()->paginate(3); // Pagination de 3 postes par page
+
         // Passer les données à la vue
-        return view('association.Blog.OneBlog', compact('blog'));
+        return view('association.Blog.OneBlog', compact('blog', 'postes'));
     }
+
+
 
 
 

@@ -7,6 +7,7 @@ use App\Models\Blog;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -28,6 +29,7 @@ class PostController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post', 'public');
+            log::info('Image uploaded to: ' . $imagePath);
         }
 
         Poste::create([
