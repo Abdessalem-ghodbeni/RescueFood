@@ -125,7 +125,6 @@
                 <div class="col-xl-9">
                     <div class="row g-4 mb-4">
                         <div class="container mt-5">
-                            <h1>Ajouter un nouveau Poste</h1>
 
                             <!-- Afficher les erreurs de validation -->
                             @if ($errors->any())
@@ -139,31 +138,41 @@
                             @endif
 
                             <!-- Formulaire d'ajout de poste -->
-                            <form action="{{ route('postes.store') }}" method="POST" enctype="multipart/form-data"> <!-- Ajoutez enctype pour les fichiers -->
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="titre" class="form-label">Titre du poste</label>
-                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ old('titre') }}" required>
-                                </div>
+                            <div class="container mt-5">
+                                <h1>Ajouter un nouveau Blog</h1>
 
-                                <div class="mb-3">
-                                    <label for="contenu_poste" class="form-label">Contenu du poste</label>
-                                    <textarea class="form-control" id="contenu_poste" name="contenu_poste" rows="5" required>{{ old('contenu_poste') }}</textarea>
-                                </div>
+                                <!-- Afficher les erreurs de validation -->
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Image du poste</label>
-                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                                </div>
+                                <!-- Formulaire d'ajout de blog -->
+                                <form action="{{ route('blogs.store') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">Titre du blog</label>
+                                        <input type="text" class="form-control" id="title" name="nom_blog" value="{{ old('nom_blog') }}" required>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="blog_id" class="form-label">ID du blog associé</label>
-                                    <input type="hidden" name="blog_id" value="{{ $blogId }}"> <!-- Assurez-vous de passer $blogId à la vue -->
-                                    <p>{{ $blogId }}</p> <!-- Optionnel, pour afficher l'ID du blog associé -->
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">objectif du blog</label>
+                                        <input type="text" class="form-control" id="title" name="objectif" value="{{ old('objectif') }}" required>
+                                    </div>
 
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
-                            </form>
+                                    <div class="mb-3">
+                                        <label for="content" class="form-label">sujet du blog</label>
+                                        <textarea class="form-control" id="content" name="sujet" rows="5" required>{{ old('sujet') }}</textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </form>
+                            </div>
                         </div>
 
                     </div>
