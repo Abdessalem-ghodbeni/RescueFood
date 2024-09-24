@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Restaurant;
+
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
