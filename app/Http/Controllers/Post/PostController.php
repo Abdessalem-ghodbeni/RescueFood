@@ -45,4 +45,22 @@ class PostController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $poste = Poste::find($id);
+
+        if (!$poste) {
+            return redirect()->back()->with('error', 'Poste non trouvé.');
+        }
+
+        if ($poste->image) {
+            \Storage::delete('public/' . $poste->image);
+        }
+
+        $poste->delete();
+
+        return redirect()->back()->with('success', 'Poste supprimé avec succès.');
+    }
+
+
 }

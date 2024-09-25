@@ -64,7 +64,7 @@ class BlogController extends Controller
             return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
         }
 
-        $postes = $blog->postes()->paginate(3); // Pagination de 3 postes par page
+        $postes = $blog->postes()->paginate(3);
 
         // Passer les données à la vue
         return view('association.Blog.OneBlog', compact('blog', 'postes'));

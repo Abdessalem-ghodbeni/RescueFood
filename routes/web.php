@@ -77,6 +77,8 @@ Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('b
 //------------------------Poste-------------------------------------//
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 //------------------------Poste-------------------------------------//
 
 

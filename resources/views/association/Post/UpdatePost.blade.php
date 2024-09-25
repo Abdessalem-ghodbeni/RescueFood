@@ -45,11 +45,6 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.affiche') }}" class="btn btn-primary">Retour aux blogs</a>
-                                    <a href="{{ route('post.create', ['blog_id' => $blog->id]) }}" class="btn btn-outline-primary mb-0">Ajouter un Poste</a>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -92,8 +87,9 @@
                             <div class="bg-dark border rounded-3 p-3 w-100">
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                    <a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                    <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+                                    <a class="list-group-item active" href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                    <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
+
                                     <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
                                     <a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                     <a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
@@ -124,52 +120,53 @@
                 <!-- Left sidebar END -->
 
                 <!-- Main content START -->
-                <div class="col-xl-9">
-                    <div class="row g-4 mb-4">
-                        <div class="container">
-                            <h1>{{ $blog->nom_blog }}</h1>
-                            <p>{{ $blog->sujet }}</p>
-                            <h2>Posts</h2>
-                            <div class="row">
-                                @if($postes->count() > 0)
-                                    <div class="row">
-                                        @foreach($postes as $poste)
-                                            <div class="col-md-4 mb-3">
-                                                <div class="card">
-                                                    <img src="{{ asset('storage/' . $poste->image) }}" class="card-img-top" alt="{{ $poste->titre }}">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ $poste->titre }}</h5>
-                                                        <p class="card-text">{{ $poste->contenu_poste }}</p>
-                                                        <form action="{{ route('posts.destroy', $poste->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce poste ?')">
-                                                                Supprimer
-                                                            </button>
-                                                        </form>
 
-                                                    </div>
-                                                </div>
-                                            </div>
+
+
+
+
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h2 class="mb-4 text-center">Modifier le Blog</h2>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
                                         @endforeach
-                                    </div>
+                                    </ul>
+                                </div>
+                            @endif
 
-                                    <!-- Liens de pagination (à n'afficher qu'une seule fois) -->
-                                    <div class="mt-3">
-                                        {{ $postes->links() }} <!-- Affiche les liens de pagination -->
-                                    </div>
-                                @else
-                                    <p>Aucun poste disponible pour ce blog.</p>
-                                @endif
+                            <!-- Formulaire pour éditer le blog -->
+                            <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
 
+                                <div class="form-group mb-3">
+                                    <label for="title" class="form-label">Titre</label>
+                                    <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" required>
+                                </div>
 
+                                <div class="form-group mb-3">
+                                    <label for="content" class="form-label">Objectif</label>
+                                    <textarea name="objectif" id="content" class="form-control" rows="4" required>{{ $blog->objectif }}</textarea>
+                                </div>
 
+                                <div class="form-group mb-4">
+                                    <label for="sujet" class="form-label">Sujet</label>
+                                    <textarea name="sujet" id="sujet" class="form-control" rows="4" required>{{ $blog->sujet }}</textarea>
+                                </div>
 
-
-                            </div>
+                                <button type="submit" class="btn btn-primary w-100">Mettre à jour</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+
                 <!-- Main content END -->
             </div><!-- Row END -->
         </div>
