@@ -69,8 +69,8 @@ Route::delete('association/blogs/{id}', [BlogController::class, 'destroy'])->nam
 
 route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
-Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
+Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('post.edit');
+Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('post.update');
 //------------------------Blog-------------------------------------//
 
 
@@ -78,6 +78,8 @@ Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('b
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('association/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::put('association/post/{id}', [PostController::class, 'update'])->name('post.update');
 
 //------------------------Poste-------------------------------------//
 

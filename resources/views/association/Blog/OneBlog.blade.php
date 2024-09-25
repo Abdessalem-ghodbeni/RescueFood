@@ -147,6 +147,8 @@
                                                                 Supprimer
                                                             </button>
                                                         </form>
+                                                        <a href="{{ route('post.edit', $poste->id) }}" class="btn btn-warning">Modifier</a>
+
 
                                                     </div>
                                                 </div>
