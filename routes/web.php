@@ -11,7 +11,8 @@ use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,4 +121,7 @@ Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name(
 Route::put('/categories/{id}', [CategorieController::class, 'update'])->name('categorie.update');
 Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 /* Categorie end */
+Route::resource("/stock", StockController::class);
+Route::resource("/produit", ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
