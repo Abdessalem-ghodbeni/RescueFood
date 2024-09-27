@@ -2,17 +2,17 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LivreurController;
-use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
-use App\Http\Controllers\StockController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\HomeController;
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +24,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,20 +37,92 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
 require __DIR__ . '/auth.php';
 
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
-    // Ajoute d'autres routes d'administration ici
+    Route::get('admin/restaurants', [AdminController::class, 'getAllRestorant'])->name('admin.getAllRestorant');
+    Route::get('admin/search', [AdminController::class, 'search'])->name('admin.search');
+    Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::delete('admin/menu/{id}', [AdminController::class, 'destroyMenu'])->name('admin.destroyMenu');
+
+    Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
+    Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
+
+    
+    Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
+    Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
+    Route::post('admin/dons', [DonController::class, 'store'])->name('dons.store');
+    Route::get('admin/dons/{don}', [DonController::class, 'show'])->name('dons.show');
+    Route::get('admin/dons/{don}/edit', [DonController::class, 'edit'])->name('dons.edit');
+    Route::put('admin/dons/{don}', [DonController::class, 'update'])->name('dons.update');
+    Route::delete('admin/dons/{don}', [DonController::class, 'destroy'])->name('dons.destroy');
 });
-
-Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
-Route::resource("/stock", StockController::class);
-Route::resource("/produit", ProduitController::class);
-Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
-
+// liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
+Route::get('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
+Route::get('restorant/liste', [RestorantController::class, 'getAllRestorant'])->name('restorant.getAllRestorant')->middleware('auth');
+// Soumettre le formulaire pour ajouter un restaurant
+Route::post('restorant/store', [RestorantController::class, 'store'])->name('restorant.store')->middleware('auth');
+Route::delete('restorant/{id}', [RestorantController::class, 'destroy'])->name('restorant.destroy')->middleware('auth');
+Route::get('Myrestorantt/{id}', [RestorantController::class, 'show'])->name('restorant.show');
+// Route pour afficher le formulaire d'ajout de menu
+Route::get('menus/create', [MenuController::class, 'create'])->name('menus.create')->middleware('auth');
+
+// Route pour soumettre le formulaire d'ajout de menu
+Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store')->middleware('auth');
+/// liste des menu
+Route::get('menus/user', [MenuController::class, 'userMenus'])->name('menus.user')->middleware('auth');
+
+// Route pour afficher le formulaire de modification
+Route::get('menus/{id}/edit', [MenuController::class, 'edit'])->name('menus.edit')->middleware('auth');
+
+// Route pour soumettre la mise à jour du menu
+Route::put('menus/{id}', [MenuController::class, 'update'])->name('menus.update')->middleware('auth');
+// Route pour afficher le formulaire d'édition
+Route::get('rrestorant/{id}/edit', [RestorantController::class, 'edit'])->name('restorant.edit')->middleware('auth');
+
+// Route pour mettre à jour le restaurant
+Route::put('erestorant/{id}', [RestorantController::class, 'update'])->name('restorant.update')->middleware('auth');
+
+Route::get('restorant/search', [RestorantController::class, 'search'])->name('restorant.search')->middleware('auth');
+Route::delete('menus/{id}', [MenuController::class, 'destroy'])->name('menus.destroy')->middleware('auth');
+Route::get('menus/{id}', [MenuController::class, 'show'])->name('menus.show')->middleware('auth');
+
+// fin route resto liste by ghodbeny abdessalem
+
+Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
+
 Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
+Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
+
+/*Begin Association*/
+route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
+route::get('/association/{user_id}/afficher', [AssociationController::class, 'afficher'])->name('association.afficher');
+Route::post('/association', [AssociationController::class, 'store'])->name('association.store');
+Route::get('association/{id}/edit', [AssociationController::class, 'edit'])->name('association.edit');
+Route::put('association/{id}', [AssociationController::class, 'update'])->name('association.update');
+Route::delete('association/{id}', [AssociationController::class, 'destroy'])->name('association.destroy');
+
+/*Admin*/
+Route::put('/association/{id}/updateAll', [AssociationController::class, 'updateAll'])->name('association.updateAll');
+Route::get('/admin/association/afficherAll', [AssociationController::class, 'afficherAll'])->name('association.afficherAll');
+Route::get('association/{id}/editAll', [AssociationController::class, 'editAll'])->name('association.editAll');
+Route::delete('association/{id}', [AssociationController::class, 'destroyAll'])->name('association.destroyAll');
+
+/*End Association*/
+/* Categorie start */
+Route::get('/categories', [CategorieController::class, 'index'])->name('categorie.index');
+Route::get('/categories/create', [CategorieController::class, 'create'])->name('categorie.create');
+Route::post('/categories', [CategorieController::class, 'store'])->name('categorie.store');
+Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name('categorie.edit');
+Route::put('/categories/{id}', [CategorieController::class, 'update'])->name('categorie.update');
+Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
+/* Categorie end */
+
+Route::resource("/stock", StockController::class);
+Route::resource("/produit", ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
