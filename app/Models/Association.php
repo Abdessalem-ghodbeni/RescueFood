@@ -14,7 +14,7 @@ class Association extends Model
         'numero_telphone',
         'user_id', // Clé étrangère ajoutée
         'categorie_id',
-
+        'adresse',
     ];
     public function user()
     {

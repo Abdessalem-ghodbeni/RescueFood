@@ -121,7 +121,6 @@ Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name(
 Route::put('/categories/{id}', [CategorieController::class, 'update'])->name('categorie.update');
 Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 /* Categorie end */
-
 Route::resource("/stock", StockController::class);
 Route::resource("/produit", ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
