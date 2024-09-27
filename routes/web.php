@@ -8,6 +8,8 @@ use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
+use App\Http\Controllers\DonController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -48,6 +48,15 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
+
+    
+    Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
+    Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
+    Route::post('admin/dons', [DonController::class, 'store'])->name('dons.store');
+    Route::get('admin/dons/{don}', [DonController::class, 'show'])->name('dons.show');
+    Route::get('admin/dons/{don}/edit', [DonController::class, 'edit'])->name('dons.edit');
+    Route::put('admin/dons/{don}', [DonController::class, 'update'])->name('dons.update');
+    Route::delete('admin/dons/{don}', [DonController::class, 'destroy'])->name('dons.destroy');
 });
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
