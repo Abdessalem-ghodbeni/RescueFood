@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +45,8 @@ Route::middleware(['admin'])->group(function () {
 });
 
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
-
+Route::resource("/stock", StockController::class);
+Route::resource("/produit", ProduitController::class);
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
 Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
