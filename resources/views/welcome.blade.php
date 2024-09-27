@@ -3,7 +3,7 @@
 
 <!-- Mirrored from eduport.webestica.com/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:10:27 GMT -->
 <head>
-	<title>Eduport - LMS, Education and Course Theme</title>
+	<title>RescueFood</title>
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
@@ -69,10 +69,10 @@
 			}
 		})
 		
-	</script>
+	</script> 
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{asset('restorantCss/images/favicon.ico')}}">
+	<link rel="shortcut icon" href="{{asset('layoutsCss/images/az.png')}}">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -93,7 +93,31 @@
 <body>
 
 <!-- Top header START -->
+<div
+class="alert alert-warning py-2 m-0 bg-primary border-0 rounded-0 alert-dismissible fade show text-center overflow-hidden"
+role="alert"
+>
+<p class="text-white m-0">
+  NOW AND ALWAYS, WE STAND WITH THE PEOPLE OF PALESTINE! 
+  <img
+	src="{{asset('layoutsCss/images/palastine.jpeg')}}" style="width: 35px; height:auto"
+	 
+  />
+  <img
+  src="{{asset('layoutsCss/images/palastine.jpeg')}}" style="width: 35px; height:auto"
+   
+/>
+<img
+src="{{asset('layoutsCss/images/palastine.jpeg')}}" style="width: 35px; height:auto"
  
+/>
+</p>
+<button
+  type="button"
+  className="btn-close btn-close-white opacity-9 p-3"
+  data-bs-dismiss="alert"
+  aria-label="Close"/>
+</div>
 
 <header class="navbar-light header-static navbar-sticky">
 	<!-- Logo Nav START -->
@@ -113,7 +137,7 @@
 
 <!-- =======================
 Main Banner START -->
-<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url(layoutsCss/images/recyclageFood.avif); background-position: center; background-size: cover;">
+<section class="pt-0 position-relative overflow-hidden h-700px h-sm-600px h-lg-700px rounded-top-4 mx-2 mx-md-4" style="background-image:url(layoutsCss/images/RescueFood.webp); background-position: center; background-size: cover;">
 	<div class="bg-overlay bg-dark opacity-5"></div>
 	<!-- SVG decoration for curve -->
 	<figure class="position-absolute bottom-0 left-0 w-100 d-md-block mb-n3 z-index-9">
@@ -137,26 +161,26 @@ Main Banner START -->
 		</figure>
 
 		<div class="row py-0 py-md-5 align-items-center text-center text-sm-start">
-			<div class="col-sm-10 col-lg-8 col-xl-6 all-text-white my-5 mt-md-0">
+			<div class="col-sm-10 col-lg-10 col-xl-6 all-text-white my-5 mt-md-0">
 				<div class="py-0 py-md-5 my-5">
 					
 					<!-- Badge with content -->
 					<div class="d-inline-block bg-white px-3 py-2 rounded-pill mb-3">
-						<p class="mb-0 text-dark"><span class="badge text-bg-success rounded-pill me-1">New</span>	One to one video call using web browser</p>
+						<p class="mb-0 text-dark"><span class="badge text-bg-success rounded-pill me-1">New</span>	 RescueFood, </p>
 					</div>
 					
 					<!-- Title -->
-					<h1 class="text-white display-5">Start learning from <span class="text-warning">best institutions</span></h1>
-					<p class="text-white">Demesne far-hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet no jokes worse her why.</p>
+					<h1 class="text-white display-5">Optimisez <span class="text-warning">la distribution</span></h1>
+					<p class="text-white">Explorez des solutions innovantes pour éviter le gaspillage alimentaire. Nos outils vous permettent de connecter les donateurs et les bénéficiaires de manière rapide et efficace.</p>
 					
 					<div class="d-sm-flex align-items-center mt-4">
 						<!-- Button -->
-						<a href="#" class="btn btn-primary me-2 mb-4 mb-sm-0">Get Started</a>
+						<a href="#" class="btn btn-primary me-2 mb-4 mb-sm-0">Commencer</a>
 						<!-- Video button -->
 						<div class="d-flex align-items-center justify-content-center py-2 ms-0 ms-sm-4">
-							<a data-glightbox data-gallery="office-tour" href="https://www.youtube.com/embed/tXHviS-4ygo" class="btn btn-round btn-white-shadow text-danger me-7 mb-0 overflow-visible"> 
+							<a data-glightbox data-gallery="office-tour" href="https://youtu.be/qVv_Et15tZg?si=FnjqKWr9r5bg51_h" class="btn btn-round btn-white-shadow text-danger me-7 mb-0 overflow-visible"> 
 								<i class="fas fa-play"></i>
-								<h6 class="mb-0 ms-3 text-white fw-normal position-absolute start-100 top-50 translate-middle-y">Watch video</h6>
+								<h6 class="mb-0 ms-3 text-white fw-normal position-absolute start-100 top-50 translate-middle-y">Regarder video</h6>
 							</a>
 						</div>
 					</div>
@@ -178,17 +202,17 @@ Client START -->
 				<div class="tiny-slider">
 					<div class="tiny-slider-inner" data-arrow="false" data-dots="false" data-gutter="80" data-items-xl="6" data-items-lg="5" data-items-md="4" data-items-sm="3" data-items-xs="2" data-autoplay="2000">
 						<!-- Slide item START -->
-						<div class="item"> <img class="grayscale" src="assets/images/client/coca-cola.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/android.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/envato.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/microsoft.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/netflix.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/google.svg" alt="client-logo"> </div>
-						<div class="item"> <img class="grayscale" src="assets/images/client/linkedin.svg" alt="client-logo"> </div>
-						<!-- Slide item END -->
-					</div>
-				</div>
-				<!-- Slider END -->
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs1.jpeg')}}" alt="client-logo"> </div>
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs2.jpeg')}}" alt="client-logo"> </div>
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs3.jpeg')}}" alt="client-logo"> </div>
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs4.jpeg')}}" alt="client-logo"> </div>
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs5.jpeg')}}" alt="client-logo"> </div>
+						<div class="item"> <img class="grayscale" src="{{asset('layoutsCss/images/rs6.jpeg')}}" alt="client-logo"> </div>
+					 
+						<!-- Slide item END --6
+					</div6
+				</div6
+				<!-- 6lider END -->
 			</div>
 		</div>
 	</div>
@@ -203,7 +227,7 @@ About START -->
 		<div class="row g-4 align-items-center">
 			<div class="col-lg-5">
 				<!-- Title -->
-				<h2>Find Out More About us, <span class="text-warning">Eduport</span> insides.</h2>
+				<h2>En savoir plus sur nous, les coulisses de  <span class="text-warning">RescueFood</span> </h2>
 				<!-- Image -->
 				<img src="assets/images/about/03.jpg" class="rounded-2" alt="">
 			</div>
@@ -212,384 +236,29 @@ About START -->
 					<!-- Item -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-2"><i class="fas fa-user-tie fs-5"></i></div>
-						<h5 class="mt-2">Learn with Experts</h5>
-						<p class="mb-0">In no impression assistance contrasted Manners she wishing justice hastily new anxious At discovery objection we</p>
+						<h5 class="mt-2"> Apprenez avec des Experts</h5>
+						<p class="mb-0">Profitez de l'expertise de professionnels dans la lutte contre le gaspillage alimentaire. Nos formateurs vous guident à travers des stratégies efficaces pour optimiser la distribution des surplus alimentaires et aider les plus démunis</p>
 					</div>
 					<!-- Item -->
 					<div class="col-sm-6">
 						<div class="icon-lg bg-info bg-opacity-10 text-info rounded-2"><i class="fas fa-book fs-5"></i></div>
-						<h5 class="mt-2">Learn Anything</h5>
-						<p class="mb-0">Smile spoke total few great had never their too Amongst moments do in arrived at my replied Fat weddings believed prospect</p>
+						<h5 class="mt-2">  à Tout Moment</h5>
+						<p class="mb-0">Avec RescueFood, accédez à des ressources d'apprentissage à tout moment. Que vous soyez bénévole ou gestionnaire, nos outils vous permettent d'acquérir les compétences nécessaires pour maximiser votre impact dans la réduction du gaspillage alimentaire</p>
 					</div>
 					<!-- Item -->
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="icon-lg bg-success bg-opacity-10 text-success rounded-2"><i class="bi bi-alarm-fill fs-5"></i></div>
-						<h5 class="mt-2">Flexible Learning</h5>
-						<p class="mb-0">Denote simple fat denied add worthy little use As some he so high down am week Conduct denied add worthy little use As</p>
+						<h5 class="mt-2">Normes Industrielles</h5>
+						<p class="mb-0">Nous respectons les normes les plus strictes en matière de gestion des ressources alimentaires. Grâce à RescueFood, soyez sûr d'appliquer les meilleures pratiques reconnues dans le secteur pour assurer une redistribution efficace et responsable.</p>
 					</div>
 					<!-- Item -->
-					<div class="col-sm-6">
-						<div class="icon-lg bg-purple bg-opacity-10 text-purple rounded-2"><i class="fas fa-university fs-5"></i></div>
-						<h5 class="mt-2">Industrial Standards</h5>
-						<p class="mb-0">Pleasure and so read the was hope entire first decided the so must have as on was want up of to traveling so all</p>
-					</div>		
+				 
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-- =======================
-About END -->
-
-<!-- =======================
-Trending courses START -->
-<section class="pt-0 pt-md-5">
-	<div class="container">
-		<!-- Title -->
-		<div class="row">
-			<div class="col-lg-8 mb-4">
-				<h2 class="mb-0">Our <span class="text-warning">Trending</span> Courses</h2>
-				<p class="mb-0">Check out most 🔥 courses in the market</p>
-			</div>
-		</div>
-
-		<div class="row g-4">
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/17.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">9.1k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.5</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">The Complete Digital Marketing Course - 12 Courses in 1</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Personal Development </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$140</h3>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/18.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">2.5k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/07.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Fundamentals of Business Analysis</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Business Development </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$160</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/21.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">6k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Google Ads Training: Become a PPC Expert</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> SEO </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$226</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/20.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">15k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.8</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Behavior, Psychology and Care Training</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Lifestyle </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$342</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/15.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">8k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">3.6</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Microsoft Excel - Excel from Beginner to Advanced</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$245</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-			<!-- Card Item START -->
-			<div class="col-md-6 col-xl-4">
-				<div class="card p-2 shadow h-100">
-					<div class="rounded-top overflow-hidden">
-						<div class="card-overlay-hover">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/14.jpg" class="card-img-top" alt="course image">
-						</div>
-						<!-- Hover element -->
-						<div class="card-img-overlay">
-							<div class="card-element-hover d-flex justify-content-end">
-								<a href="#" class="icon-md bg-white rounded-circle text-center">
-									<i class="fas fa-shopping-cart text-danger"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<!-- Rating and avatar -->
-						<div class="d-flex justify-content-between">
-							<!-- Rating and info -->
-							<ul class="list-inline hstack gap-2 mb-0">
-								<!-- Info -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-orange bg-opacity-10 text-orange rounded-circle"><i class="fas fa-user-graduate"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4k</span>
-								</li>
-								<!-- Rating -->
-								<li class="list-inline-item d-flex justify-content-center align-items-center">
-									<div class="icon-md bg-warning bg-opacity-15 text-warning rounded-circle"><i class="fas fa-star"></i></div>
-									<span class="h6 fw-light mb-0 ms-2">4.0</span>
-								</li>
-							</ul>
-							<!-- Avatar -->
-							<div class="avatar avatar-sm">
-								<img class="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="avatar">
-							</div>
-						</div>
-						<!-- Divider -->
-						<hr>
-						<!-- Title -->
-						<h5 class="card-title"><a href="#">Twitter Marketing & Twitter Ads For Beginners</a></h5>
-						<!-- Badge and Price -->
-						<div class="d-flex justify-content-between align-items-center mb-0">
-							<a href="#" class="badge bg-info bg-opacity-10 text-info me-2"><i class="fas fa-circle small fw-bold"></i> Technology </a>
-							<!-- Price -->
-							<h3 class="text-success mb-0">$199</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Card Item END -->
-
-		</div>
-		<!-- Button -->
-		<div class="text-center mt-5">
-			<a href="#" class="btn btn-primary-soft mb-0">View more<i class="fas fa-sync ms-2"></i></a>
-		</div>
-	</div>
-</section>
-<!-- =======================
-Trending courses END -->
-
-<!-- =======================
-Video divider START -->
+ 
 <section class="bg-light position-relative">
 	<!-- SVG decoration -->
 	<figure class="position-absolute bottom-0 start-0 d-none d-lg-block">
@@ -631,15 +300,15 @@ Video divider START -->
 				</figure>
 
 				<!-- Title -->
-				<h2 class="h1">Study whenever you want, from any place in the world.</h2>
+				<h2 class="h1">RescueFood : Ensemble contre le Gaspillage Alimentaire</h2>
 			</div>
 
 			<div class="col-lg-5 position-relative mt-4 mt-lg-0">
 				<!-- Image -->
-				<img src="assets/images/about/04.jpg" class="border border-5 border-white rounded-2" alt="">
+				<img src="{{asset('layoutsCss/images/az.png')}}" class="border w-100 border-5 border-white rounded-2" alt="">
 				<div class="position-absolute top-50 start-50 translate-middle">
 					<!-- Video link -->
-					<a href="https://www.youtube.com/embed/tXHviS-4ygo" class="btn text-danger btn-round btn-white-shadow btn-lg mb-0" data-glightbox data-gallery="video-tour">
+					<a href="https://youtu.be/WFzmF7hYucc?si=FSmqW5M59AHrwTxp" class="btn text-danger btn-round btn-white-shadow btn-lg mb-0" data-glightbox data-gallery="video-tour">
 						<i class="fas fa-play"></i>
 					</a>
 				</div>
@@ -650,165 +319,7 @@ Video divider START -->
 <!-- =======================
 Video divider END -->
 
-<!-- =======================
-Event START -->
-<section class="pb-0 pb-md-5">
-	<div class="container">
-		<!-- Title -->
-		<div class="row mb-4">
-			<h2 class="mb-0">Upcoming <span class="text-warning">Education</span> Events</h2>
-		</div>
-		<div class="row">
-			<!-- Slider START -->
-			<div class="tiny-slider arrow-round arrow-creative arrow-blur arrow-hover">
-				<div class="tiny-slider-inner" data-autoplay="false" data-arrow="true" data-dots="false" data-items-xl="3" data-items-md="2" data-items-xs="1">
-					
-					<!-- Card item START -->
-					<div class="card bg-transparent">
-						<div class="position-relative">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/21.jpg" class="card-img" alt="course image">
-							<!-- Overlay -->
-							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-								<div class="w-100 mt-auto">
-									<!-- Category -->
-									<a href="#" class="badge text-bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Card body -->
-						<div class="card-body px-2">
-							<!-- Title -->
-							<h5 class="card-title"><a href="#">Global Education Fall Meeting for Everyone</a></h5>
-							<!-- Address and button -->
-							<div class="d-flex justify-content-between align-items-center">
-								<Address class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Mumbai</Address>
-								<a href="#" class="btn btn-sm btn-primary-soft mb-0">Join now</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-
-					<!-- Card item START -->
-					<div class="card bg-transparent">
-						<div class="position-relative">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/16.jpg" class="card-img" alt="course image">
-							<!-- Overlay -->
-							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-								<div class="w-100 mt-auto">
-									<!-- Category -->
-									<a href="#" class="badge text-bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>Tomorrow</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Card body -->
-						<div class="card-body px-2">
-							<!-- Title -->
-							<h5 class="card-title"><a href="#">International Conference on Information Technology</a></h5>
-							<!-- Address and button -->
-							<div class="d-flex justify-content-between align-items-center">
-								<Address class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>New york</Address>
-								<a href="#" class="btn btn-sm btn-primary-soft mb-0">Join now</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-
-					<!-- Card item START -->
-					<div class="card bg-transparent">
-						<div class="position-relative">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/18.jpg" class="card-img" alt="course image">
-							<!-- Overlay -->
-							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-								<div class="w-100 mt-auto">
-									<!-- Category -->
-									<a href="#" class="badge text-bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>2 July 2022</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Card body -->
-						<div class="card-body px-2">
-							<!-- Title -->
-							<h5 class="card-title"><a href="#">UK Demo Day 2022</a></h5>
-							<!-- Address and button -->
-							<div class="d-flex justify-content-between align-items-center">
-								<Address class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>California</Address>
-								<a href="#" class="btn btn-sm btn-primary-soft mb-0">Join now</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-
-					<!-- Card item START -->
-					<div class="card bg-transparent">
-						<div class="position-relative">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/17.jpg" class="card-img" alt="course image">
-							<!-- Overlay -->
-							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-								<div class="w-100 mt-auto">
-									<!-- Category -->
-									<a href="#" class="badge text-bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Card body -->
-						<div class="card-body px-2">
-							<!-- Title -->
-							<h5 class="card-title"><a href="#">Personality Development Tour</a></h5>
-							<!-- Address and button -->
-							<div class="d-flex justify-content-between align-items-center">
-								<Address class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>London</Address>
-								<a href="#" class="btn btn-sm btn-primary-soft mb-0">Join now</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-
-					<!-- Card item START -->
-					<div class="card bg-transparent">
-						<div class="position-relative">
-							<!-- Image -->
-							<img src="assets/images/courses/4by3/19.jpg" class="card-img" alt="course image">
-							<!-- Overlay -->
-							<div class="card-img-overlay d-flex align-items-start flex-column p-3">
-								<div class="w-100 mt-auto">
-									<!-- Category -->
-									<a href="#" class="badge text-success bg-white fs-6 rounded-1"><i class="fas fa-circle text-success me-2"></i>Live</a>
-								</div>
-							</div>
-						</div>
-
-						<!-- Card body -->
-						<div class="card-body px-2">
-							<!-- Title -->
-							<h5 class="card-title"><a href="#">Global Education Fall Meeting for Everyone</a></h5>
-							<!-- Address and button -->
-							<div class="d-flex justify-content-between align-items-center">
-								<Address class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Delhi</Address>
-								<a href="#" class="btn btn-sm btn-primary-soft mb-0">Join now</a>
-							</div>
-						</div>
-					</div>
-					<!-- Card item END -->
-
-				</div>
-			</div>
-			<!-- Slider END -->
-		</div>
-	</div>
-</section>
-<!-- =======================
-Event END -->
-
-<!-- =======================
-Newsletter START -->
+ 
 <section class="mb-n9 position-relative z-index-9">
 	<div class="container">
 		<div class="row">
@@ -835,27 +346,27 @@ Newsletter START -->
 
 					<!-- Icon logos START -->
 					<div class="p-2 bg-white shadow rounded-3 rotate-74 position-absolute top-0 start-0 ms-3 mt-5 d-none d-sm-block">
-						<img src="assets/images/client/science.svg" class="h-40px" alt="Icon">
+						<img  src="{{asset('layoutsCss/images/rs1.jpeg')}}" class="h-40px" alt="Icon">
 					</div>
 					<div class="p-1 bg-white shadow rounded-3 rotate-74 position-absolute top-0 end-0 mt-5 me-5 d-none d-sm-block">
-						<img src="assets/images/client/angular.svg" class="h-30px" alt="Icon">
+						<img   src="{{asset('layoutsCss/images/rs2.jpeg')}}" class="h-30px" alt="Icon">
 					</div>
 					<div 	class="p-2 bg-white shadow rounded-3 rotate-130 position-absolute bottom-0 start-50 ms-5 mb-2 d-none d-lg-block">
-						<img src="assets/images/client/figma.svg" class="h-20px" alt="Icon">
+						<img  src="{{asset('layoutsCss/images/rs3.jpeg')}}" class="h-20px" alt="Icon">
 					</div>
 					<!-- Icon logos END -->
 
 					<div class="row">
 						<div class="col-md-8 mx-auto text-center py-5 position-relative">
 							<!-- Title -->
-							<h2>Subscribe to our Newsletter for Newest Course Updates</h2>
+							<h2>Abonnez-vous à notre Newsletter pour les Dernières Mises à Jour</h2>
 							<!-- Form -->
 							<form class="row align-items-center justify-content-center mt-3">
 								<div class="col-lg-8">
 									<div class="bg-body shadow rounded-pill p-2">
 										<div class="input-group">
 											<input class="form-control border-0 me-1" type="email" placeholder="Enter your email">
-											<button type="button" class="btn btn-blue mb-0 rounded-pill">Subscribe!</button>
+											<button type="button" class="btn btn-blue mb-0 rounded-pill">Abonnez-vous!</button>
 										</div>
 									</div>
 								</div>
@@ -887,8 +398,8 @@ Footer START -->
 		<div class="row mx-auto">
 			<div class="col-lg-6 mx-auto text-center my-5">
 				<!-- Logo -->
-				<img class="mx-auto h-40px" src="assets/images/logo-light.svg" alt="logo">
-				<p class="mt-3 text-white">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involving learners.</p>
+				<img class="mx-auto h-40px"  src="{{asset('layoutsCss/images/RescueFood.webp')}}" alt="logo">
+				<p class="mt-3 text-white">RescueFood</p>
 				<!-- Links -->
 				<ul class="nav justify-content-center text-primary-hover mt-3 mt-md-0">
 					<li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
@@ -930,26 +441,7 @@ Footer START -->
 <!-- =======================
 Footer END -->
 
-<!-- Cookie alert box START -->
-<div class="alert alert-light fade show position-fixed start-0 bottom-0 z-index-99 rounded-3 shadow p-4 ms-3 mb-3 col-10 col-md-4 col-lg-3 col-xxl-2" role="alert">
-	<div class="text-dark text-center">	
-		<!-- Image -->
-		<img src="assets/images/element/27.svg" class="h-50px mb-3" alt="cookie">
-		<!-- Content -->
-		<p class="mb-0">This website stores cookies on your computer. To find out more about the cookies we use, see our <a class="text-dark" href="#"><u> Privacy Policy</u></a></p>
-		<!-- Buttons -->
-		<div class="mt-3">
-			<button type="button" class="btn btn-success-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">Accept</span>
-			</button>
-			<button type="button" class="btn btn-danger-soft btn-sm mb-0" data-bs-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">Decline</span>
-			</button>
-		</div>
-	</div>
-</div>
-<!-- Cookie alert box END -->
-
+ 
 <!-- Back to top -->
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 

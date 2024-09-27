@@ -30,7 +30,7 @@
 				<ul class="navbar-nav flex-column" id="navbar-sidebar">
 					
 					<!-- Menu item -->
-					<li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Dashboard</a></li>
+					<li class="nav-item"><a class="nav-link">Dashboard</a></li>
 					
 					<!-- Title -->
 					<li class="nav-item ms-2 my-2">Pages</li>
