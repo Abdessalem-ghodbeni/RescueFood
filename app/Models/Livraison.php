@@ -15,12 +15,16 @@ class Livraison extends Model
         'user_id',
         'trajet_id',
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function trajet()
-    {
-        return $this->belongsTo(Trajet::class);
-    }
+
+    // Dans le modèle Livraison
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+public function trajet()
+{
+    return $this->belongsTo(Trajet::class);
+}
+
 }
