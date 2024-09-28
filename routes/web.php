@@ -4,9 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\livraisonController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\LivreurController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\TrajetController;
@@ -154,5 +155,39 @@ Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name
 Route::resource("/stock", StockController::class);
 Route::resource("/produit", ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
+
+
+
+//------------------------Blog-------------------------------------//
+route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
+
+
+
+
+Route::get('association/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+
+Route::post('association/blogs', [BlogController::class, 'store'])->name('blogs.store');
+
+// Route pour supprimer un blog
+Route::delete('association/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+
+route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+
+Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('post.edit');
+Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('post.update');
+//------------------------Blog-------------------------------------//
+
+
+//------------------------Poste-------------------------------------//
+Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
+Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('association/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::put('association/post/{id}', [PostController::class, 'update'])->name('post.update');
+
+//------------------------Poste-------------------------------------//
+
 
 
