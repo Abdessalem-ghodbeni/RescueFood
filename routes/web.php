@@ -4,10 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
+use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +61,10 @@ Route::middleware(['admin'])->group(function () {
     Route::put('admin/dons/{don}', [DonController::class, 'update'])->name('dons.update');
     Route::delete('admin/dons/{don}', [DonController::class, 'destroy'])->name('dons.destroy');
 });
+
+// Affiche la liste des livraisons
+Route::get('livraisons/dahboard', [LivraisonController::class, 'index'])->name('livraisons.index');
+
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
@@ -93,10 +99,34 @@ Route::get('menus/{id}', [MenuController::class, 'show'])->name('menus.show')->m
 
 // fin route resto liste by ghodbeny abdessalem
 
+
+// Affiche le formulaire de création
+Route::get('livraisons/create', [LivraisonController::class, 'create'])->name('livraisons.create');
+
+// Stocke une nouvelle livraison
+Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraisons.store');
+
+// Affiche une livraison spécifique
+Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
+
+
+// Affiche le formulaire d'édition
+Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
+Route::put('livraisons/{livraison}', [livraisonController::class, 'update'])->name('livraisons.update');
+
+// Supprime une livraison
+Route::delete('/livraisons/{id}', [LivraisonController::class, 'destroy'])->name('livraisons.destroy');
+/*********************Trajet */
+Route::resource('trajets', TrajetController::class);
+/********************Livreur */
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
+Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
 Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
-Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
+
+
+
+
 
 /*Begin Association*/
 route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
@@ -124,4 +154,5 @@ Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name
 Route::resource("/stock", StockController::class);
 Route::resource("/produit", ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
