@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Booking - Multipurpose Online Booking Theme</title>
+    <title>RescueFood</title>
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
@@ -70,7 +70,7 @@
 	</script>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{asset('layoutsCss/images/favicon.ico')}}">
+	<link rel="shortcut icon" href="{{asset('layoutsCss/images/az.png')}}">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com/">
