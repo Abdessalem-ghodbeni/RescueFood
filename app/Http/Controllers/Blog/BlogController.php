@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Blog;
-use App\Http\Controllers\Controller;
-use App\Models\Poste;
-use App\Models\Blog;
 
+use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -15,7 +14,6 @@ class BlogController extends Controller
 
         return view('association.Blog.allBlog', compact('blogs'));
     }
-
 
     public function create()
     {
@@ -29,22 +27,19 @@ class BlogController extends Controller
         $request->validate([
             'nom_blog' => 'required|max:255',
             'objectif' => 'required',
-            'sujet'=> 'required'
+            'sujet' => 'required',
         ]);
 
         // Créer un nouveau blog
         Blog::create([
             'nom_blog' => $request->nom_blog,
             'objectif' => $request->objectif,
-            'sujet'=> $request->sujet
+            'sujet' => $request->sujet,
         ]);
 
         // Rediriger vers la liste des blogs avec un message de succès
         return redirect()->route('blogs.store')->with('success', 'Blog ajouté avec succès.');
     }
-
-
-
 
     public function destroy($id)
     {
@@ -54,13 +49,12 @@ class BlogController extends Controller
         return redirect()->route('blogs.store')->with('success', 'Blog supprimé avec succès.');
     }
 
-
     public function show($id)
     {
         // Récupérer le blog par son id avec une pagination des postes
         $blog = Blog::with('postes')->find($id);
 
-        if (!$blog) {
+        if (! $blog) {
             return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
         }
 
@@ -70,41 +64,34 @@ class BlogController extends Controller
         return view('association.Blog.OneBlog', compact('blog', 'postes'));
     }
 
-
-
-
-
-
     public function edit($id)
     {
         $blog = Blog::find($id);
-        if (!$blog) {
+        if (! $blog) {
             return redirect()->route('blogs.index')->with('error', 'Blog not found');
         }
 
         return view('association.Blog.UpdateBlog', compact('blog'));
     }
 
-
     public function update(Request $request, $id)
     {
         $blog = Blog::find($id);
-        if (!$blog) {
+        if (! $blog) {
             return redirect()->route('blogs.index')->with('error', 'Blog not found');
         }
 
         $validated = $request->validate([
             'nom_blog' => 'required|max:255',
             'objectif' => 'required',
-            'sujet'=>'required'
+            'sujet' => 'required',
         ]);
 
         // Mettre à jour le blog
         $blog->nom_blog = $validated['nom_blog'];
         $blog->objectif = $validated['objectif'];
-        $blog->sujet= $validated['sujet'];
+        $blog->sujet = $validated['sujet'];
         $blog->save();
-
 
         // Rediriger avec un message de succès
         return redirect()->route('blogs.affiche')->with('success', 'Blog modifié avec succès.');

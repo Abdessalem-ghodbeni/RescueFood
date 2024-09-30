@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Livraison extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'date_de_livraison',
         'destination',
@@ -16,15 +17,16 @@ class Livraison extends Model
         'trajet_id',
     ];
 
-    // Dans le modèle Livraison
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function trajet()
-{
-    return $this->belongsTo(Trajet::class);
-}
+    public function trajet()
+    {
+        return $this->belongsTo(Trajet::class);
+    }
+
+    // Dans le modèle Livraison
 
 }
