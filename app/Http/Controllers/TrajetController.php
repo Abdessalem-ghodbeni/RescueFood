@@ -10,6 +10,7 @@ class TrajetController extends Controller
     public function index()
     {
         $trajets = Trajet::all();
+
         return view('trajets.trajetDashboard', compact('trajets'));
     }
 
@@ -27,6 +28,7 @@ class TrajetController extends Controller
         ]);
 
         Trajet::create($request->all());
+
         return redirect()->route('trajets.index')->with('success', 'Trajet créé avec succès.');
     }
 
@@ -49,12 +51,14 @@ class TrajetController extends Controller
         ]);
 
         $trajet->update($request->all());
+
         return redirect()->route('trajets.index')->with('success', 'Trajet mis à jour avec succès.');
     }
 
     public function destroy(Trajet $trajet)
     {
         $trajet->delete();
+
         return redirect()->route('trajets.index')->with('success', 'Trajet supprimé avec succès.');
     }
 }

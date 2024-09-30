@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Post;
+
 use App\Http\Controllers\Controller;
-use App\Models\Poste;
 use App\Models\Blog;
-
-
+use App\Models\Poste;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
-
     public function create($blog_id)
     {
         return view('association.Post.AddPost', ['blogId' => $blog_id]);
@@ -29,7 +27,7 @@ class PostController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post', 'public');
-            log::info('Image uploaded to: ' . $imagePath);
+            log::info('Image uploaded to: '.$imagePath);
         }
 
         Poste::create([
@@ -49,12 +47,12 @@ class PostController extends Controller
     {
         $poste = Poste::find($id);
 
-        if (!$poste) {
+        if (! $poste) {
             return redirect()->back()->with('error', 'Poste non trouvé.');
         }
 
         if ($poste->image) {
-            \Storage::delete('public/' . $poste->image);
+            \Storage::delete('public/'.$poste->image);
         }
 
         $poste->delete();
@@ -65,7 +63,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Poste::find($id);
-        if (!$post) {
+        if (! $post) {
             return redirect()->route('blogs.index')->with('error', 'Blog not found');
         }
 
@@ -97,8 +95,4 @@ class PostController extends Controller
         return redirect()->route('blogs.show', $poste->blog_id)
             ->with('success', 'Poste mis à jour avec succès!');
     }
-
-
-
-
 }

@@ -36,7 +36,7 @@ class AssociationController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:associations,email',
-            'numero_telphone' => 'required|string|max:20',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);
@@ -74,7 +74,7 @@ class AssociationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'numero_telphone' => 'required|string|max:15',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);
@@ -96,7 +96,7 @@ class AssociationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'numero_telphone' => 'required|string|max:15',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);

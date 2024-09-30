@@ -3,20 +3,21 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\DonController;
+use App\Http\Controllers\HomeController; // Assurez-vous que ce chemin est correct
+use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
-use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
-use App\Http\Controllers\TrajetController;
-use App\Http\Controllers\DonController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\livraisonController;
-use App\Http\Controllers\MenuController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
-use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\TrajetController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,7 +54,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
 
-
     Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
     Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
     Route::post('admin/dons', [DonController::class, 'store'])->name('dons.store');
@@ -66,7 +66,7 @@ Route::middleware(['admin'])->group(function () {
 // Affiche la liste des livraisons
 Route::get('livraisons/dahboard', [livraisonController::class, 'index'])->name('livraisons.index');
 
-// liste des routes resto by ghodbeny abdessalem 
+// liste des routes resto by ghodbeny abdessalem
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
 Route::get('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
@@ -100,7 +100,6 @@ Route::get('menus/{id}', [MenuController::class, 'show'])->name('menus.show')->m
 
 // fin route resto liste by ghodbeny abdessalem
 
-
 // Affiche le formulaire de création
 Route::get('livraisons/create', [LivraisonController::class, 'create'])->name('livraisons.create');
 
@@ -109,7 +108,6 @@ Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraiso
 
 // Affiche une livraison spécifique
 Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
-
 
 // Affiche le formulaire d'édition
 Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
@@ -123,10 +121,6 @@ Route::resource('trajets', TrajetController::class);
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
-Route::get('association/dahboard', [AssociationController::class, 'index'])->name('association.index');
-
-
-
 
 
 /*Begin Association*/
@@ -135,7 +129,7 @@ route::get('/association/{user_id}/afficher', [AssociationController::class, 'af
 Route::post('/association', [AssociationController::class, 'store'])->name('association.store');
 Route::get('association/{id}/edit', [AssociationController::class, 'edit'])->name('association.edit');
 Route::put('association/{id}', [AssociationController::class, 'update'])->name('association.update');
-Route::delete('association/{id}', [AssociationController::class, 'destroy'])->name('association.destroy');
+Route::delete('association/delete/{id}', [AssociationController::class, 'destroy'])->name('association.destroy');
 
 /*Admin*/
 Route::put('/association/{id}/updateAll', [AssociationController::class, 'updateAll'])->name('association.updateAll');
@@ -152,19 +146,12 @@ Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name(
 Route::put('/categories/{id}', [CategorieController::class, 'update'])->name('categorie.update');
 Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name('categorie.destroy');
 /* Categorie end */
-Route::resource("/stock", StockController::class);
-Route::resource("/produit", ProduitController::class);
+Route::resource('/stock', StockController::class);
+Route::resource('/produit', ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-
-
-
 
 //------------------------Blog-------------------------------------//
 route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
-
-
-
 
 Route::get('association/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
 
@@ -178,7 +165,6 @@ route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blo
 Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('post.edit');
 Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('post.update');
 //------------------------Blog-------------------------------------//
-
 
 //------------------------Poste-------------------------------------//
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');

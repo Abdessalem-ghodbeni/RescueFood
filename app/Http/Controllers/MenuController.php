@@ -15,7 +15,6 @@ class MenuController extends Controller
         return view('restorant.ajouter_menu', compact('restaurants'));
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -38,7 +37,6 @@ class MenuController extends Controller
         }
     }
 
-
     public function userMenus()
     {
 
@@ -49,20 +47,16 @@ class MenuController extends Controller
         return view('restorant.liste_menus', compact('menus'));
     }
 
-
     public function edit($id)
     {
 
         $menu = Menu::findOrFail($id);
 
-
         if ($menu->user_id !== auth()->id()) {
             return redirect()->route('menus.index')->withErrors('Vous n\'avez pas les droits pour modifier ce menu.');
         }
 
-
         $restaurants = auth()->user()->restaurants;
-
 
         return view('restorant.edit_menu', compact('menu', 'restaurants'));
     }
@@ -81,11 +75,9 @@ class MenuController extends Controller
 
             $menu = Menu::findOrFail($id);
 
-
             if ($menu->user_id !== auth()->id()) {
                 return redirect()->route('menus.index')->withErrors('Vous n\'avez pas les droits pour modifier ce menu.');
             }
-
 
             $menu->nom_plat = $request->input('nom_plat');
             $menu->prix = $request->input('prix');
@@ -93,25 +85,22 @@ class MenuController extends Controller
             $menu->restaurant_id = $request->input('restaurant_id');
             $menu->save();
 
-
             return redirect()->route('menus/user')->with('success', 'Menu mis à jour avec succès !');
         } catch (\Exception $e) {
             return redirect()->route('menus.user')->with('success', 'Menu mis à jour avec succès !');
         }
     }
+
     public function destroy($id)
     {
 
         $menu = Menu::findOrFail($id);
 
-
         if ($menu->user_id !== auth()->id()) {
             return redirect()->route('menus.index')->withErrors('Vous n\'avez pas les droits pour supprimer ce menu.');
         }
 
-
         $menu->delete();
-
 
         return redirect()->route('menus.user')->with('success', 'Menu supprimé avec succès.');
     }
@@ -121,10 +110,10 @@ class MenuController extends Controller
 
         $menu = Menu::findOrFail($id);
 
-
         if ($menu->user_id !== auth()->id()) {
             return redirect()->route('menu.user')->withErrors('Vous n\'avez pas les droits pour voir ce menu.');
         }
+
         return view('restorant.details_menu', compact('menu'));
     }
 }

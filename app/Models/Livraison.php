@@ -17,7 +17,6 @@ class Livraison extends Model
         'trajet_id',
     ];
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -31,4 +30,3 @@ class Livraison extends Model
     // Dans le modèle Livraison
 
 }
-
