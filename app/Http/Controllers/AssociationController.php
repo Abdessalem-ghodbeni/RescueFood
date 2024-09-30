@@ -16,17 +16,20 @@ class AssociationController extends Controller
 
         return view('association.afficher', compact('associations', 'categories'));
     }
+
     public function afficherAll()
     {
         $associations = Association::all();
-        return view('admin.association.afficherAll', compact('associations' ));
+
+        return view('admin.association.afficherAll', compact('associations'));
     }
+
     public function create()
     {
         $categories = Categorie::all();
+
         return view('association.create', compact('categories'));
     }
-
 
     public function store(Request $request)
     {
@@ -58,7 +61,6 @@ class AssociationController extends Controller
         return view('association.edit', compact('association', 'categories'));
     }
 
-
     public function editAll($id)
     {
         $association = Association::findOrFail($id);
@@ -88,7 +90,6 @@ class AssociationController extends Controller
 
         return redirect()->route('association.afficher', ['user_id' => auth()->id()])->with('success', 'Association updated successfully!');
     }
-
 
     public function updateAll(Request $request, $id)
     {
@@ -129,5 +130,4 @@ class AssociationController extends Controller
         return redirect()->route('association.afficherAll')->with('success', 'Association created successfully!');
 
     }
-
 }

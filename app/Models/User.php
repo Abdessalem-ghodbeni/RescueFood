@@ -3,11 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Enums\Role;
 
 class User extends Authenticatable
 {
@@ -25,7 +25,7 @@ class User extends Authenticatable
         'role',
         'region',
         'adresse',
-        'numero_telephone'
+        'numero_telephone',
 
     ];
 
@@ -48,11 +48,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     /**
      * Assigner un rôle à l'utilisateur
      *
-     * @param Role $role
      * @return void
      */
     public function assignRole(Role $role)
@@ -63,9 +61,6 @@ class User extends Authenticatable
 
     /**
      * Vérifier si l'utilisateur a un rôle spécifique
-     *
-     * @param Role $role
-     * @return bool
      */
     public function hasRole(Role $role): bool
     {
@@ -76,10 +71,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Restaurant::class);
     }
+
     public function livraisons()
     {
         return $this->hasMany(Livraison::class);
     }
+
     public function associations()
     {
         return $this->hasMany(Association::class);

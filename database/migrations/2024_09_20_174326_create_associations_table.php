@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('associations', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("email");
-            $table->string("numero_telphone");
-            $table->string("adresse");
+            $table->string('name');
+            $table->string('email');
+            $table->string('numero_telphone');
+            $table->string('adresse');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
             $table->timestamps();

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
-use App\Models\Restaurant;
-
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -13,6 +11,7 @@ class CategorieController extends Controller
     public function index()
     {
         $categories = Categorie::all();
+
         return view('admin.categorie.index', compact('categories'));
     }
 
@@ -40,6 +39,7 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $category = Categorie::findOrFail($id);
+
         return view('admin.categorie.edit', compact('category'));
     }
 

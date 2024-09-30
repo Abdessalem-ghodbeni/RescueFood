@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
@@ -34,8 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');

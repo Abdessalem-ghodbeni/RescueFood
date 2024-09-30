@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Don extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'date_don',
         'description',

@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'type_categorie',
 
     ];
+
     public function associations()
     {
         return $this->hasMany(Association::class);
