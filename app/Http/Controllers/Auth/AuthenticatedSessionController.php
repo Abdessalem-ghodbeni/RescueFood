@@ -30,13 +30,13 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         switch ($request->user()->role) {
             case 'admin':
-                return redirect('admin/adminDashboard');
+                return redirect('admin/restaurants');
             case 'livreur':
                 return redirect('livreur/dahboard');
             case 'association':
                 return redirect()->route('association.afficher', ['user_id' => $request->user()->id]);
             case 'restaurant':
-                return redirect('restorant/dahboard');
+                return redirect('restorant/create');
             default:
                 return redirect()->intended('/');
         }

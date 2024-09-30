@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function assignRole(Role $role)
     {
-        $this->role = $role->value;  // Définit le rôle en utilisant l'énumération
+        $this->role = $role->value;
         $this->save();
     }
 
@@ -80,5 +80,9 @@ class User extends Authenticatable
     public function associations()
     {
         return $this->hasMany(Association::class);
+    }
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
 }

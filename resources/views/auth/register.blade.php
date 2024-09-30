@@ -34,7 +34,7 @@ Main Content START -->
 							<div class="p-4 p-sm-6">
 								<!-- Logo -->
 								<a href="index.html">
-									<img class="h-50px mb-4" src="{{asset('layoutsCss/images/logo-icon.svg')}}" alt="logo">
+                                    <img class="h-50px mb-4" src="{{asset('layoutsCss/images/az.png')}}" alt="logo" style="border-radius:50px">
 								</a>
 								<!-- Title -->
 								<h1 class="mb-2 h3">Create new account</h1>
