@@ -13,6 +13,8 @@ use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\TrajetController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\livraisonController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ProduitController;
@@ -53,7 +55,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
 
-    
+
     Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
     Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
     Route::post('admin/dons', [DonController::class, 'store'])->name('dons.store');
@@ -64,7 +66,7 @@ Route::middleware(['admin'])->group(function () {
 });
 
 // Affiche la liste des livraisons
-Route::get('livraisons/dahboard', [LivraisonController::class, 'index'])->name('livraisons.index');
+Route::get('livraisons/dahboard', [livraisonController::class, 'index'])->name('livraisons.index');
 
 // liste des routes resto by ghodbeny abdessalem 
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
@@ -188,6 +190,3 @@ Route::get('association/post/{id}/edit', [PostController::class, 'edit'])->name(
 Route::put('association/post/{id}', [PostController::class, 'update'])->name('post.update');
 
 //------------------------Poste-------------------------------------//
-
-
-
