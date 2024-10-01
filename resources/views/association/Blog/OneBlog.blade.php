@@ -136,7 +136,7 @@
                                         @foreach($postes as $poste)
                                             <div class="col-md-4 mb-3">
                                                 <div class="card">
-                                                    <img src="{{ asset('storage/' . $poste->image) }}" class="card-img-top" alt="{{ $poste->titre }}">
+                                                    <img src="{{ asset('storage/'. $poste->image) }}" class="card-img-top" alt="{{ $poste->titre }}">
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{ $poste->titre }}</h5>
                                                         <p class="card-text">{{ $poste->contenu_poste }}</p>

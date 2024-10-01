@@ -162,8 +162,8 @@ Route::delete('association/blogs/{id}', [BlogController::class, 'destroy'])->nam
 
 route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
-Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('post.edit');
-Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('post.update');
+Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
 //------------------------Blog-------------------------------------//
 
 //------------------------Poste-------------------------------------//
