@@ -30,6 +30,9 @@ class DonController extends Controller
     public function store(Request $request)
     {
         $don = new Don;
+        $request->validate(
+            ['description' => 'required|string|min:5']
+        );
         $don->description = $request->description;
         $don->date_don = $request->date;
 
