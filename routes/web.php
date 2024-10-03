@@ -13,6 +13,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
@@ -61,6 +62,13 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/dons/{don}/edit', [DonController::class, 'edit'])->name('dons.edit');
     Route::put('admin/dons/{don}', [DonController::class, 'update'])->name('dons.update');
     Route::delete('admin/dons/{don}', [DonController::class, 'destroy'])->name('dons.destroy');
+    Route::get('admin/donataires', [DonataireController::class, 'index'])->name('donataires.index');
+    Route::get('admin/donataires/create', [DonataireController::class, 'create'])->name('donataires.create');
+    Route::post('admin/donataires', [DonataireController::class, 'store'])->name('donataires.store');
+    Route::get('admin/donataires/{donataire}', [DonataireController::class, 'show'])->name('donataires.show');
+    Route::get('admin/donataires/{donataire}/edit', [DonataireController::class, 'edit'])->name('donataires.edit');
+    Route::put('admin/donataires/{donataire}', [DonataireController::class, 'update'])->name('donataires.update');
+    Route::delete('admin/donataires/{donataire}', [DonataireController::class, 'destroy'])->name('donataires.destroy');
 });
 
 // Affiche la liste des livraisons

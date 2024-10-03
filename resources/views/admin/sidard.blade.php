@@ -32,6 +32,8 @@
                 <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
                 <li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste des Dons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('/admin/donataires')}}"><i class="bi bi-list mx-2"></i>Liste des Donataire</a></li>
+
 
 
 
