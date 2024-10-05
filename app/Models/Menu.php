@@ -12,10 +12,15 @@ class Menu extends Model
         'nom_plat',
         'prix',
         'description',
-        'restaurant_id', // Clé étrangère pour relier le menu au restaurant
+        'restaurant_id',
+        'user_id'
     ];
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

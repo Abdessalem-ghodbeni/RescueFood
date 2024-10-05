@@ -109,4 +109,44 @@ class BlogController extends Controller
         // Rediriger avec un message de succès
         return redirect()->route('blogs.affiche')->with('success', 'Blog modifié avec succès.');
     }
+
+
+    public function getBlogByAssociationId($associationId)
+    {
+        $blogs = Blog::where('association_id', $associationId)->get();
+
+
+        return view('admin.association.Blogs.AfficheBlog', compact('blogs'));
+    }
+
+
+
+    public function createBlog($association_id)
+    {
+        return view('admin.association.Blogs.AddBlog', compact('association_id'));
+    }
+
+    public function storeBlog(Request $request)
+    {
+        // Validation des données
+        $validatedData = $request->validate([
+            'nom_blog' => 'required|string|max:255',
+            'sujet' => 'required|string|max:500',
+            'association_id' => 'required|exists:associations,id',
+            'objectif' => 'nullable|string|max:500', // Validation pour l'objectif
+        ]);
+
+        // Création du blog
+        Blog::create([
+            'nom_blog' => $validatedData['nom_blog'],
+            'sujet' => $validatedData['sujet'],
+            'association_id' => $validatedData['association_id'],
+            'objectif' => $validatedData['objectif'], // Ajout de l'objectif
+        ]);
+
+        // Redirection après la création
+        return redirect()->route('blogs.getblogbyid', $validatedData['association_id'])
+            ->with('success', 'Blog ajouté avec succès!');
+    }
+
 }
