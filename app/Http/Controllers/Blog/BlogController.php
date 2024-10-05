@@ -149,4 +149,54 @@ class BlogController extends Controller
             ->with('success', 'Blog ajouté avec succès!');
     }
 
+
+// Méthode pour afficher le formulaire de modification
+    public function editadmin($id)
+    {
+        // Récupérer le blog à modifier
+        $blog = Blog::findOrFail($id);
+
+        // Retourner la vue avec les données du blog
+        return view('admin.association.Blogs.EditBlog', compact('blog'));
+    }
+
+// Méthode pour gérer la mise à jour d'un blog
+    public function updateadmin(Request $request, $id)
+    {
+        // Validation des données
+        $validatedData = $request->validate([
+            'nom_blog' => 'required|string|max:255',
+            'sujet' => 'required|string|max:500',
+            'objectif' => 'nullable|string|max:500',
+            'association_id' => 'required|exists:associations,id',
+        ]);
+
+        // Récupérer le blog à mettre à jour
+        $blog = Blog::findOrFail($id);
+
+        // Mise à jour des champs
+        $blog->nom_blog = $validatedData['nom_blog'];
+        $blog->sujet = $validatedData['sujet'];
+        $blog->objectif = $validatedData['objectif'] ?? $blog->objectif;
+        $blog->association_id = $validatedData['association_id'];
+
+        // Enregistrer les modifications
+        $blog->save();
+
+        // Redirection après la mise à jour
+        return redirect()->route('blogs.getblogbyid', $blog->association_id)
+            ->with('success', 'Blog mis à jour avec succès!');
+    }
+
+
+    public function destroyadmin($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        return redirect()->route('blogs.getblogbyid', $blog->association_id);
+
+    }
+
+
 }

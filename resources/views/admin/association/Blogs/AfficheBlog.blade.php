@@ -18,11 +18,11 @@
                                 <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-info">Voir plus</a>
 
                                 <!-- Bouton de suppression -->
-                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce blog ?');">
+                                <form action="{{ route('blogs.destroyadmin', $blog->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce blog ?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-warning">Modifier</a>
+                                    <a href="{{ route('blogs.editadmin', $blog->id) }}" class="btn btn-warning">Modifier</a>
 
                                 </form>
                             </div>

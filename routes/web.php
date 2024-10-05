@@ -162,7 +162,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 
-//------------------------Blog-------------------------------------//
+//-----------------------------------------------------------Blog-------------------------------------//
 route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
 
 
@@ -179,7 +179,7 @@ route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blo
 
 Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
-//------------------------admin blog -------------------------------------//
+//---------------------------------------------------admin blog -------------------------------------//
 
 Route::get('admin//blogs/association/{id}', [BlogController::class, 'getBlogByAssociationId'])->name('blogs.getblogbyid');
 // Route pour afficher le formulaire de création de blog
@@ -187,10 +187,19 @@ Route::get('/admin/blogs/create/{association_id}', [BlogController::class, 'crea
 
 // Route pour gérer l'ajout du blog
 Route::post('admin//blogs/store', [BlogController::class, 'storeBlog'])->name('blogs.storeblog');
+// Route pour afficher le formulaire de modification
+Route::get('admin/blogs/{id}/edit', [BlogController::class, 'editadmin'])->name('blogs.editadmin');
 
-//------------------------admin blog -------------------------------------//
+// Route pour gérer la mise à jour du blog
+Route::put('admin/blogs/{id}', [BlogController::class, 'updateadmin'])->name('blogs.updateadmin');
 
-//------------------------Blog-------------------------------------//
+Route::delete('admin/blogs/{id}', [BlogController::class, 'destroyadmin'])->name('blogs.destroyadmin');
+
+
+
+//--------------------------------------------------admin blog -------------------------------------//
+
+//---------------------------------------------------Blog-------------------------------------//
 
 
 //------------------------Poste-------------------------------------//
