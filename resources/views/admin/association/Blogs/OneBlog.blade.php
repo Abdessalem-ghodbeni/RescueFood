@@ -9,6 +9,8 @@
                     <h1>{{ $blog->nom_blog }}</h1>
                     <p>{{ $blog->sujet }}</p>
                     <h2>Posts</h2>
+                    <a href="{{ route('post.createadmin', ['blog_id' => $blog->id]) }}" class="btn btn-outline-primary mb-0">Ajouter un Poste</a>
+
                     <div class="row">
                         @if($postes->count() > 0)
                             <div class="row">
@@ -19,14 +21,15 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $poste->titre }}</h5>
                                                 <p class="card-text">{{ $poste->contenu_poste }}</p>
-                                                <form action="{{ route('posts.destroy', $poste->id) }}" method="POST">
+                                                <form action="{{ route('posts.destroyadmin', $poste->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce poste ?')">
                                                         Supprimer
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('post.edit', $poste->id) }}" class="btn btn-warning">Modifier</a>
+                                                <a href="{{ route('post.editadmin', $poste->id) }}" class="btn btn-warning">Modifier</a>
+
 
 
                                             </div>

@@ -181,7 +181,7 @@ Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name
 Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
 //---------------------------------------------------admin blog -------------------------------------//
 
-Route::get('admin//blogs/association/{id}', [BlogController::class, 'getBlogByAssociationId'])->name('blogs.getblogbyid');
+Route::get('admin/blogs/association/{id}', [BlogController::class, 'getBlogByAssociationId'])->name('blogs.getblogbyid');
 // Route pour afficher le formulaire de création de blog
 Route::get('/admin/blogs/create/{association_id}', [BlogController::class, 'createBlog'])->name('blogs.createblog');
 
@@ -194,6 +194,9 @@ Route::get('admin/blogs/{id}/edit', [BlogController::class, 'editadmin'])->name(
 Route::put('admin/blogs/{id}', [BlogController::class, 'updateadmin'])->name('blogs.updateadmin');
 
 Route::delete('admin/blogs/{id}', [BlogController::class, 'destroyadmin'])->name('blogs.destroyadmin');
+
+route::get('admin/blogs/{id}', [BlogController::class, 'showadmin'])->name('blogs.showadmin');
+
 
 
 
@@ -208,6 +211,16 @@ Route::post('/posts', [PostController::class, 'store'])->name('post.store');
 Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::get('association/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::put('association/post/{id}', [PostController::class, 'update'])->name('post.update');
+
+//--------------------------------------------------admin poste -------------------------------------//
+
+Route::get('admin/posts/create/{blog_id}', [PostController::class, 'createadmin'])->name('post.createadmin');
+Route::post('admin/posts', [PostController::class, 'storeadmin'])->name('post.storeadmin');
+Route::delete('admin/posts/{id}', [PostController::class, 'destroyadmin'])->name('posts.destroyadmin');
+Route::get('admin/post/{id}/edit', [PostController::class, 'editadmin'])->name('post.editadmin');
+Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('post.updateadmin');
+//--------------------------------------------------admin poste -------------------------------------//
+
 
 //------------------------Poste-------------------------------------//
 

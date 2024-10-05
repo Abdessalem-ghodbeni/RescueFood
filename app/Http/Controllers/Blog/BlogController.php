@@ -198,5 +198,20 @@ class BlogController extends Controller
 
     }
 
+    public function showadmin($id)
+    {
+        // Récupérer le blog par son id avec une pagination des postes
+        $blog = Blog::with('postes')->find($id);
+
+        if (!$blog) {
+            return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
+        }
+
+        $postes = $blog->postes()->paginate(3);
+
+        // Passer les données à la vue
+        return view('admin.association.Blogs.OneBlog', compact('blog', 'postes'));
+    }
+
 
 }
