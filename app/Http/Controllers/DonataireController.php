@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Donataire;
 use App\Models\Don;
+use App\Exports\DonataireExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DonataireController extends Controller
 {
@@ -83,5 +85,15 @@ class DonataireController extends Controller
         $donataire->delete();
 
         return redirect()->route('donataires.index')->with('success', 'Donataire supprimé avec succès.');
+    }
+
+    /**
+     * Exporte les donataires au format Excel.
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export()
+    {
+        return Excel::download(new DonataireExport, 'donataires.xlsx');
     }
 }
