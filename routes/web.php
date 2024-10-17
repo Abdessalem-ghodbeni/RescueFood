@@ -5,15 +5,15 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\DonController;
-use App\Http\Controllers\HomeController; // Assurez-vous que ce chemin est correct
+use App\Http\Controllers\DonataireController;
+use App\Http\Controllers\DonController; // Assurez-vous que ce chemin est correct
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
@@ -128,8 +128,6 @@ Route::resource('trajets', TrajetController::class);
 /********************Livreur */
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
-
-
 
 /*Begin Association*/
 route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
