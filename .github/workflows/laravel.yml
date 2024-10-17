@@ -33,9 +33,15 @@ jobs:
 
       #- name: Run PHPStan
         #run: composer exec phpstan analyse
-
+        
       - name: Run Tests
-        run: php artisan test --verbose
+        run: php artisan config:clear
+        
+      - name: Run Tests
+        run: php artisan cache:clear
+      
+      - name: Run Tests
+        run: php artisan test 
 
   sonarqube-analysis:
     runs-on: ubuntu-latest
