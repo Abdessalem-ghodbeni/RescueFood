@@ -121,8 +121,6 @@ Route::resource('trajets', TrajetController::class);
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
-
-
 /*Begin Association*/
 route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
 route::get('/association/{user_id}/afficher', [AssociationController::class, 'afficher'])->name('association.afficher');
