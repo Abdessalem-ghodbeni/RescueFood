@@ -34,7 +34,7 @@ jobs:
       #- name: Run PHPStan
         #run: composer exec phpstan analyse
 
-      #- name: Run Tests
+      - name: Run Tests
         #run: php artisan test
 
   sonarqube-analysis:
