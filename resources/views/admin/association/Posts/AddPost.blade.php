@@ -20,7 +20,7 @@
                     @endif
 
                     <!-- Formulaire d'ajout de poste -->
-                    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data"> <!-- Changez ici -->
+                    <form action="{{ route('post.storeadmin') }}" method="POST" enctype="multipart/form-data"> <!-- Changez ici -->
                         @csrf
                         <div class="mb-3">
                             <label for="titre" class="form-label">Titre du poste</label>
@@ -40,7 +40,7 @@
                         <div class="mb-3">
                             <label for="blog_id" class="form-label">ID du blog associé</label>
                             <input type="hidden" name="blog_id" value="{{ $blogId }}"> <!-- Assurez-vous de passer $blogId à la vue -->
-                            <p>{{ $blogId }}</p> <!-- Optionnel, pour afficher l'ID du blog associé -->
+                            <p>{{ $blogId }}</p>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Ajouter</button>

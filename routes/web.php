@@ -186,7 +186,7 @@ Route::get('admin/blogs/association/{id}', [BlogController::class, 'getBlogByAss
 Route::get('/admin/blogs/create/{association_id}', [BlogController::class, 'createBlog'])->name('blogs.createblog');
 
 // Route pour gérer l'ajout du blog
-Route::post('admin//blogs/store', [BlogController::class, 'storeBlog'])->name('blogs.storeblog');
+Route::post('admin/blogs/store', [BlogController::class, 'storeBlog'])->name('blogs.storeblog');
 // Route pour afficher le formulaire de modification
 Route::get('admin/blogs/{id}/edit', [BlogController::class, 'editadmin'])->name('blogs.editadmin');
 

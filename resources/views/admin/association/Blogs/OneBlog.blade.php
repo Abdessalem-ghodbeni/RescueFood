@@ -39,7 +39,7 @@
                             </div>
 
                             <!-- Liens de pagination (à n'afficher qu'une seule fois) -->
-                            <div class="mt-3">
+                            <div >
                                 {{ $postes->links() }} <!-- Affiche les liens de pagination -->
                             </div>
                         @else

@@ -128,7 +128,7 @@ class PostController extends Controller
         ]);
 
         // Redirection après l'ajout
-        return redirect()->route('getblogbyid', $validatedData['blog_id'])
+        return redirect()->route('blogs.showadmin', ['id'=>$validatedData['blog_id']])
             ->with('success', 'Poste ajouté avec succès!');
 
     }
@@ -182,8 +182,9 @@ class PostController extends Controller
         $poste->save();
 
         // Redirection vers la page du blog avec un message de succès
-        return redirect()->route('getblogbyid', $poste->blog_id)
-            ->with('success', 'Poste mis à jour avec succès!');
+        return redirect()->route('blogs.showadmin', ['id'=>$poste->blog_id])
+            ->with('success', 'Poste ajouté avec succès!');
+
     }
 
 
