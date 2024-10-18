@@ -12,7 +12,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card h-100">
                             <!-- Blog image (optionnel si disponible) -->
-                            <img src="path_to_blog_image" class="card-img-top" alt="Image de blog">
+                            <img src="{{ asset('storage/' . $blog->image) }}" class="card-img-top" alt="Image de blog">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $blog->nom_blog }}</h5>
                                 <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->sujet, 100) }}</p>

@@ -24,6 +24,10 @@
                 <label for="objectif">Objectif</label>
                 <textarea name="objectif" id="objectif" class="form-control" rows="3"></textarea>
             </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image du poste</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            </div>
 
             <!-- Association ID (caché) -->
             <input type="hidden" name="association_id" value="{{ $association_id }}">

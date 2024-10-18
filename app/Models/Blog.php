@@ -12,7 +12,9 @@ class Blog extends Model
         'nom_blog',
         'objectif',
         'sujet',
-        'association_id'
+        'association_id',
+        "image",
+
 
     ];
     public function postes()

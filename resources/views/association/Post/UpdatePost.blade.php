@@ -143,7 +143,7 @@
                                 @endif
 
                                 <!-- Formulaire pour éditer le poste -->
-                                <form action="{{ route('post.updateadmin', $post->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 

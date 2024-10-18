@@ -25,18 +25,21 @@ class BlogController extends Controller
     // Traiter la soumission du formulaire et ajouter un blog
     public function store(Request $request)
     {
-        // Valider les données du formulaire
-        $request->validate([
-            'nom_blog' => 'required|max:255',
-            'objectif' => 'required',
-            'sujet'=> 'required'
+        $validatedData = $request->validate([
+            'nom_blog' => 'required|string|max:255',
+            'sujet' => 'required|string|max:500',
+            'objectif' => 'nullable|string|max:500',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajout de validation pour l'image
         ]);
 
-        // Créer un nouveau blog
+        $imagePath = $request->file('image')->store('blog', 'public');
+
+        // Création du blog
         Blog::create([
-            'nom_blog' => $request->nom_blog,
-            'objectif' => $request->objectif,
-            'sujet'=> $request->sujet
+            'nom_blog' => $validatedData['nom_blog'],
+            'sujet' => $validatedData['sujet'],
+            'objectif' => $validatedData['objectif'],
+            'image' => $imagePath,
         ]);
 
         // Rediriger vers la liste des blogs avec un message de succès
@@ -136,12 +139,20 @@ class BlogController extends Controller
             'objectif' => 'nullable|string|max:500', // Validation pour l'objectif
         ]);
 
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('blog', 'public');
+        }
+
+
         // Création du blog
         Blog::create([
             'nom_blog' => $validatedData['nom_blog'],
             'sujet' => $validatedData['sujet'],
             'association_id' => $validatedData['association_id'],
             'objectif' => $validatedData['objectif'], // Ajout de l'objectif
+            'image' => $imagePath,
+
         ]);
 
         // Redirection après la création
