@@ -6,6 +6,7 @@ use App\Models\Poste;
 use App\Models\Blog;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -91,27 +92,41 @@ class BlogController extends Controller
 
     public function update(Request $request, $id)
     {
-        $blog = Blog::find($id);
-        if (!$blog) {
-            return redirect()->route('blogs.index')->with('error', 'Blog not found');
-        }
-
-        $validated = $request->validate([
-            'nom_blog' => 'required|max:255',
-            'objectif' => 'required',
-            'sujet'=>'required'
+        // Validation des données
+        $validatedData = $request->validate([
+            'nom_blog' => 'required|string|max:255',
+            'sujet' => 'required|string|max:500',
+            'objectif' => 'nullable|string|max:500',
+            'image' => 'nullable|image', // Validation de l'image
         ]);
 
-        // Mettre à jour le blog
-        $blog->nom_blog = $validated['nom_blog'];
-        $blog->objectif = $validated['objectif'];
-        $blog->sujet= $validated['sujet'];
-        $blog->save();
+        // Récupérer le blog à mettre à jour
+        $blog = Blog::findOrFail($id);
 
+        // Mise à jour des champs
+        $blog->nom_blog = $validatedData['nom_blog'];
+        $blog->sujet = $validatedData['sujet'];
+        $blog->objectif = $validatedData['objectif'] ?? $blog->objectif;
+
+        // Vérifier si une nouvelle image a été téléchargée
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($blog->image) {
+                Storage::delete($blog->image); // Suppression de l'image existante
+            }
+
+            // Stocker la nouvelle image
+            $path = $request->file('image')->store('blog', 'public'); // Définir le chemin de stockage
+            $blog->image = $path; // Mettre à jour le chemin de l'image dans la base de données
+        }
+
+        // Enregistrer les modifications
+        $blog->save();
 
         // Rediriger avec un message de succès
         return redirect()->route('blogs.affiche')->with('success', 'Blog modifié avec succès.');
     }
+
 
 
     public function getBlogByAssociationId($associationId)
@@ -180,6 +195,7 @@ class BlogController extends Controller
             'sujet' => 'required|string|max:500',
             'objectif' => 'nullable|string|max:500',
             'association_id' => 'required|exists:associations,id',
+            'image' => 'nullable|image', // Validation de l'image
         ]);
 
         // Récupérer le blog à mettre à jour
@@ -190,6 +206,18 @@ class BlogController extends Controller
         $blog->sujet = $validatedData['sujet'];
         $blog->objectif = $validatedData['objectif'] ?? $blog->objectif;
         $blog->association_id = $validatedData['association_id'];
+
+        // Vérifier si une nouvelle image a été téléchargée
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($blog->image) {
+                Storage::delete($blog->image); // Suppression de l'image existante
+            }
+
+            // Stocker la nouvelle image
+            $path = $request->file('image')->store('blog', 'public'); // Définir le chemin de stockage
+            $blog->image = $path; // Mettre à jour le chemin de l'image dans la base de données
+        }
 
         // Enregistrer les modifications
         $blog->save();

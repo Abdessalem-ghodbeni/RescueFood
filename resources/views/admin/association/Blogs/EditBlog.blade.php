@@ -26,6 +26,13 @@
                 <label for="objectif">Objectif</label>
                 <textarea name="objectif" id="objectif" class="form-control" rows="3">{{ $blog->objectif }}</textarea>
             </div>
+            <div class="form-group mb-4">
+                <label for="image" class="form-label">Image (optionnelle)</label>
+                <input type="file" name="image" id="image" class="form-control">
+                @if ($blog->image)
+                    <img src="{{ asset('storage/' . $blog->image) }}" alt="Image du poste" class="img-fluid mt-3">
+                @endif
+            </div>
 
             <!-- Association ID (caché) -->
             <input type="hidden" name="association_id" value="{{ $blog->association_id }}">
