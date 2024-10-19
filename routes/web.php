@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
@@ -226,3 +227,5 @@ Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('pos
 
 
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
