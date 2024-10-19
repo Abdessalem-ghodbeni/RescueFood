@@ -129,13 +129,27 @@ class BlogController extends Controller
 
 
 
-    public function getBlogByAssociationId($associationId)
+    public function getBlogByAssociationId(Request $request, $associationId)
     {
-        $blogs = Blog::where('association_id', $associationId)->get();
+        $search = $request->query('search');
 
+        if ($search) {
+            $blogs = Blog::where('association_id', $associationId)
+                ->where(function ($query) use ($search) {
+                    $query->where('nom_blog', 'LIKE', "%{$search}%")
+                        ->orWhere('sujet', 'LIKE', "%{$search}%")
+                        ->orWhere('objectif', 'LIKE', "%{$search}%");  // Ajouter d'autres champs si nécessaire
+                })
+                ->get();
+        } else {
+            $blogs = Blog::where('association_id', $associationId)->get();
+        }
 
-        return view('admin.association.Blogs.AfficheBlog', compact('blogs'));
+        // Passer $associationId à la vue en plus de $blogs
+        return view('admin.association.Blogs.AfficheBlog', compact('blogs', 'associationId'));
     }
+
+
 
 
 
