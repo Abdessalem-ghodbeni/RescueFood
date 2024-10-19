@@ -3,10 +3,9 @@
 @section('content')
     <div class="container">
         <!-- Formulaire de recherche -->
-        <form action="{{ route('blogs.getblogbyid', $associationId) }}" method="GET" class="mb-4">
+        <form id="searchForm" action="{{ route('blogs.getblogbyid', $associationId) }}" method="GET" class="mb-4">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Rechercher un blog" value="{{ request()->query('search') }}">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
+                <input type="text" name="search" class="form-control" placeholder="Rechercher un blog" value="{{ request()->query('search') }}" onkeyup="submitSearch()">
             </div>
         </form>
 
@@ -42,4 +41,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function submitSearch() {
+            document.getElementById('searchForm').submit();
+        }
+    </script>
 @endsection
