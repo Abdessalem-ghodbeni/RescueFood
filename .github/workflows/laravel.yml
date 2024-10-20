@@ -24,7 +24,10 @@ jobs:
           php-version: '8.2'
           extensions: mbstring, xml, bcmath, gd, curl
           coverage: none
-
+          
+      - name: update Composer dependencies
+        run: composer update
+        
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress
 
