@@ -4,7 +4,8 @@ FROM php:8.2
 RUN apt-get update -y && apt-get install -y \
     openssl zip unzip git \
     libonig-dev default-mysql-client \
-    libfreetype6-dev libjpeg62-turbo-dev libpng-dev zlib1g-dev
+    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    libzip-dev  # Added to ensure zip extension can be installed
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
