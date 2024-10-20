@@ -17,6 +17,8 @@ use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DonataireExportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +71,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/donataires/{donataire}/edit', [DonataireController::class, 'edit'])->name('donataires.edit');
     Route::put('admin/donataires/{donataire}', [DonataireController::class, 'update'])->name('donataires.update');
     Route::delete('admin/donataires/{donataire}', [DonataireController::class, 'destroy'])->name('donataires.destroy');
+    Route::get('export-donataires', [DonataireController::class, 'export']);
 });
 
 // Affiche la liste des livraisons
