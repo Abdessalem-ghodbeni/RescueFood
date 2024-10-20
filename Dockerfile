@@ -7,8 +7,8 @@ RUN apt-get update -y && apt-get install -y \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 
 # Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo_mysql mbstring
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install pdo_mysql mbstring gd
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -17,8 +17,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /app
 COPY . /app
 
-# Install PHP dependencies via Composer
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
+# Clear Composer cache and install dependencies
+RUN composer clear-cache && \
+    composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Command to run your application
 CMD php artisan serve --host=0.0.0.0 --port=8000
