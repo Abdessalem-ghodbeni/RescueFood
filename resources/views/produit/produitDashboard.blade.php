@@ -12,8 +12,65 @@
 
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
-        @include('produit.sidard')
-        
+
+        <!-- Sidebar START -->
+        <nav class="navbar sidebar navbar-expand-xl navbar-light">
+            <!-- Navbar brand for xl START -->
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="index.html">
+                    <img class="light-mode-item navbar-brand-item" src="{{asset('layoutsCss/images/adminn.png')}}" alt="logo">
+                    <img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
+                </a>
+            </div>
+            <!-- Navbar brand for xl END -->
+
+            <div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
+                <div class="offcanvas-body sidebar-content d-flex flex-column pt-4">
+
+                    <!-- Sidebar menu START -->
+                    <ul class="navbar-nav flex-column" id="navbar-sidebar">
+					
+					<!-- Menu item -->
+					<li class="nav-item"><a class="nav-link">Dashboard</a></li>
+					
+					<!-- Title -->
+					<li class="nav-item ms-2 my-2">Pages</li>
+
+				 
+					<!-- Menu item -->
+					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
+
+					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste Dons</a></li>
+					<li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
+
+					<!-- Menu item -->
+				 
+	
+					 
+				</ul>
+                    <!-- Sidebar menu end -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <!-- Sidebar footer START -->
+                        <div class="d-flex align-items-center justify-content-between text-primary-hover mt-auto p-3">
+                            <button type="submit" class="h6 fw-light mb-0 text-body btn btn-link p-0">
+
+                                <a class="h6 fw-light mb-0 text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Sign out">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                                </a>
+
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Sidebar footer END -->
+
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar END -->
+
         <!-- Page content START -->
         <div class="page-content">
 
@@ -176,6 +233,7 @@
                                             <div>
                                                 <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
+                                                <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -193,39 +251,50 @@
 
             <!-- Page main content START -->
             <div class="page-content-wrapper p-xxl-4">
-                <h1> Liste des produits </h1>
-
+                <h1>Liste des produits</h1>
 
                 <div class="card-body">
                     <a href="{{ url('/produit/create') }}" class="btn btn-success btn-sm" title="Ajouter un produit">
-                       Ajouter un nouveau produit
+                        Ajouter un nouveau produit
                     </a>
                     <br />
                     <br />
                     <div class="table-responsive">
-                    @if($produits->count())
+                        @if($produits->count())
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>nom</th>
-                                    <th>type</th>
+                                    <th>Nom</th>
+                                    <th>Type</th>
                                     <th>Stock</th>
-                                  
+                                    <th>Date expiration</th>
+                                    <th></th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                             
+
                                 @foreach($produits as $item)
-                                <tr>
+                                <tr class="{{ $item->livre == 1 ? 'bg-success' : '' }}">
+
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nom_produit }}</td>
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->stock->nom ?? 'N/A' }}</td>
-                               
+                                    <td>{{ $item->date_expiration }}</td>
                                     <td>
-                                        <a href="{{ url('/produit/' . $item->id) }}" title="View produit"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Détails</button></a>
-                                        <a href="{{ url('/produit/' . $item->id . '/edit') }}" title="Edit produit"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier</button></a>
+                                        <p>Livré : {{ $item->livre ? 'Oui' : 'Non' }}</p>
+
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ url('/produit/' . $item->id) }}" title="View produit">
+                                            <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Détails</button>
+                                        </a>
+                                        <a href="{{ url('/produit/' . $item->id . '/edit') }}" title="Edit produit">
+                                            <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier</button>
+                                        </a>
 
                                         <form method="POST" action="{{ url('/produit/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                             {{ method_field('DELETE') }}
@@ -235,21 +304,20 @@
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i> Supprimer
                                             </button>
                                         </form>
-
                                     </td>
                                 </tr>
-
                                 @endforeach
+
                                 @else
                                 <p>Aucun produit trouvé.</p>
-                              
+                                @endif
                             </tbody>
                         </table>
-                        @endif
                     </div>
-
                 </div>
             </div>
+
+
         </div>
         </div>
         </div>
@@ -276,3 +344,10 @@
 <!-- Mirrored from booking.webestica.com/admin-booking-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:42:16 GMT -->
 
 </html>
+<style>
+    .bg-success {
+    background-color: #d4edda !important;
+    color: red; /* Couleur vert pâle */
+}
+
+</style>

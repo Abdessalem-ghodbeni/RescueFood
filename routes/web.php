@@ -40,6 +40,12 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profileLivreur', [ProfileController::class, 'editLivreur'])->name('profile.updateLivreur');
+    Route::patch('/profileLivreur', [ProfileController::class, 'updateLivreur'])->name('profile.updateLivreur');
+    Route::get('/profileResaturant', [ProfileController::class, 'editRestaurant'])->name('profile.updateRestaurant');
+    Route::patch('/profileResaturant', [ProfileController::class, 'updateRestaurant'])->name('profile.updateRestaurant');
+    Route::get('/profileAssociation', [ProfileController::class, 'editAssociation'])->name('profile.updateAssociation');
+    Route::patch('/profileAssociation', [ProfileController::class, 'updateAssociation'])->name('profile.updateAssociation');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

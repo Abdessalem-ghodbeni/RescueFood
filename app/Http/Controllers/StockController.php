@@ -31,14 +31,27 @@ class StockController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
+    //     Stock::create($input);
+    //     return redirect('stock')->with('flash_message', 'Stock Addedd!');  
+    // }
     public function store(Request $request)
     {
-        $input = $request->all();
-        Stock::create($input);
 
-        return redirect('stock')->with('flash_message', 'Stock Addedd!');
+        $request->validate([
+            'nom' => 'required|string|min:3',
+            'type' => 'required|string|min:3',
+            'description' => '',
+            'restaurant_id' => 'required|exists:restaurants,id',
+        ]);
+    
+        Stock::create($request->all());
+    
+        return redirect()->route('stock.index')->with('success', 'Stock ajouté avec succès.');
     }
-
+   
     /**
      * Display the specified resource.
      */
@@ -58,14 +71,28 @@ class StockController extends Controller
         return view('stock.edit', compact('stock', 'restaurants'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $stock = Stock::find($id);
-        $input = $request->all();
-        $stock->update($input);
+    // public function update(Request $request, $id)
+    // {
+    //     $stock = Stock::find($id);
+    //     $input = $request->all();
+    //     $stock->update($input);
+    //     return redirect('stock')->with('flash_message', 'Stock Updated!');  
+    // }
 
-        return redirect('stock')->with('flash_message', 'Stock Updated!');
-    }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'nom' => 'required|string|min:3',
+        'type' => 'required|string|min:3',
+        'description' => 'nullable|string',
+        'restaurant_id' => 'required|exists:restaurants,id',
+    ]);
+
+    $stock = Stock::findOrFail($id);
+    $stock->update($request->all());
+
+    return redirect()->route('stock.index')->with('success', 'Stock modifié avec succès.');
+}
 
     public function destroy(string $id)
     {
