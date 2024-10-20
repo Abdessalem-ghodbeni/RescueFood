@@ -16,24 +16,27 @@ class AssociationController extends Controller
 
         return view('association.afficher', compact('associations', 'categories'));
     }
+
     public function afficherAll()
     {
         $associations = Association::all();
-        return view('admin.association.afficherAll', compact('associations' ));
+
+        return view('admin.association.afficherAll', compact('associations'));
     }
+
     public function create()
     {
         $categories = Categorie::all();
+
         return view('association.create', compact('categories'));
     }
-
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:associations,email',
-            'numero_telphone' => 'required|string|max:20',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);
@@ -58,7 +61,6 @@ class AssociationController extends Controller
         return view('association.edit', compact('association', 'categories'));
     }
 
-
     public function editAll($id)
     {
         $association = Association::findOrFail($id);
@@ -72,7 +74,7 @@ class AssociationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'numero_telphone' => 'required|string|max:15',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);
@@ -89,13 +91,12 @@ class AssociationController extends Controller
         return redirect()->route('association.afficher', ['user_id' => auth()->id()])->with('success', 'Association updated successfully!');
     }
 
-
     public function updateAll(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'numero_telphone' => 'required|string|max:15',
+            'numero_telphone' => 'required|string|regex:/^[0-9]{8,20}$/',
             'adresse' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
         ]);
@@ -129,5 +130,4 @@ class AssociationController extends Controller
         return redirect()->route('association.afficherAll')->with('success', 'Association created successfully!');
 
     }
-
 }

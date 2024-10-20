@@ -11,6 +11,7 @@ class CategorieController extends Controller
     public function index()
     {
         $categories = Categorie::all();
+
         return view('admin.categorie.index', compact('categories'));
     }
 
@@ -38,6 +39,7 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $category = Categorie::findOrFail($id);
+
         return view('admin.categorie.edit', compact('category'));
     }
 

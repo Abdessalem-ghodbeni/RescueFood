@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Trajet extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'point_depart',
         'point_arrive',
         'duree',
 
     ];
+
     public function livraisons()
     {
         return $this->hasMany(Livraison::class);

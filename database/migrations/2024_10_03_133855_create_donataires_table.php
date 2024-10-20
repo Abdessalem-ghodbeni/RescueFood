@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('associations', function (Blueprint $table) {
+        Schema::create('donataires', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('numero_telphone');
-            $table->string('adresse');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
+            $table->foreignId('don_id')->nullable()->constrained('dons')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('associations');
+        Schema::dropIfExists('donataires');
     }
 };

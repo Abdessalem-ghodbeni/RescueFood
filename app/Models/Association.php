@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Association extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'email',
@@ -16,6 +17,7 @@ class Association extends Model
         'categorie_id',
         'adresse',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,10 +27,12 @@ class Association extends Model
     {
         return $this->hasMany(Don::class);
     }
+
     public function blog()
     {
         return $this->hasOne(Blog::class);
     }
+
     // Relation : une association appartient à une seule catégorie
     public function categorie()
     {
