@@ -18,7 +18,7 @@ WORKDIR /app
 COPY . /app
 
 # Install PHP dependencies via Composer
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
 
 # Command to run your application
 CMD php artisan serve --host=0.0.0.0 --port=8000
