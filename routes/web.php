@@ -2,18 +2,17 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\DonController;
-use App\Http\Controllers\HomeController; // Assurez-vous que ce chemin est correct
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\Post\PostController;
-use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
+
+
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
@@ -56,6 +55,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
+
 
     Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
     Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
@@ -132,8 +132,6 @@ Route::resource('trajets', TrajetController::class);
 Route::get('livreur/dahboard', [LivreurController::class, 'index'])->name('livreur.index');
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
-
-
 /*Begin Association*/
 route::get('/association/create', [AssociationController::class, 'create'])->name('association.create');
 route::get('/association/{user_id}/afficher', [AssociationController::class, 'afficher'])->name('association.afficher');
@@ -161,7 +159,13 @@ Route::resource('/stock', StockController::class);
 Route::resource('/produit', ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-//------------------------Blog-------------------------------------//
+
+
+
+
+
+//-----------------------------------------------------------Blog-------------------------------------//
+
 route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
 
 Route::get('association/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
@@ -175,7 +179,31 @@ route::get('association/blogs/{id}', [BlogController::class, 'show'])->name('blo
 
 Route::get('association/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('association/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
-//------------------------Blog-------------------------------------//
+//---------------------------------------------------admin blog -------------------------------------//
+
+Route::get('admin/blogs/association/{id}', [BlogController::class, 'getBlogByAssociationId'])->name('blogs.getblogbyid');
+// Route pour afficher le formulaire de création de blog
+Route::get('/admin/blogs/create/{association_id}', [BlogController::class, 'createBlog'])->name('blogs.createblog');
+
+// Route pour gérer l'ajout du blog
+Route::post('admin/blogs/store', [BlogController::class, 'storeBlog'])->name('blogs.storeblog');
+// Route pour afficher le formulaire de modification
+Route::get('admin/blogs/{id}/edit', [BlogController::class, 'editadmin'])->name('blogs.editadmin');
+
+// Route pour gérer la mise à jour du blog
+Route::put('admin/blogs/{id}', [BlogController::class, 'updateadmin'])->name('blogs.updateadmin');
+
+Route::delete('admin/blogs/{id}', [BlogController::class, 'destroyadmin'])->name('blogs.destroyadmin');
+
+route::get('admin/blogs/{id}', [BlogController::class, 'showadmin'])->name('blogs.showadmin');
+
+
+
+
+//--------------------------------------------------admin blog -------------------------------------//
+
+//---------------------------------------------------Blog-------------------------------------//
+
 
 //------------------------Poste-------------------------------------//
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
@@ -184,4 +212,21 @@ Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.des
 Route::get('association/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::put('association/post/{id}', [PostController::class, 'update'])->name('post.update');
 
+//--------------------------------------------------admin poste -------------------------------------//
+
+Route::get('admin/posts/create/{blog_id}', [PostController::class, 'createadmin'])->name('post.createadmin');
+Route::post('admin/posts', [PostController::class, 'storeadmin'])->name('post.storeadmin');
+Route::delete('admin/posts/{id}', [PostController::class, 'destroyadmin'])->name('posts.destroyadmin');
+Route::get('admin/post/{id}/edit', [PostController::class, 'editadmin'])->name('post.editadmin');
+Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('post.updateadmin');
+//--------------------------------------------------admin poste -------------------------------------//
+
+
 //------------------------Poste-------------------------------------//
+
+
+
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+

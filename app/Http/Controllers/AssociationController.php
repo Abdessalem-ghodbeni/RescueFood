@@ -6,7 +6,7 @@ use App\Models\Association;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class   AssociationController extends Controller
+class AssociationController extends Controller
 {
     public function afficher()
     {
