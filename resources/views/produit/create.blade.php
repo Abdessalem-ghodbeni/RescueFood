@@ -13,6 +13,7 @@
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
 
+
         <!-- Sidebar START -->
         <nav class="navbar sidebar navbar-expand-xl navbar-light">
             <!-- Navbar brand for xl START -->
@@ -70,6 +71,7 @@
             </div>
         </nav>
         <!-- Sidebar END -->
+
 
         <!-- Page content START -->
         <div class="page-content">

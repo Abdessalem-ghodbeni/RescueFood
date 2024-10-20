@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RescueFood</title>
+
 </head>
 <body>
-    <title>Booking - Multipurpose Online Booking Theme</title>
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
@@ -76,7 +76,7 @@
 	</script>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{asset('layoutsCss/images/favicon.ico')}}">
+	<link rel="shortcut icon" href="{{asset('layoutsCss/images/az.png')}}">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com/">

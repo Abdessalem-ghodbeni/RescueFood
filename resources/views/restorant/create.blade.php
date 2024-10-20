@@ -376,7 +376,7 @@
                         <label for="exampleInputEmail1" class="form-label">Numéro Fix</label>
                         <div class="input-group input-group-lg">
                             
-                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1"  name="numero_fix" required  id="exampleInputEmail1">
+                            <input type="text" class="form-control border-0 bg-light rounded-end ps-1"  placeholder="Numéro Fix" name="numero_fix" required  id="exampleInputEmail1">
                         </div>
                     </div>
                     <!-- Password -->

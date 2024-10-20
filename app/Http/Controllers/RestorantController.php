@@ -12,22 +12,23 @@ class RestorantController extends Controller
     {
         return view('restorant.restorantDashboard');
     }
+
     public function getTotalRestaurants()
     {
 
         return Restaurant::count();
     }
+
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
 
-        if (!$restaurant) {
+        if (! $restaurant) {
             return redirect()->back()->with('error', 'Restaurant non trouvé');
         }
 
         return view('restorant.restorantDetails')->with('restaurant', $restaurant);
     }
-
 
     public function edit($id)
     {
@@ -35,7 +36,7 @@ class RestorantController extends Controller
         $restaurant = Restaurant::find($id);
 
         // Vérifier si le restaurant existe
-        if (!$restaurant) {
+        if (! $restaurant) {
             return redirect()->back()->with('error', 'Restaurant non trouvé');
         }
 
@@ -56,7 +57,7 @@ class RestorantController extends Controller
         // Rechercher le restaurant par son id
         $restaurant = Restaurant::find($id);
 
-        if (!$restaurant) {
+        if (! $restaurant) {
             return redirect()->back()->with('error', 'Restaurant non trouvé');
         }
 
@@ -71,22 +72,19 @@ class RestorantController extends Controller
         return redirect()->route('restorant.getAllRestorant')->with('success', 'Restaurant mis à jour avec succès');
     }
 
-
     public function getAllRestorant()
     {
         $restaurants = Auth::user()->restaurants;
 
         $totalRestaurants = $this->getTotalRestaurants();
+
         return view('restorant.listeRestaurant', compact('restaurants', 'totalRestaurants'));
     }
-
-
 
     public function create()
     {
         return view('restorant.create');
     }
-
 
     public function store(Request $request)
     {
@@ -97,7 +95,6 @@ class RestorantController extends Controller
             'numero_fix' => 'required|string|max:20',
             'localisation' => 'required|string|max:255',
         ]);
-
 
         $restaurant = Restaurant::create([
             'Restorant' => $request->Restorant,
@@ -129,9 +126,10 @@ class RestorantController extends Controller
         $query = $request->input('query');
 
         // Rechercher les restaurants par leur nom
-        $restaurants = Restaurant::where('Restorant', 'like', '%' . $query . '%')->get();
+        $restaurants = Restaurant::where('Restorant', 'like', '%'.$query.'%')->get();
 
         $totalRestaurants = $this->getTotalRestaurants();
+
         return view('restorant.listeRestaurant', compact('restaurants', 'totalRestaurants'));
     }
 }
