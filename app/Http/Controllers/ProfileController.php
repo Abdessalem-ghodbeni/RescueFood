@@ -20,7 +20,24 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-
+    public function editLivreur(Request $request): View
+    {
+        return view('profile.editLivreur', [
+            'user' => $request->user(),
+        ]);
+    }
+    public function editRestaurant(Request $request): View
+    {
+        return view('profile.editRestaurant', [
+            'user' => $request->user(),
+        ]);
+    }
+    public function editAssociation(Request $request): View
+    {
+        return view('profile.editAssociation', [
+            'user' => $request->user(),
+        ]);
+    }
     /**
      * Update the user's profile information.
      */
@@ -36,6 +53,43 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    public function updateLivreur(ProfileUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.editLivreur')->with('status', 'profile-updated');
+    }
+    public function updateResaturant(ProfileUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.editRestaurant')->with('status', 'profile-updated');
+    }
+    public function updateAssociation(ProfileUpdateRequest $request): RedirectResponse
+    {
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.editAssociation')->with('status', 'profile-updated');
+    }
+
 
     /**
      * Delete the user's account.

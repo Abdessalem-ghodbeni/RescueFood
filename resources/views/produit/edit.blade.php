@@ -31,55 +31,19 @@
                     <ul class="navbar-nav flex-column" id="navbar-sidebar">
 
                         <!-- Menu item -->
-                        <li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link">Dashboard</a></li>
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsebooking" role="button" aria-expanded="true" aria-controls="collapsebooking">
-                                Bookings
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column show" id="collapsebooking" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link active" href="admin-booking-list.html">Booking List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-booking-detail.html">Booking Detail</a></li>
-                            </ul>
-                        </li>
 
                         <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseguest" role="button" aria-expanded="false" aria-controls="collapseguest">
-                                Guests
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseguest" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-list.html">Guest List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-detail.html">Guest Detail</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseagent" role="button" aria-expanded="false" aria-controls="collapseagent">
-                                Agents
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseagent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-list.html">Agent List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-detail.html">Agent Detail</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-reviews.html">Reviews</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-earnings.html">Earnings</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-settings.html">Admin Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste Dons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
 
                         <!-- Menu item -->
 
@@ -269,6 +233,7 @@
                                             <div>
                                                 <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
+                                                <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -285,19 +250,42 @@
 
 
             <div class="page-content-wrapper p-xxl-4">
-            <h4>Modifier un produit :</h4>
+                <h4>Modifier un produit :</h4>
                 <div class="card" style="margin:20px;">
-                   
+
                     <div class="card-body">
 
                         <form action="{{ url('produit/' .$produit->id) }}" method="post">
                             {!! csrf_field() !!}
                             @method("PATCH")
                             <input type="hidden" name="id" id="id" value="{{$produit->id}}" id="id" />
-                            <label>Nom</label></br>
-                            <input type="text" name="nom_produit" id="nom_produit" value="{{$produit->nom_produit}}" class="form-control"></br>
-                            <label>Type</label></br>
-                            <input type="text" name="type" id="type" value="{{$produit->type}}" class="form-control"></br>
+                            <div>
+                                <label>Nom</label></br>
+                                <input type="text" name="nom_produit" id="nom_produit" value="{{$produit->nom_produit}}" class="form-control"></br>
+                                @if ($errors->has('nom_produit'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('nom_produit') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <label>Type</label></br>
+                                <input type="text" name="type" id="type" value="{{$produit->type}}" class="form-control"></br>
+                                @if ($errors->has('type'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('type') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <label for="date_expiration">Date expiration</label>
+                                <input type="date" name="date_expiration" id="date_expiration" value="{{$produit->date_expiration}}" class="form-control" required>
+                                @if ($errors->has('date_expiration'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('date_expiration') }}
+                                </div>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label for="stock_id">Stock</label>
                                 <select name="stock_id" id="stock_id" class="form-control" required>
@@ -308,6 +296,11 @@
                                     </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('stock_id'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('stock_id') }}
+                                </div>
+                                @endif
                             </div>
                             <input type="submit" value="Modifier" class="btn btn-success"></br>
                         </form>

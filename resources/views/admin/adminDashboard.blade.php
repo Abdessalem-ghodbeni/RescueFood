@@ -33,13 +33,16 @@
 
                 <!-- Sidebar menu START -->
                 <ul class="navbar-nav flex-column" id="navbar-sidebar">
-
+                <li class="nav-item"><a class="nav-link">Dashboard</a></li>
+					
+					<!-- Title -->
+					<li class="nav-item ms-2 my-2">Pages</li>
                     <li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
 					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
                     <li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste des Dons</a></li>
-
-	
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
 
                     <!-- Menu item -->
                     <li class="nav-item"><a class="nav-link" href="{{ route('categorie.index') }}">Categorie</a></li>
@@ -274,6 +277,8 @@
                                         <div>
                                             <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                             <p class="small m-0">{{ Auth::user()->email }}</p>
+                                            <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
+
                                         </div>
                                     </div>
                                 </li>

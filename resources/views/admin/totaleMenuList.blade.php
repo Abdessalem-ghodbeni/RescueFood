@@ -41,6 +41,8 @@
                     <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
 					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste des Dons</a></li>
+					<li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
 	
 					<!-- Menu item -->
 				 
@@ -229,6 +231,7 @@
 										<div>
 											<a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
 											<p class="small m-0">{{ Auth::user()->email }}</p>
+											<a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
 										</div>
 									</div>
 								</li>
