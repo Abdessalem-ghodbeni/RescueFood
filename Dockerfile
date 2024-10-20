@@ -19,7 +19,7 @@ COPY . /app
 
 # Clear Composer cache and install dependencies
 RUN composer clear-cache && \
-    composer install --no-interaction --prefer-dist --optimize-autoloader
+    composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-req=ext-zip
 
 # Command to run your application
 CMD php artisan serve --host=0.0.0.0 --port=8000
