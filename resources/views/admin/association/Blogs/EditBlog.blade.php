@@ -3,7 +3,15 @@
 @section('content')
     <div class="container">
         <h3>Modifier le blog</h3>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Formulaire pour modifier un blog -->
         <form action="{{ route('blogs.updateadmin', $blog->id) }}" method="POST" enctype="multipart/form-data">
             @csrf

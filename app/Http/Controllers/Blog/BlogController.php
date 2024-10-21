@@ -174,7 +174,7 @@ class BlogController extends Controller
             'nom_blog' => 'required|string|max:255',
             'sujet' => 'required|string|max:500',
             'association_id' => 'required|exists:associations,id',
-            'objectif' => 'nullable|string|max:500', // Validation pour l'objectif
+            'objectif' => 'required|string|max:500',
         ]);
 
         $imagePath = null;

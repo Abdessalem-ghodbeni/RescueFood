@@ -38,6 +38,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
+                            <a  href="{{ route('blogs.getblogbyid', $association->id) }}" class="btn btn-primary">Blogs</a>
                             <a href="{{ route('blogs.createblog', $association->id) }}" class="btn btn-primary">Add Blogs</a>
 
                         </td>
