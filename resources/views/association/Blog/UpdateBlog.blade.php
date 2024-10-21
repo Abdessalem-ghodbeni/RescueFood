@@ -148,17 +148,17 @@
 
                                 <div class="form-group mb-3">
                                     <label for="title" class="form-label">Titre</label>
-                                    <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" required>
+                                    <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="content" class="form-label">Objectif</label>
-                                    <textarea name="objectif" id="content" class="form-control" rows="4" required>{{ $blog->objectif }}</textarea>
+                                    <textarea name="objectif" id="content" class="form-control" rows="4" >{{ $blog->objectif }}</textarea>
                                 </div>
 
                                 <div class="form-group mb-4">
                                     <label for="sujet" class="form-label">Sujet</label>
-                                    <textarea name="sujet" id="sujet" class="form-control" rows="4" required>{{ $blog->sujet }}</textarea>
+                                    <textarea name="sujet" id="sujet" class="form-control" rows="4" >{{ $blog->sujet }}</textarea>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="image" class="form-label">Image (optionnelle)</label>

@@ -27,12 +27,12 @@
 
                             <div class="form-group mb-3">
                                 <label for="titre" class="form-label">Titre</label>
-                                <input type="text" name="titre" id="titre" class="form-control" value="{{ $post->titre }}" required>
+                                <input type="text" name="titre" id="titre" class="form-control" value="{{ $post->titre }}" >
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="contenu_poste" class="form-label">Contenu</label>
-                                <textarea name="contenu_poste" id="contenu_poste" class="form-control" rows="4" required>{{ $post->contenu_poste }}</textarea>
+                                <textarea name="contenu_poste" id="contenu_poste" class="form-control" rows="4" >{{ $post->contenu_poste }}</textarea>
                             </div>
 
                             <div class="form-group mb-4">
