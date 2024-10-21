@@ -5,6 +5,8 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
@@ -50,6 +52,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
 
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
@@ -126,9 +129,14 @@ Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraiso
 // Affiche une livraison spécifique
 Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
 
+
+Route::put('/livraisons/{id}/etat', [LivreurController::class, 'updateEtat'])->name('livraisons.updateEtat');
+
+
 // Affiche le formulaire d'édition
 Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
 Route::put('livraisons/{livraison}', [livraisonController::class, 'update'])->name('livraisons.update');
+Route::get('/fournisseur/dashboard', [LivreurController::class, 'index'])->name('fournisseur.fournisseurDashboard');
 
 // Supprime une livraison
 Route::delete('/livraisons/{id}', [LivraisonController::class, 'destroy'])->name('livraisons.destroy');
