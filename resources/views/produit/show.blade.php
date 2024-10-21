@@ -29,14 +29,14 @@
 
                     <!-- Sidebar menu START -->
                     <ul class="navbar-nav flex-column" id="navbar-sidebar">
-					
+
 					<!-- Menu item -->
 					<li class="nav-item"><a class="nav-link">Dashboard</a></li>
-					
+
 					<!-- Title -->
 					<li class="nav-item ms-2 my-2">Pages</li>
 
-				 
+
 					<!-- Menu item -->
 					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
@@ -44,11 +44,13 @@
 					<li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste Dons</a></li>
 					<li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('livraisons/dahboard') }}"><i class="bi bi-list mx-2"></i>Liste des Livraisons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('trajets') }}"><i class="bi bi-list mx-2"></i>Liste des trajets</a></li>
 
 					<!-- Menu item -->
-				 
-	
-					 
+
+
+
 				</ul>
                     <!-- Sidebar menu end -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -234,7 +236,7 @@
                                                 <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
                                                 <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
-                                                
+
                                             </div>
                                         </div>
                                     </li>
@@ -255,12 +257,12 @@
 
 
                 <div class="card" style="margin:20px;">
-                
+
                     <div class="card-body">
                         <div class="card-body">
                             <p class="card-text" >Nom : {{ $produit->nom_produit }}</p>
                             <p class="card-text">Type : {{ $produit->type }}</p>
-                            <p>Stock: {{ $stock->nom }}</p> 
+                            <p>Stock: {{ $stock->nom }}</p>
                             <p>Date expiration : {{ $produit->date_expiration }}</p>
                         </div>
                         </hr>

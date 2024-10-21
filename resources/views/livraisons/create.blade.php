@@ -13,6 +13,7 @@
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
 
+
         <!-- Sidebar START -->
         <nav class="navbar sidebar navbar-expand-xl navbar-light">
             <!-- Navbar brand for xl START -->
@@ -33,65 +34,26 @@
                     <ul class="navbar-nav flex-column" id="navbar-sidebar">
 
                         <!-- Menu item -->
-                        <li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link">Dashboard</a></li>
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsebooking" role="button"
-                                aria-expanded="true" aria-controls="collapsebooking">
-                                Bookings
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column show" id="collapsebooking"
-                                data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link active" href="admin-booking-list.html">Booking
-                                        List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-booking-detail.html">Booking
-                                        Detail</a></li>
-                            </ul>
-                        </li>
 
                         <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseguest" role="button"
-                                aria-expanded="false" aria-controls="collapseguest">
-                                Guests
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseguest" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-list.html">Guest List</a>
-                                </li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-detail.html">Guest
-                                        Detail</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/restaurants') }}"><i
+                                    class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/allMenus') }}"><i
+                                    class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseagent" role="button"
-                                aria-expanded="false" aria-controls="collapseagent">
-                                Agents
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseagent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-list.html">Agent List</a>
-                                </li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-detail.html">Agent
-                                        Detail</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-reviews.html">Reviews</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-earnings.html">Earnings</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-settings.html">Admin Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/dons') }}"><i
+                                    class="bi bi-list mx-2"></i>Liste Dons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/stock') }}"><i
+                                    class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/produit') }}"><i
+                                    class="bi bi-list mx-2"></i>Liste des Produits</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{ url('livraisons/dahboard') }}"><i class="bi bi-list mx-2"></i>Liste des Livraisons</a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="{{ url('trajets') }}"><i class="bi bi-list mx-2"></i>Liste des trajets</a></li>
 
                         <!-- Menu item -->
 
@@ -119,6 +81,7 @@
             </div>
         </nav>
         <!-- Sidebar END -->
+
 
         <!-- Page content START -->
         <div class="page-content">
@@ -167,8 +130,7 @@
                                                 placeholder="Search" aria-label="Search">
                                             <button
                                                 class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y"
-                                                type="submit"><i
-                                                    class="fas fa-search fs-6 text-primary"></i></button>
+                                                type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -317,8 +279,10 @@
                                                     src="{{ asset('layoutsCss/images/admin.jpg') }}" alt="avatar">
                                             </div>
                                             <div>
-                                                <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
+                                                <a class="h6 mt-2 mt-sm-0"
+                                                    href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
+                                                <a class="nav-link" href="{{ url('/profile') }}">Edit Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -332,6 +296,7 @@
                     </div>
                 </div>
             </nav>
+
             <!-- Top bar END -->
 
             <!-- Page main content START -->
@@ -340,76 +305,8 @@
                 <div class="container mt-5">
                     <h1 class="text-center">Créer une Livraison</h1>
 
-                    {{-- <form action="{{ route('livraisons.store') }}" method="POST">
-                        @csrf
 
-                        <!-- Sélectionner le livreur (avec Bootstrap ou autre bibliothèque CSS pour une meilleure UI) -->
-                        <div class="form-group">
-                            <label for="user_id">Sélectionner un livreur :</label>
-                            <select name="user_id" id="user_id" class="form-control" required>
-                                <option value="">-- Sélectionnez un livreur --</option>
-                                @foreach ($livreurs as $livreur)
-                                    <option value="{{ $livreur->id }}"
-                                        {{ old('user_id') == $livreur->id ? 'selected' : '' }}>
-                                        {{ $livreur->name }} - ({{ $livreur->email }})
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('user_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Sélectionner le trajet -->
-                        <div class="form-group">
-                            <label for="trajet_id">Sélectionner un trajet :</label>
-                            <select name="trajet_id" id="trajet_id" class="form-control" required>
-                                <option value="">-- Sélectionnez un trajet --</option>
-                                @foreach ($trajets as $trajet)
-                                    <option value="{{ $trajet->id }}"
-                                        {{ old('trajet_id') == $trajet->id ? 'selected' : '' }}>
-                                        {{ $trajet->point_depart }} - {{ $trajet->point_arrive }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('trajet_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Date de livraison (avec un calendrier interactif) -->
-                        <div class="form-group">
-                            <label for="date_de_livraison">Date de livraison :</label>
-                            <input type="date" name="date_de_livraison" id="date_de_livraison"
-                                class="form-control" value="{{ old('date_de_livraison') }}" required>
-                            @error('date_de_livraison')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Destination -->
-                        <div class="form-group">
-                            <label for="destination">Destination :</label>
-                            <input type="text" name="destination" id="destination" class="form-control"
-                                value="{{ old('destination') }}" required>
-                            @error('destination')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Numéro de livraison -->
-                        <div class="form-group">
-                            <label for="numero_livraison">Numéro de livraison :</label>
-                            <input type="text" name="numero_livraison" id="numero_livraison" class="form-control"
-                                value="{{ old('numero_livraison') }}" required>
-                            @error('numero_livraison')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Ajouter la livraison</button>
-                    </form> --}}
-                    <form action="{{ route('livraisons.store') }}" method="POST">
+                    <form action="{{ route('livraisons.store') }}" method="POST" id="livraisonForm">
                         @csrf
 
                         <!-- Sélectionner le livreur -->
@@ -418,10 +315,12 @@
                             <select class="form-control" id="user_id" name="user_id" required>
                                 <option value="">-- Sélectionnez un livreur --</option>
                                 @foreach ($livreurs as $livreur)
-                                    <option value="{{ $livreur->id }}">{{ $livreur->name }} - ({{ $livreur->email }})
-                                    </option>
+                                    <option value="{{ $livreur->id }}">{{ $livreur->name }} - ({{ $livreur->email }})</option>
                                 @endforeach
                             </select>
+                            @error('user_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Sélectionner le trajet -->
@@ -430,10 +329,12 @@
                             <select class="form-control" id="trajet_id" name="trajet_id" required>
                                 <option value="">-- Sélectionnez un trajet --</option>
                                 @foreach ($trajets as $trajet)
-                                    <option value="{{ $trajet->id }}">{{ $trajet->point_depart }} -
-                                        {{ $trajet->point_arrive }}</option>
+                                    <option value="{{ $trajet->id }}">{{ $trajet->point_depart }} - {{ $trajet->point_arrive }}</option>
                                 @endforeach
                             </select>
+                            @error('trajet_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Sélectionner un produit -->
@@ -442,29 +343,39 @@
                             <select class="form-control" id="produit_id" name="produit_id" required>
                                 <option value="">-- Sélectionnez un produit --</option>
                                 @foreach ($produits as $produit)
-                                    <!-- Vérifiez que 'nom' est bien la colonne de votre table produits, sinon remplacez-la par la bonne colonne -->
                                     <option value="{{ $produit->id }}">{{ $produit->nom_produit }}</option>
                                 @endforeach
                             </select>
+                            @error('produit_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <!-- Date de livraison -->
                         <div class="form-group">
                             <label for="date_de_livraison">Date de Livraison:</label>
-                            <input type="date" class="form-control" id="date_de_livraison"
-                                name="date_de_livraison" required>
+                            <input type="date" class="form-control" id="date_de_livraison" name="date_de_livraison" required>
+                            @error('date_de_livraison')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Destination -->
                         <div class="form-group">
                             <label for="destination">Destination:</label>
                             <input type="text" class="form-control" id="destination" name="destination" required>
+                            @error('destination')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Numéro de livraison -->
                         <div class="form-group">
                             <label for="numero_livraison">Numéro de Livraison:</label>
-                            <input type="text" class="form-control" id="numero_livraison" name="numero_livraison"
-                                required>
+                            <input type="text" class="form-control" id="numero_livraison" name="numero_livraison" required>
+                            @error('numero_livraison')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <!-- Champ caché pour l'état de la livraison -->
@@ -472,6 +383,7 @@
 
                         <button type="submit" class="btn btn-primary">Ajouter la livraison</button>
                     </form>
+
 
 
 

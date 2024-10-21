@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
@@ -20,7 +21,9 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DonataireExportController;
-
+use App\Http\Controllers\DonController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProduitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -243,4 +246,3 @@ Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('pos
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-

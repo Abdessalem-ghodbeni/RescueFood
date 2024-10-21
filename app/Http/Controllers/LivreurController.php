@@ -22,6 +22,7 @@ class LivreurController extends Controller
         return view('fournisseur\founisseurDashboard', compact('livraisons'));
     }
 
+
     public function updateEtat(Request $request, $id)
     {
         // Récupérer la livraison par ID
@@ -32,11 +33,20 @@ class LivreurController extends Controller
             'etat' => 'required|in:livrée,en attente',
         ]);
 
-        // Mettre à jour l'état
+        // Mettre à jour l'état de la livraison
         $livraison->etat = $request->etat;
         $livraison->save();
 
-        // Rediriger vers le tableau de bord du livreur
+        // Si la livraison est marquée comme "livrée", met à jour le produit associé
+        if ($request->etat === 'livrée') {
+            $produit = $livraison->produit; // Accède au produit lié à la livraison
+            if ($produit) {
+                $produit->livre = true; // Met à jour l'attribut 'livre' du produit
+                $produit->save();
+            }
+        }
+
+        // Rediriger vers le tableau de bord du livreur avec un message de succès
         return redirect()->route('fournisseur.fournisseurDashboard')->with('success', 'État de la livraison mis à jour avec succès.');
     }
 }
