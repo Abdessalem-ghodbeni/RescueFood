@@ -97,8 +97,6 @@ class PostController extends Controller
             ->with('success', 'Poste mis à jour avec succès!');
     }
 
-
-
     public function createadmin($blog_id)
     {
         return view('admin.association.Posts.AddPost', ['blogId' => $blog_id]);
@@ -116,7 +114,7 @@ class PostController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post', 'public');
-            log::info('Image uploaded to: ' . $imagePath);
+            log::info('Image uploaded to: '.$imagePath);
         }
 
         Poste::create([
@@ -127,7 +125,7 @@ class PostController extends Controller
         ]);
 
         // Redirection après l'ajout
-        return redirect()->route('blogs.showadmin', ['id'=>$validatedData['blog_id']])
+        return redirect()->route('blogs.showadmin', ['id' => $validatedData['blog_id']])
             ->with('success', 'Poste ajouté avec succès!');
 
     }
@@ -136,12 +134,12 @@ class PostController extends Controller
     {
         $poste = Poste::find($id);
 
-        if (!$poste) {
+        if (! $poste) {
             return redirect()->back()->with('error', 'Poste non trouvé.');
         }
 
         if ($poste->image) {
-            \Storage::delete('public/' . $poste->image);
+            \Storage::delete('public/'.$poste->image);
         }
 
         $poste->delete();
@@ -152,7 +150,7 @@ class PostController extends Controller
     public function editadmin($id)
     {
         $post = Poste::find($id);
-        if (!$post) {
+        if (! $post) {
             return redirect()->route('blogs.index')->with('error', 'Blog not found');
         }
 
@@ -181,13 +179,8 @@ class PostController extends Controller
         $poste->save();
 
         // Redirection vers la page du blog avec un message de succès
-        return redirect()->route('blogs.showadmin', ['id'=>$poste->blog_id])
+        return redirect()->route('blogs.showadmin', ['id' => $poste->blog_id])
             ->with('success', 'Poste ajouté avec succès!');
 
     }
-
-
-
-
-
 }

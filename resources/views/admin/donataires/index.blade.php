@@ -12,6 +12,9 @@
         @endif
 
         <a href="{{ route('donataires.create') }}" class="btn btn-primary mb-3">Ajouter un Donataire</a>
+        <a href="{{ url('/export-donataires') }}" class="btn btn-primary">
+            Exporter en Excel
+        </a>
 
         <table class="table table-bordered table-striped">
             <thead>

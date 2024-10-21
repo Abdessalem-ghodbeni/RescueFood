@@ -13,6 +13,8 @@ class Produit extends Model
         'nom_produit',
         'prix',
         'type',
+        'date_expiration',
+        'livre',
         'stock_id', // Clé étrangère ajoutée
 
     ];
