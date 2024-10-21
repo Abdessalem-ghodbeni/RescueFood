@@ -24,7 +24,6 @@ class PostController extends Controller
             'blog_id' => 'required|exists:blogs,id', // Validation pour s'assurer que le blog_id existe
         ]);
 
-
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('post', 'public');

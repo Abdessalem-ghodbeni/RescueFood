@@ -30,9 +30,8 @@ class BlogController extends Controller
 
     public function create($association_id)
     {
-        return view('association.Blog.AddBlog',compact('association_id')); // Retourne la vue du formulaire
+        return view('association.Blog.AddBlog', compact('association_id')); // Retourne la vue du formulaire
     }
-
 
     // Traiter la soumission du formulaire et ajouter un blog
     public function store(Request $request)
@@ -62,7 +61,6 @@ class BlogController extends Controller
         return redirect()->route('blogs.affiche', $validatedData['association_id'])->with('success', 'Blog ajouté avec succès.');
     }
 
-
     public function destroy($id)
     {
         $blog = Blog::findOrFail($id);
@@ -72,7 +70,6 @@ class BlogController extends Controller
         // Rediriger vers la page listant les blogs de cette association
         return redirect()->route('blogs.affiche', $associationId)->with('success', 'Blog supprimé avec succès.');
     }
-
 
     public function show($id)
     {
@@ -134,7 +131,6 @@ class BlogController extends Controller
         // Rediriger vers la page listant les blogs de l'association
         return redirect()->route('blogs.affiche', $blog->association_id)->with('success', 'Blog modifié avec succès.');
     }
-
 
     public function getBlogByAssociationId(Request $request, $associationId)
     {
