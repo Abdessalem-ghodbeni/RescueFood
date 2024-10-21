@@ -44,7 +44,7 @@
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
-                                    <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
+                                    <a href="{{ route('association.afficher',Auth::user()->id) }}" class="btn btn-info">Go back </a>
 
                                 </div>
                             </div>
