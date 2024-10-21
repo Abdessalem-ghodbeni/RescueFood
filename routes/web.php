@@ -5,16 +5,12 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
-
-
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
