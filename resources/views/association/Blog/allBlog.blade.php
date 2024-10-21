@@ -45,7 +45,6 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.create') }}" class="btn btn-info">Add Blog</a>
 
                                 </div>
                             </div>
@@ -90,7 +89,6 @@
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
                                     <a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                    <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
                                     <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
                                     <a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                     <a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>
@@ -123,6 +121,11 @@
                 <!-- Main content START -->
                 <div class="col-xl-9">
                     <div class="row g-4 mb-4">
+                        <form id="searchForm" action="{{ route('blogs.affiche', $associationId) }}" method="GET" class="mb-4">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Rechercher un blog" value="{{ request()->query('search') }}" onkeyup="submitSearch()">
+                            </div>
+                        </form>
                         <h3 class="text-center">Liste des blogs</h3>
                         @foreach ($blogs as $blog)
                             <div class="col-md-6 col-lg-4">
@@ -205,7 +208,11 @@ Footer END -->
 
 <!-- Template Functions -->
 <script src="{{asset('restorantCss/js/functions.js')}}"></script>
-
+<script>
+    function submitSearch() {
+        document.getElementById('searchForm').submit();
+    }
+</script>
 </body>
 
 <!-- Mirrored from eduport.webestica.com/student-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:15:28 GMT -->

@@ -45,7 +45,7 @@
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
                                     <a href="student-course-list.html" class="btn btn-outline-primary mb-0">add action</a>
-                                    <a href="{{ route('blogs.affiche') }}" class="btn btn-primary">Retour aux blogs</a>
+                                    <a href="{{ route('blogs.affiche',$blog->association_id) }}" class="btn btn-primary">Retour aux blogs</a>
                                     <a href="{{ route('post.create', ['blog_id' => $blog->id]) }}" class="btn btn-outline-primary mb-0">Ajouter un Poste</a>
 
 
@@ -93,7 +93,6 @@
                                 <!-- Dashboard menu -->
                                 <div class="list-group list-group-dark list-group-borderless collapse-list">
                                     <a class="list-group-item " href="student-dashboard.html"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                    <a class="list-group-item" href="{{ route('blogs.affiche') }}"><i class="bi bi-substack fa-fw me-2"></i>Blog</a>
                                     <a class="list-group-item" href="student-subscription.html"><i class="bi bi-card-checklist fa-fw me-2"></i>My Subscriptions</a>
                                     <a class="list-group-item" href="student-course-list.html"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                     <a class="list-group-item" href="student-course-resume.html"><i class="far fa-fw fa-file-alt me-2"></i>Course Resume</a>

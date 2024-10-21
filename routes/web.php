@@ -6,12 +6,16 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\DonataireController;
+use App\Http\Controllers\DonController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
 
 
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
@@ -163,9 +167,9 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 //-----------------------------------------------------------Blog-------------------------------------//
 
-route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
+route::get('association/{id}/blogs/', [BlogController::class, 'affiche'])->name('blogs.affiche');
 
-Route::get('association/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::get('association/blogs/create/{association_id}', [BlogController::class, 'create'])->name('blogs.create');
 
 Route::post('association/blogs', [BlogController::class, 'store'])->name('blogs.store');
 

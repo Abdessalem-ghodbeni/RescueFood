@@ -11,13 +11,13 @@
             <!-- Nom du blog -->
             <div class="form-group">
                 <label for="nom_blog">Nom du blog</label>
-                <input type="text" name="nom_blog" id="nom_blog" class="form-control" required>
+                <input type="text" name="nom_blog" id="nom_blog" class="form-control" >
             </div>
 
             <!-- Sujet du blog -->
             <div class="form-group">
                 <label for="sujet">Sujet</label>
-                <textarea name="sujet" id="sujet" class="form-control" rows="3" required></textarea>
+                <textarea name="sujet" id="sujet" class="form-control" rows="3" ></textarea>
             </div>
 
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image du poste</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" >
             </div>
 
             <!-- Association ID (caché) -->

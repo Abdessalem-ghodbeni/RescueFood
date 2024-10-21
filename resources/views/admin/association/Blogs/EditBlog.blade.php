@@ -12,13 +12,13 @@
             <!-- Nom du blog -->
             <div class="form-group">
                 <label for="nom_blog">Nom du blog</label>
-                <input type="text" name="nom_blog" id="nom_blog" class="form-control" value="{{ $blog->nom_blog }}" required>
+                <input type="text" name="nom_blog" id="nom_blog" class="form-control" value="{{ $blog->nom_blog }}" >
             </div>
 
             <!-- Sujet du blog -->
             <div class="form-group">
                 <label for="sujet">Sujet</label>
-                <textarea name="sujet" id="sujet" class="form-control" rows="3" required>{{ $blog->sujet }}</textarea>
+                <textarea name="sujet" id="sujet" class="form-control" rows="3" >{{ $blog->sujet }}</textarea>
             </div>
 
             <!-- Objectif du blog (optionnel) -->
