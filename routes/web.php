@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
@@ -44,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('admin/restaurants', [AdminController::class, 'getAllRestorant'])->name('admin.getAllRestorant');
@@ -68,7 +71,7 @@ Route::middleware(['admin'])->group(function () {
 // Affiche la liste des livraisons
 Route::get('livraisons/dahboard', [livraisonController::class, 'index'])->name('livraisons.index');
 
-// liste des routes resto by ghodbeny abdessalem 
+// liste des routes resto by ghodbeny abdessalem
 Route::get('restorant/dahboard', [RestorantController::class, 'index'])->name('restorant.index');
 
 Route::get('restorant/create', [RestorantController::class, 'create'])->name('restorant.create')->middleware('auth');
@@ -112,10 +115,12 @@ Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraiso
 // Affiche une livraison spécifique
 Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
 
+Route::put('/livraisons/{id}/etat', [LivreurController::class, 'updateEtat'])->name('livraisons.updateEtat');
 
 // Affiche le formulaire d'édition
 Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
 Route::put('livraisons/{livraison}', [livraisonController::class, 'update'])->name('livraisons.update');
+Route::get('/fournisseur/dashboard', [LivreurController::class, 'index'])->name('fournisseur.fournisseurDashboard');
 
 // Supprime une livraison
 Route::delete('/livraisons/{id}', [LivraisonController::class, 'destroy'])->name('livraisons.destroy');

@@ -14,17 +14,24 @@ class Livraison extends Model
         'numero_livraison',
         'user_id',
         'trajet_id',
+        'produit_id',     // Ajout de la clé étrangère produit
+        'etat',           // Ajout du champ état
     ];
 
     // Dans le modèle Livraison
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function trajet()
-{
-    return $this->belongsTo(Trajet::class);
-}
+    public function trajet()
+    {
+        return $this->belongsTo(Trajet::class);
+    }
 
+    // Relation avec le modèle Produit
+    public function produit()
+    {
+        return $this->belongsTo(Produit::class);
+    }
 }

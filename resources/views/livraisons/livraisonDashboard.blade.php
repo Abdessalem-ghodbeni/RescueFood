@@ -336,7 +336,7 @@
 
             <!-- Page main content START -->
             <div class="page-content-wrapper p-xxl-4">
-                <div class="container">
+                {{-- <div class="container">
                     <h1 class="my-4 text-center">Liste des Livraisons</h1>
 
                     <div class="d-flex justify-content-end mb-4">
@@ -365,7 +365,6 @@
                                     <td>{{ $livraison->destination }}</td>
                                     <td>{{ $livraison->numero_livraison }}</td>
 
-                                    {{-- Vérifier si l'utilisateur existe avant d'accéder à son nom --}}
                                     <td>
                                         @if ($livraison->user)
                                             {{ $livraison->user->name }}
@@ -374,9 +373,8 @@
                                         @endif
                                     </td>
 
-                                    {{-- Vérifier si le trajet existe avant d'accéder à son nom --}}
                                     <td>
-                                        @if($livraison->trajet)
+                                        @if ($livraison->trajet)
                                             {{ $livraison->trajet->point_depart }} - {{ $livraison->trajet->point_arrive }}
                                         @else
                                             <em>Trajet non défini</em>
@@ -407,9 +405,58 @@
                         </tbody>
                     </table>
 
-                    {{-- Afficher un message si la liste des livraisons est vide --}}
                     @if ($livraisons->isEmpty())
                         <p class="text-center">Aucune livraison disponible.</p>
+                    @endif
+                </div> --}}
+                <div class="container">
+                    <h2>Liste des Livraisons</h2>
+
+                    @if ($livraisons->isEmpty())
+                        <p>Aucune livraison à afficher.</p>
+                    @else
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date de Livraison</th>
+                                    <th>Destination</th>
+                                    <th>Numéro de Livraison</th>
+                                    <th>Trajet</th>
+                                    <th>Livreur</th>
+                                    <th>Produit</th>
+                                    <th>État</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($livraisons as $livraison)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $livraison->date_de_livraison }}</td>
+                                        <td>{{ $livraison->destination }}</td>
+                                        <td>{{ $livraison->numero_livraison }}</td>
+                                        <td>{{ $livraison->trajet->point_depart }} -
+                                            {{ $livraison->trajet->point_arrive }}</td>
+                                        <td>{{ $livraison->user->name }}</td>
+                                        <td>
+                                            {{ $livraison->produit ? $livraison->produit->nom_produit : 'Aucun produit' }}
+                                        </td>
+                                        <td>{{ $livraison->etat }}</td>
+                                        <td>
+                                            <a href="{{ route('livraisons.edit', $livraison->id) }}"
+                                                class="btn btn-warning">Modifier</a>
+                                            <form action="{{ route('livraisons.destroy', $livraison->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     @endif
                 </div>
 

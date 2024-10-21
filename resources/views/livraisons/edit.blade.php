@@ -338,56 +338,125 @@
             <div class="page-content-wrapper p-xxl-4">
 
                 <h1 class="text-center mb-4">Modifier la Livraison</h1>
+{{--
                 <form action="{{ route('livraisons.update', $livraison->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
+                    <!-- Date de livraison -->
                     <div class="form-group">
                         <label for="date_de_livraison">Date de Livraison:</label>
                         <input type="date" class="form-control" id="date_de_livraison" name="date_de_livraison"
                             value="{{ $livraison->date_de_livraison }}" required>
                     </div>
 
+                    <!-- Destination -->
                     <div class="form-group">
                         <label for="destination">Destination:</label>
                         <input type="text" class="form-control" id="destination" name="destination"
                             value="{{ $livraison->destination }}" required>
                     </div>
 
+                    <!-- Numéro de livraison -->
                     <div class="form-group">
                         <label for="numero_livraison">Numéro de Livraison:</label>
                         <input type="text" class="form-control" id="numero_livraison" name="numero_livraison"
                             value="{{ $livraison->numero_livraison }}" required>
                     </div>
 
+                    <!-- Sélectionner le livreur -->
                     <div class="form-group">
-                        <label for="user_id">Utilisateur:</label>
+                        <label for="user_id">Sélectionner un livreur:</label>
                         <select class="form-control" id="user_id" name="user_id" required>
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}"
-                                    {{ $livraison->user_id == $user->id ? 'selected' : '' }}>
+                                <option value="{{ $user->id }}" {{ $livraison->user_id == $user->id ? 'selected' : '' }}>
                                     {{ $user->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
+                    <!-- Sélectionner le trajet -->
                     <div class="form-group">
                         <label for="trajet_id">Trajet:</label>
                         <select class="form-control" id="trajet_id" name="trajet_id" required>
                             @foreach($trajets as $trajet)
-                                <option value="{{ $trajet->id }}">
+                                <option value="{{ $trajet->id }}" {{ $livraison->trajet_id == $trajet->id ? 'selected' : '' }}>
                                     {{ $trajet->point_depart }} - {{ $trajet->point_arrive }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
+                    <!-- Bouton de soumission -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-success btn-lg mb-3">Mettre à Jour</button>
                     </div>
-                </form>
+                </form> --}}
+                <form action="{{ route('livraisons.update', $livraison->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
+                    <!-- Sélectionner le livreur -->
+                    <div class="form-group">
+                        <label for="user_id">Sélectionner un livreur:</label>
+                        <select class="form-control" id="user_id" name="user_id" required>
+                            @foreach($users as $livreur)
+                                <option value="{{ $livreur->id }}" {{ $livraison->user_id == $livreur->id ? 'selected' : '' }}>
+                                    {{ $livreur->name }} - ({{ $livreur->email }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Sélectionner le trajet -->
+                    <div class="form-group">
+                        <label for="trajet_id">Sélectionner un trajet:</label>
+                        <select class="form-control" id="trajet_id" name="trajet_id" required>
+                            @foreach($trajets as $trajet)
+                                <option value="{{ $trajet->id }}" {{ $livraison->trajet_id == $trajet->id ? 'selected' : '' }}>
+                                    {{ $trajet->point_depart }} - {{ $trajet->point_arrive }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Sélectionner un produit -->
+                    <div class="form-group">
+                        <label for="produit_id">Produit à livrer:</label>
+                        <select class="form-control" id="produit_id" name="produit_id" required>
+                            @foreach($produits as $produit)
+                                <option value="{{ $produit->id }}" {{ $livraison->produit_id == $produit->id ? 'selected' : '' }}>
+                                    {{ $produit->nom_produit }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Date de livraison -->
+                    <div class="form-group">
+                        <label for="date_de_livraison">Date de Livraison:</label>
+                        <input type="date" class="form-control" id="date_de_livraison" name="date_de_livraison" value="{{ $livraison->date_de_livraison }}" required>
+                    </div>
+
+                    <!-- Destination -->
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" class="form-control" id="destination" name="destination" value="{{ $livraison->destination }}" required>
+                    </div>
+
+                    <!-- Numéro de livraison -->
+                    <div class="form-group">
+                        <label for="numero_livraison">Numéro de Livraison:</label>
+                        <input type="text" class="form-control" id="numero_livraison" name="numero_livraison" value="{{ $livraison->numero_livraison }}" required>
+                    </div>
+
+                    <!-- Champ caché pour l'état de la livraison -->
+                    <input type="hidden" name="etat" value="{{ $livraison->etat }}">
+
+                    <button type="submit" class="btn btn-success">Mettre à jour la livraison</button>
+                </form>
+                
                 <div class="text-center">
                     <a href="{{ route('livraisons.index') }}" class="btn btn-link">Retour à la liste</a>
                     <a href="{{ route('livraisons.index') }}" class="btn btn-secondary">Annuler</a>
