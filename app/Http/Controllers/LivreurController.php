@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Livraison; // Ajoutez ceci pour utiliser le modèle Livraison
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class LivreurController extends Controller
 {

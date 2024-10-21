@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string("nom");
-            $table->string("type");
-            $table->string("description");
+            $table->string('nom');
+            $table->string('type');
+            $table->string('description');
             $table->foreignId('restaurant_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

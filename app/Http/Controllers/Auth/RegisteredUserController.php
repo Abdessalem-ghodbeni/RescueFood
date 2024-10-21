@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use App\Enums\Role;
 
 class RegisteredUserController extends Controller
 {
@@ -22,6 +22,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $roles = Role::cases(); // Utilise l'énumération Role pour récupérer tous les rôles
+
         return view('auth.register', ['roles' => $roles]);
     }
 
@@ -34,9 +35,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'in:' . implode(',', array_column(Role::cases(), 'value'))],
+            'role' => ['required', 'in:'.implode(',', array_column(Role::cases(), 'value'))],
         ]);
 
         $user = User::create([
@@ -50,6 +51,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
         return redirect()->route('login')->with('status', 'Your account has been created successfully. Please log in.');
 
         // Auth::login($user);

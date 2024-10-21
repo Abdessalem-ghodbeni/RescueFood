@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Produit extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'nom_produit',
         'prix',
         'type',
+        'date_expiration',
+        'livre',
         'stock_id', // Clé étrangère ajoutée
 
     ];

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('trajets', function (Blueprint $table) {
             $table->id();
-            $table->string("point_depart");
-            $table->string("point_arrive");
-            $table->string("duree");
+            $table->string('point_depart');
+            $table->string('point_arrive');
+            $table->string('duree');
             $table->timestamps();
         });
     }

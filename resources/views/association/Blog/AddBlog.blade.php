@@ -153,7 +153,7 @@
                                 @endif
 
                                 <!-- Formulaire d'ajout de blog -->
-                                <form action="{{ route('blogs.store') }}" method="POST">
+                                <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Titre du blog</label>
@@ -161,17 +161,23 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">objectif du blog</label>
-                                        <input type="text" class="form-control" id="title" name="objectif" value="{{ old('objectif') }}" required>
+                                        <label for="objectif" class="form-label">Objectif du blog</label>
+                                        <input type="text" class="form-control" id="objectif" name="objectif" value="{{ old('objectif') }}" required>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="content" class="form-label">sujet du blog</label>
+                                        <label for="content" class="form-label">Sujet du blog</label>
                                         <textarea class="form-control" id="content" name="sujet" rows="5" required>{{ old('sujet') }}</textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="image" class="form-label">Image du poste</label>
+                                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Ajouter</button>
                                 </form>
+
                             </div>
                         </div>
 
