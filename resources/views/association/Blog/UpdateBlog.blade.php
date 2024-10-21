@@ -142,23 +142,30 @@
                             @endif
 
                             <!-- Formulaire pour éditer le blog -->
-                            <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
+                            <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="form-group mb-3">
                                     <label for="title" class="form-label">Titre</label>
-                                    <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" required>
+                                    <input type="text" name="nom_blog" id="title" class="form-control" value="{{ $blog->nom_blog }}" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="content" class="form-label">Objectif</label>
-                                    <textarea name="objectif" id="content" class="form-control" rows="4" required>{{ $blog->objectif }}</textarea>
+                                    <textarea name="objectif" id="content" class="form-control" rows="4" >{{ $blog->objectif }}</textarea>
                                 </div>
 
                                 <div class="form-group mb-4">
                                     <label for="sujet" class="form-label">Sujet</label>
-                                    <textarea name="sujet" id="sujet" class="form-control" rows="4" required>{{ $blog->sujet }}</textarea>
+                                    <textarea name="sujet" id="sujet" class="form-control" rows="4" >{{ $blog->sujet }}</textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="image" class="form-label">Image (optionnelle)</label>
+                                    <input type="file" name="image" id="image" class="form-control">
+                                    @if ($blog->image)
+                                        <img src="{{ asset('storage/' . $blog->image) }}" alt="Image du poste" class="img-fluid mt-3">
+                                    @endif
                                 </div>
 
                                 <button type="submit" class="btn btn-primary w-100">Mettre à jour</button>

@@ -14,6 +14,7 @@ class Blog extends Model
         'objectif',
         'sujet',
         'association_id',
+        'image',
 
     ];
 

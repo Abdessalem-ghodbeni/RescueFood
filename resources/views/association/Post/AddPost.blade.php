@@ -143,17 +143,17 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="titre" class="form-label">Titre du poste</label>
-                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ old('titre') }}" required>
+                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ old('titre') }}" >
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="contenu_poste" class="form-label">Contenu du poste</label>
-                                    <textarea class="form-control" id="contenu_poste" name="contenu_poste" rows="5" required>{{ old('contenu_poste') }}</textarea>
+                                    <textarea class="form-control" id="contenu_poste" name="contenu_poste" rows="5" >{{ old('contenu_poste') }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image du poste</label>
-                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" >
                                 </div>
 
                                 <div class="mb-3">

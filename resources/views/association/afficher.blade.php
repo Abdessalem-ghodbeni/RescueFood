@@ -8,6 +8,7 @@
         @if($associations->isEmpty())
             <p>No associations found. <a href="{{ route('association.create') }}">Create one now!</a></p>
         @else
+
             <!-- Table for displaying associations -->
             <table class="table table-bordered">
                 <thead>
@@ -38,7 +39,8 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="" class="btn btn-primary">Create Blog</a>
+                            <a  href="{{ route('blogs.affiche', $association->id) }}" class="btn btn-primary">Blogs</a>
+                            <a href="{{ route('blogs.create', $association->id) }}" class="btn btn-primary">Add Blogs</a>
                         </td>
                     </tr>
                 @endforeach

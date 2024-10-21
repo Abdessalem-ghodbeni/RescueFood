@@ -28,4 +28,9 @@ class Don extends Model
     {
         return $this->belongsTo(Association::class);
     }
+
+    public function donataires()
+    {
+        return $this->hasMany(Donataire::class);
+    }
 }
