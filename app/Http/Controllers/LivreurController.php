@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Livraison; // Ajoutez ceci pour utiliser le modèle Livraison
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class LivreurController extends Controller
 {
@@ -21,7 +19,6 @@ class LivreurController extends Controller
         // Passer les livraisons à la vue
         return view('fournisseur\founisseurDashboard', compact('livraisons'));
     }
-
 
     public function updateEtat(Request $request, $id)
     {

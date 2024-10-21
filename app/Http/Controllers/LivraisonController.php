@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livraison;
+use App\Models\Produit;
 use App\Models\Trajet;
-use App\Models\User;
-use App\Models\Produit; // Assurez-vous que vous avez inclus le modèle Produit
+use App\Models\User; // Assurez-vous que vous avez inclus le modèle Produit
 use Illuminate\Http\Request;
 
 class LivraisonController extends Controller
@@ -29,7 +29,6 @@ class LivraisonController extends Controller
 
         return view('livraisons.create', compact('livreurs', 'trajets', 'produits'));
     }
-
 
     // public function store(Request $request)
     // {
@@ -57,7 +56,6 @@ class LivraisonController extends Controller
     //     return redirect()->route('livraisons.index')->with('success', 'Livraison créée avec succès.');
     // }
 
-
     public function store(Request $request)
     {
         // Valider les données du formulaire
@@ -67,7 +65,7 @@ class LivraisonController extends Controller
             'date_de_livraison' => 'required|date|after:today',
             'trajet_id' => 'required|exists:trajets,id',
             'user_id' => 'required|exists:users,id',
-            'produit_id' => 'required|exists:produits,id'
+            'produit_id' => 'required|exists:produits,id',
         ], [
             'destination.required' => 'Le champ destination est obligatoire.',
             'destination.string' => 'La destination doit être une chaîne de caractères.',
@@ -81,7 +79,7 @@ class LivraisonController extends Controller
             'date_de_livraison.after' => 'La date de livraison doit être une date future.',
             'trajet_id.required' => 'Le champ trajet est obligatoire.',
             'user_id.required' => 'Le champ utilisateur est obligatoire.',
-            'produit_id.required' => 'Le champ produit est obligatoire.'
+            'produit_id.required' => 'Le champ produit est obligatoire.',
         ]);
 
         try {
@@ -126,7 +124,7 @@ class LivraisonController extends Controller
         $request->validate([
             'date_de_livraison' => 'required|date',
             'destination' => 'required|string|max:4',
-            'numero_livraison' => 'required|unique:livraisons,numero_livraison,' . $livraison->id,
+            'numero_livraison' => 'required|unique:livraisons,numero_livraison,'.$livraison->id,
             'user_id' => 'required|exists:users,id',
             'trajet_id' => 'required|exists:trajets,id',
             'produit_id' => 'required|exists:produits,id',
@@ -159,7 +157,6 @@ class LivraisonController extends Controller
         return redirect()->route('livraisons.index')->with('success', 'Livraison mise à jour avec succès.');
     }
 
-
     // Supprime une livraison
     public function destroy($id)
     {
@@ -173,6 +170,7 @@ class LivraisonController extends Controller
 
         return redirect()->route('livraisons.index')->with('error', 'Livraison non trouvée.');
     }
+
     public function updateEtat(Request $request, $id)
     {
         // Récupérer la livraison par ID

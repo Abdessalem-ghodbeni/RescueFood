@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DonataireExport;
 use App\Models\Don;
 use App\Models\Donataire;
 use Illuminate\Http\Request;
-use App\Exports\DonataireExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DonataireController extends Controller

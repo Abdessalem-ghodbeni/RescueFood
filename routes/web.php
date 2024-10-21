@@ -2,24 +2,23 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DonataireController;
+use App\Http\Controllers\DonController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TrajetController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DonataireExportController;
-use App\Http\Controllers\DonController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProduitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +51,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/adminDashboard', [AdminController::class, 'index'])->name('admin.index');
     Route::get('admin/restaurants', [AdminController::class, 'getAllRestorant'])->name('admin.getAllRestorant');
@@ -63,7 +61,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
-
 
     Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
     Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
@@ -128,9 +125,7 @@ Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraiso
 // Affiche une livraison spécifique
 Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
 
-
 Route::put('/livraisons/{id}/etat', [LivreurController::class, 'updateEtat'])->name('livraisons.updateEtat');
-
 
 // Affiche le formulaire d'édition
 Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
@@ -172,11 +167,6 @@ Route::resource('/stock', StockController::class);
 Route::resource('/produit', ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-
-
-
-
-
 //-----------------------------------------------------------Blog-------------------------------------//
 
 route::get('association/blogs', [BlogController::class, 'affiche'])->name('blogs.affiche');
@@ -210,13 +200,9 @@ Route::delete('admin/blogs/{id}', [BlogController::class, 'destroyadmin'])->name
 
 route::get('admin/blogs/{id}', [BlogController::class, 'showadmin'])->name('blogs.showadmin');
 
-
-
-
 //--------------------------------------------------admin blog -------------------------------------//
 
 //---------------------------------------------------Blog-------------------------------------//
-
 
 //------------------------Poste-------------------------------------//
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
@@ -234,11 +220,7 @@ Route::get('admin/post/{id}/edit', [PostController::class, 'editadmin'])->name('
 Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('post.updateadmin');
 //--------------------------------------------------admin poste -------------------------------------//
 
-
 //------------------------Poste-------------------------------------//
-
-
-
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

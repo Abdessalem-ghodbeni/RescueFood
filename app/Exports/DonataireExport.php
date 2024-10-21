@@ -17,18 +17,16 @@ class DonataireExport implements FromCollection, WithHeadings
     {
         return Donataire::with('don')->get()->map(function ($donataire) {
             return [
-                'Nom'   => $donataire->name,
+                'Nom' => $donataire->name,
                 'Email' => $donataire->email,
                 'Phone' => $donataire->phone,
-                'Dons'  => $donataire->don->pluck('description'), // Par exemple, si tu veux afficher les montants des dons
+                'Dons' => $donataire->don->pluck('description'), // Par exemple, si tu veux afficher les montants des dons
             ];
         });
     }
 
     /**
      * Retourne les en-têtes des colonnes.
-     *
-     * @return array
      */
     public function headings(): array
     {
@@ -36,7 +34,7 @@ class DonataireExport implements FromCollection, WithHeadings
             'Nom',
             'Email',
             'Phone',
-            'Dons'
+            'Dons',
         ];
     }
 }

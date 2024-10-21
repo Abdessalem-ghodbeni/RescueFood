@@ -117,8 +117,6 @@ class BlogController extends Controller
         return redirect()->route('blogs.affiche')->with('success', 'Blog modifié avec succès.');
     }
 
-
-
     public function getBlogByAssociationId(Request $request, $associationId)
     {
         $search = $request->query('search');
@@ -138,10 +136,6 @@ class BlogController extends Controller
         // Passer $associationId à la vue en plus de $blogs
         return view('admin.association.Blogs.AfficheBlog', compact('blogs', 'associationId'));
     }
-
-
-
-
 
     public function createBlog($association_id)
     {
@@ -163,7 +157,6 @@ class BlogController extends Controller
             $imagePath = $request->file('image')->store('blog', 'public');
         }
 
-
         // Création du blog
         Blog::create([
             'nom_blog' => $validatedData['nom_blog'],
@@ -179,8 +172,7 @@ class BlogController extends Controller
             ->with('success', 'Blog ajouté avec succès!');
     }
 
-
-// Méthode pour afficher le formulaire de modification
+    // Méthode pour afficher le formulaire de modification
     public function editadmin($id)
     {
         // Récupérer le blog à modifier
@@ -190,7 +182,7 @@ class BlogController extends Controller
         return view('admin.association.Blogs.EditBlog', compact('blog'));
     }
 
-// Méthode pour gérer la mise à jour d'un blog
+    // Méthode pour gérer la mise à jour d'un blog
     public function updateadmin(Request $request, $id)
     {
         // Validation des données
@@ -231,7 +223,6 @@ class BlogController extends Controller
             ->with('success', 'Blog mis à jour avec succès!');
     }
 
-
     public function destroyadmin($id)
     {
         $blog = Blog::findOrFail($id);
@@ -246,7 +237,7 @@ class BlogController extends Controller
         // Récupérer le blog par son id avec une pagination des postes
         $blog = Blog::with('postes')->find($id);
 
-        if (!$blog) {
+        if (! $blog) {
             return redirect()->route('blogs.affiche')->with('error', 'Blog not found');
         }
 
@@ -256,6 +247,4 @@ class BlogController extends Controller
         return view('admin.association.Blogs.OneBlog', compact('blog', 'postes'));
 
     }
-
-
 }
