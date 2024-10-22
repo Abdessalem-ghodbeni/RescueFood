@@ -373,7 +373,7 @@
                  </div>
                  <div class="row">
                     <div class="mb-4 col-12 col-md-6">
-                        <label for="exampleInputEmail1" class="form-label">Numéro Fix</label>
+                        <label for="exampleInputEmail1" class="form-label">Numéro Fixx</label>
                         <div class="input-group input-group-lg">
 
                             <input type="text" class="form-control border-0 bg-light rounded-end ps-1"  placeholder="Numéro Fix" name="numero_fix"   id="exampleInputEmail1">
