@@ -18,8 +18,9 @@ class BlogController extends Controller
                 ->where(function ($query) use ($search) {
                     $query->where('nom_blog', 'LIKE', "%{$search}%")
                         ->orWhere('sujet', 'LIKE', "%{$search}%")
-                        ->orWhere('objectif', 'LIKE', "%{$search}%");  // Ajouter d'autres champs si nécessaire
+                        ->orWhere('objectif', 'LIKE', "%{$search}%");
                 })
+                //hello world
                 ->get();
         } else {
             $blogs = Blog::where('association_id', $associationId)->get();
