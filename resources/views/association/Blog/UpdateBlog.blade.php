@@ -126,7 +126,7 @@
 
 
 
-                <div class="container mt-5">
+                <div class="col-xl-9">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
                             <h2 class="mb-4 text-center">Modifier le Blog</h2>

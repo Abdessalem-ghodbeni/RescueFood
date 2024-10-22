@@ -31,12 +31,25 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
+    //     Produit::create($input);
+    //     return redirect('produit')->with('flash_message', 'Produit Addedd!');
+    // }
+
     public function store(Request $request)
     {
-        $input = $request->all();
-        Produit::create($input);
+        $request->validate([
+            'nom_produit' => 'required|string|min:3',
+            'type' => 'required|string|min:3',
+            'date_expiration' => 'nullable|date|after:today',
+            'stock_id' => 'required|exists:stocks,id',
+        ]);
 
-        return redirect('produit')->with('flash_message', 'Produit Addedd!');
+        Produit::create($request->all());
+
+        return redirect('produit')->with('success', 'Stock ajouté avec succès.');
     }
 
     /**
@@ -64,11 +77,23 @@ class ProduitController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //  public function update(Request $request, $id)
+    //  {
+    //      $produit = Produit::find($id);
+    //      $input = $request->all();
+    //      $produit->update($input);
+    //      return redirect('produit')->with('flash_message', 'Produit Updated!');
+    //  }
     public function update(Request $request, $id)
     {
-        $produit = Produit::find($id);
-        $input = $request->all();
-        $produit->update($input);
+        $request->validate([
+            'nom_produit' => 'required|string|min:3',
+            'type' => 'required|string|min:3',
+            'date_expiration' => 'nullable|date|after:today',
+            'stock_id' => 'required|exists:stocks,id',
+        ]);
+        $produit = Produit::findOrFail($id);
+        $produit->update($request->all());
 
         return redirect('produit')->with('flash_message', 'Produit Updated!');
     }

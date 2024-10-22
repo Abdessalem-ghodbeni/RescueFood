@@ -42,6 +42,7 @@
                                             <span class="h6">email : </span>
                                             <span class="text-body fw-light">{{ Auth::user()->email }}</span>
                                         </li>
+                                        <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
 
                                     </ul>
                                 </div>

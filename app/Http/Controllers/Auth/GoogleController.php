@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\Role;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use phpseclib3\Crypt\Hash;
-use Illuminate\Validation\Rules;
 
 class GoogleController extends Controller
 {
@@ -28,13 +25,13 @@ class GoogleController extends Controller
             // Vérifier si l'utilisateur existe déjà
             $user = User::where('email', $googleUser->email)->first();
 
-            if (!$user) {
+            if (! $user) {
                 // Si l'utilisateur n'existe pas, créer un nouveau
                 $user = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'password' => $googleUser->password,
-                    'role'=> Role::Livreur,
+                    'role' => Role::Livreur,
                 ]);
             }
 

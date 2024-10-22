@@ -31,55 +31,21 @@
                     <ul class="navbar-nav flex-column" id="navbar-sidebar">
 
                         <!-- Menu item -->
-                        <li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link">Dashboard</a></li>
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsebooking" role="button" aria-expanded="true" aria-controls="collapsebooking">
-                                Bookings
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column show" id="collapsebooking" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link active" href="admin-booking-list.html">Booking List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-booking-detail.html">Booking Detail</a></li>
-                            </ul>
-                        </li>
 
                         <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseguest" role="button" aria-expanded="false" aria-controls="collapseguest">
-                                Guests
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseguest" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-list.html">Guest List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-guest-detail.html">Guest Detail</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
 
-                        <!-- Menu item -->
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseagent" role="button" aria-expanded="false" aria-controls="collapseagent">
-                                Agents
-                            </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseagent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-list.html">Agent List</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-agent-detail.html">Agent Detail</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-reviews.html">Reviews</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-earnings.html">Earnings</a></li>
-
-                        <!-- Menu item -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-settings.html">Admin Settings</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste Dons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('livraisons/dahboard') }}"><i class="bi bi-list mx-2"></i>Liste des Livraisons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('trajets') }}"><i class="bi bi-list mx-2"></i>Liste des trajets</a></li>
 
                         <!-- Menu item -->
 
@@ -269,6 +235,7 @@
                                             <div>
                                                 <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
+                                                <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -287,39 +254,65 @@
             <div class="page-content-wrapper p-xxl-4">
                 <h4>Modifier un Stock :</h4>
                 <div class="card" style="margin:20px;">
-                  
                     <div class="card-body">
-                        <form action="{{ url('stock/' .$stock->id) }}" method="post">
+                        <form action="{{ url('stock/' . $stock->id) }}" method="post">
                             {!! csrf_field() !!}
                             @method("PATCH")
-                            <input type="hidden" name="id" id="id" value="{{$stock->id}}" />
+                            <input type="hidden" name="id" id="id" value="{{ $stock->id }}" />
 
-                            <label>Nom</label></br>
-                            <input type="text" name="nom" id="nom" value="{{$stock->nom}}" class="form-control"></br>
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input type="text" name="nom" id="nom" value="{{ old('nom', $stock->nom) }}" class="form-control" required>
+                                @if ($errors->has('nom'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('nom') }}
+                                </div>
+                                @endif
+                            </div>
 
-                            <label>Type</label></br>
-                            <input type="text" name="type" id="type" value="{{$stock->type}}" class="form-control"></br>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <input type="text" name="type" id="type" value="{{ old('type', $stock->type) }}" class="form-control" required>
+                                @if ($errors->has('type'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('type') }}
+                                </div>
+                                @endif
+                            </div>
 
-                            <label>Description</label></br>
-                            <input type="text" name="description" id="description" value="{{$stock->description}}" class="form-control"></br>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" name="description" id="description" value="{{ old('description', $stock->description) }}" class="form-control">
+                                @if ($errors->has('description'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('description') }}
+                                </div>
+                                @endif
+                            </div>
 
                             <div class="form-group">
                                 <label for="restaurant_id">Restaurant</label>
                                 <select name="restaurant_id" id="restaurant_id" class="form-control" required>
                                     <option value="">Sélectionnez un restaurant</option>
                                     @foreach($restaurants as $restaurant)
-                                    <option value="{{ $restaurant->id }}" {{ $restaurant->id == $stock->restaurant_id ? 'selected' : '' }}>
+                                    <option value="{{ $restaurant->id }}" {{ old('restaurant_id', $stock->restaurant_id) == $restaurant->id ? 'selected' : '' }}>
                                         {{ $restaurant->Restorant }}
                                     </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('restaurant_id'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('restaurant_id') }}
+                                </div>
+                                @endif
                             </div>
 
-                            <input type="submit" value="Modifier" class="btn btn-success"></br>
+                            <input type="submit" value="Modifier" class="btn btn-success mt-3">
                         </form>
                     </div>
                 </div>
             </div>
+
 
 
 

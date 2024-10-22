@@ -2,19 +2,19 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssociationController;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\DonataireController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\livraisonController;
 use App\Http\Controllers\LivreurController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\Post\PostController; // Assurez-vous que ce chemin est correct
+// Assurez-vous que ce chemin est correct
 
-
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestorantController;
@@ -42,6 +42,12 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profileLivreur', [ProfileController::class, 'editLivreur'])->name('profile.updateLivreur');
+    Route::patch('/profileLivreur', [ProfileController::class, 'updateLivreur'])->name('profile.updateLivreur');
+    Route::get('/profileResaturant', [ProfileController::class, 'editRestaurant'])->name('profile.updateRestaurant');
+    Route::patch('/profileResaturant', [ProfileController::class, 'updateRestaurant'])->name('profile.updateRestaurant');
+    Route::get('/profileAssociation', [ProfileController::class, 'editAssociation'])->name('profile.updateAssociation');
+    Route::patch('/profileAssociation', [ProfileController::class, 'updateAssociation'])->name('profile.updateAssociation');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -58,7 +64,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/allMenus', [AdminController::class, 'allMenu'])->name('admin.allMenu');
     Route::get('admin/menu/{id}', [AdminController::class, 'showMenu'])->name('admin.showMenu');
 
-
     Route::get('admin/dons', [DonController::class, 'index'])->name('dons.index');
     Route::get('admin/dons/create', [DonController::class, 'create'])->name('dons.create');
     Route::post('admin/dons', [DonController::class, 'store'])->name('dons.store');
@@ -73,6 +78,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/donataires/{donataire}/edit', [DonataireController::class, 'edit'])->name('donataires.edit');
     Route::put('admin/donataires/{donataire}', [DonataireController::class, 'update'])->name('donataires.update');
     Route::delete('admin/donataires/{donataire}', [DonataireController::class, 'destroy'])->name('donataires.destroy');
+    Route::get('export-donataires', [DonataireController::class, 'export']);
 });
 
 // Affiche la liste des livraisons
@@ -121,9 +127,12 @@ Route::post('livraisons', [LivraisonController::class, 'store'])->name('livraiso
 // Affiche une livraison spécifique
 Route::get('livraisons/{livraison}', [livraisonController::class, 'show'])->name('livraisons.show');
 
+Route::put('/livraisons/{id}/etat', [LivreurController::class, 'updateEtat'])->name('livraisons.updateEtat');
+
 // Affiche le formulaire d'édition
 Route::get('livraisons/{id}/edit', [LivraisonController::class, 'edit'])->name('livraisons.edit');
 Route::put('livraisons/{livraison}', [livraisonController::class, 'update'])->name('livraisons.update');
+Route::get('/fournisseur/dashboard', [LivreurController::class, 'index'])->name('fournisseur.fournisseurDashboard');
 
 // Supprime une livraison
 Route::delete('/livraisons/{id}', [LivraisonController::class, 'destroy'])->name('livraisons.destroy');
@@ -160,11 +169,6 @@ Route::resource('/stock', StockController::class);
 Route::resource('/produit', ProduitController::class);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-
-
-
-
-
 //-----------------------------------------------------------Blog-------------------------------------//
 
 route::get('association/{id}/blogs/', [BlogController::class, 'affiche'])->name('blogs.affiche');
@@ -198,13 +202,9 @@ Route::delete('admin/blogs/{id}', [BlogController::class, 'destroyadmin'])->name
 
 route::get('admin/blogs/{id}', [BlogController::class, 'showadmin'])->name('blogs.showadmin');
 
-
-
-
 //--------------------------------------------------admin blog -------------------------------------//
 
 //---------------------------------------------------Blog-------------------------------------//
-
 
 //------------------------Poste-------------------------------------//
 Route::get('/posts/create/{blog_id}', [PostController::class, 'create'])->name('post.create');
@@ -222,12 +222,7 @@ Route::get('admin/post/{id}/edit', [PostController::class, 'editadmin'])->name('
 Route::put('admin/post/{id}', [PostController::class, 'updateadmin'])->name('post.updateadmin');
 //--------------------------------------------------admin poste -------------------------------------//
 
-
 //------------------------Poste-------------------------------------//
-
-
-
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-

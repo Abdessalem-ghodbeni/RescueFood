@@ -13,8 +13,67 @@
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
 
-        @include('produit.sidard')
-        
+
+        <!-- Sidebar START -->
+        <nav class="navbar sidebar navbar-expand-xl navbar-light">
+            <!-- Navbar brand for xl START -->
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="index.html">
+                    <img class="light-mode-item navbar-brand-item" src="{{asset('layoutsCss/images/adminn.png')}}" alt="logo">
+                    <img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
+                </a>
+            </div>
+            <!-- Navbar brand for xl END -->
+
+            <div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1" id="offcanvasSidebar">
+                <div class="offcanvas-body sidebar-content d-flex flex-column pt-4">
+
+                    <!-- Sidebar menu START -->
+                    <ul class="navbar-nav flex-column" id="navbar-sidebar">
+
+                        <!-- Menu item -->
+                        <li class="nav-item"><a class="nav-link">Dashboard</a></li>
+
+                        <!-- Title -->
+                        <li class="nav-item ms-2 my-2">Pages</li>
+
+
+                        <!-- Menu item -->
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/restaurants')}}"><i class="bi bi-list mx-2"></i>Liste des resaurants</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/allMenus')}}"><i class="bi bi-list mx-2"></i>Liste des Menus</a></li>
+
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/admin/dons')}}"><i class="bi bi-list mx-2"></i>Liste Dons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/stock')}}"><i class="bi bi-list mx-2"></i>Liste des Stocks</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('livraisons/dahboard') }}"><i class="bi bi-list mx-2"></i>Liste des Livraisons</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('trajets') }}"><i class="bi bi-list mx-2"></i>Liste des trajets</a></li>
+
+                        <!-- Menu item -->
+
+
+
+                    </ul>
+                    <!-- Sidebar menu end -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <!-- Sidebar footer START -->
+                        <div class="d-flex align-items-center justify-content-between text-primary-hover mt-auto p-3">
+                            <button type="submit" class="h6 fw-light mb-0 text-body btn btn-link p-0">
+
+                                <a class="h6 fw-light mb-0 text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Sign out">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                                </a>
+
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Sidebar footer END -->
+
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar END -->
+
 
         <!-- Page content START -->
         <div class="page-content">
@@ -178,6 +237,7 @@
                                             <div>
                                                 <a class="h6 mt-2 mt-sm-0" href="#">{{ Auth::user()->name }}</a>
                                                 <p class="small m-0">{{ Auth::user()->email }}</p>
+                                                <a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -194,19 +254,42 @@
 
 
             <div class="page-content-wrapper p-xxl-4">
-            <h4>Modifier un produit :</h4>
+                <h4>Modifier un produit :</h4>
                 <div class="card" style="margin:20px;">
-                   
+
                     <div class="card-body">
 
                         <form action="{{ url('produit/' .$produit->id) }}" method="post">
                             {!! csrf_field() !!}
                             @method("PATCH")
                             <input type="hidden" name="id" id="id" value="{{$produit->id}}" id="id" />
-                            <label>Nom</label></br>
-                            <input type="text" name="nom_produit" id="nom_produit" value="{{$produit->nom_produit}}" class="form-control"></br>
-                            <label>Type</label></br>
-                            <input type="text" name="type" id="type" value="{{$produit->type}}" class="form-control"></br>
+                            <div>
+                                <label>Nom</label></br>
+                                <input type="text" name="nom_produit" id="nom_produit" value="{{$produit->nom_produit}}" class="form-control"></br>
+                                @if ($errors->has('nom_produit'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('nom_produit') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <label>Type</label></br>
+                                <input type="text" name="type" id="type" value="{{$produit->type}}" class="form-control"></br>
+                                @if ($errors->has('type'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('type') }}
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <label for="date_expiration">Date expiration</label>
+                                <input type="date" name="date_expiration" id="date_expiration" value="{{$produit->date_expiration}}" class="form-control" required>
+                                @if ($errors->has('date_expiration'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('date_expiration') }}
+                                </div>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label for="stock_id">Stock</label>
                                 <select name="stock_id" id="stock_id" class="form-control" required>
@@ -217,6 +300,11 @@
                                     </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('stock_id'))
+                                <div class="alert alert-danger mt-1">
+                                    {{ $errors->first('stock_id') }}
+                                </div>
+                                @endif
                             </div>
                             <input type="submit" value="Modifier" class="btn btn-success"></br>
                         </form>

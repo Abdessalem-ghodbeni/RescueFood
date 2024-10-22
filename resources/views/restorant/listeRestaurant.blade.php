@@ -237,6 +237,7 @@
 										<div>
 											<a class="h6 mt-2 mt-sm-0" >{{ Auth::user()->name }}</a>
 											<p class="small m-0">{{ Auth::user()->email }}</p>
+											<a class="nav-link" href="{{url('/profile')}}">Edit Profile</a>
 										</div>
 									</div>
 								</li>
