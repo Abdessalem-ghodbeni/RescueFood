@@ -46,6 +46,7 @@
                     <li class="nav-item"> <a class="nav-link" href="{{url('/produit')}}"><i class="bi bi-list mx-2"></i>Liste des Produits</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('livraisons/dahboard') }}"><i class="bi bi-list mx-2"></i>Liste des Livraisons</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ url('trajets') }}"><i class="bi bi-list mx-2"></i>Liste des trajets</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/donataires') }}"><i class="bi bi-list mx-2"></i>Liste des dontaires</a></li>
 
                     <!-- Menu item -->
                     <li class="nav-item"><a class="nav-link" href="{{ route('categorie.index') }}">Categorie</a></li>
